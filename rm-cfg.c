@@ -398,7 +398,7 @@ const struct am65_boardcfg_rm_local am65_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 160,
-			.num_resource = 64,
+			.num_resource = 32,
 			.type = RESASG_UTYPE(RESASG_TYPE_PULSAR_C0_IRQ,
 				     RESASG_SUBTYPE_PULSAR_C0_IRQ_MAIN2MCU_LVL),
 			.host_id = HOST_ID_R5_0,
@@ -425,11 +425,11 @@ const struct am65_boardcfg_rm_local am65_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
-			.start_resource = 160,
-			.num_resource = 64,
+			.start_resource = 192,
+			.num_resource = 32,
 			.type = RESASG_UTYPE(RESASG_TYPE_PULSAR_C1_IRQ,
 				     RESASG_SUBTYPE_PULSAR_C1_IRQ_MAIN2MCU_LVL),
-			.host_id = HOST_ID_R5_0,
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 224,
