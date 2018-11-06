@@ -54,6 +54,11 @@ typedef unsigned long long u64;
 typedef u8 ftbool;
 
 /**
+ * Basic bit operations
+ */
+#define BIT(n)		(1UL << (n))
+
+/**
  * Various definitions as expected by the 'struct' declarations below
  */
 #define BOARDCFG_RM_HOST_CFG_MAGIC_NUM		0x4C41
