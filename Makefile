@@ -40,7 +40,7 @@
 SYSFW_PATH ?= ti-sci-firmware-am65x-gp.bin
 
 # Must use FULL Git hash below, as it is used as part of an URL for direct DL
-SYSFW_GIT_HASH ?= 1e03f08e89bee6d29ffd25782f5ce45b1b4bf1e6
+SYSFW_GIT_HASH ?= cbb37f282017cb5b6bf42c26c0b5a5a8b818ec9e
 
 # URL to download SYSFW release binary from if not provided otherwise
 SYSFW_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-firmware/blobs/raw/$(SYSFW_GIT_HASH)/ti-sysfw/$(SYSFW_PATH)
