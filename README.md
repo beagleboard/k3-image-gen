@@ -48,6 +48,16 @@ The default SYSFW image consumed by the build process is called
 using the **SYSFW_PATH** make variable. The build process will fail if the
 image can't be downloaded or no such file is provided.
 
+Further note by default the SYSFW image for use with general purpose (GP) devices
+(as opposed to high security devices) is signed with the TI degenerate key to
+optimize boot time (less processing time needed by ROM) but can also be signed
+with a random cryptoraphic key or another user-provided key. This signing behavior
+is controlled through the **KEY** make variable. Not explicitly setting **KEY**
+will result in the use of the TI degenerate key. To use a custom key populate the
+**KEY** variable to point to the key to get used. By clearing the default key
+setting by passing in **KEY=""** a random key will get generated and used during
+the build process.
+
 In order to download the SYSFW release image (if needed) and build the final
 **sysfw.itb** for consumption by U-Boot simply perform a make...
 

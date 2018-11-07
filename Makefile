@@ -61,6 +61,8 @@ SYSFW_HS_INNER_CERT_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-fir
 # Set HS SYSFW image signing key
 ifdef HS
 KEY ?= $(TI_SECURE_DEV_PKG)/keys/custMpk.pem
+else
+KEY ?= ti-degenerate-key.pem
 endif
 
 CROSS_COMPILE ?= arm-linux-gnueabihf-
