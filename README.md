@@ -66,6 +66,27 @@ To also remove the SYSFW image do this...
 
     $ make mrproper
 
+Building SYSFW Image for High-Security(HS) devices
+--------------------------------------------------
+The process for building and image suitable for use with HS devices is similar
+to the above process with the following differences:
+
+The make commands should be appended with HS=1,
+
+    $ make HS=1
+
+The environment variable **TI_SECURE_DEV_PKG** should be defined to point to
+the TI Secure Development Tools package.
+
+There are two images downloaded and consumed by the build process.
+
+    * ti-sci-firmware-am65x-hs-enc.bin: Encrypted HS SYSFW image
+    * ti-sci-firmware-am65x-hs-cert.bin: Inner-certificate for HS SYSFW image
+
+The inner-certificate is signed by the key provided by the **TI_SECURE_DEV_PKG**
+path producing an outer-certificate. These images are then appended to produce
+the final **sysfw.bin** which is bundled with the configuration data exactly as
+the non-HS version above.
 
 Important Notes
 ---------------
