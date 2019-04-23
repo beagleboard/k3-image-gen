@@ -270,12 +270,12 @@ cat << 'EOF' > x509-template.txt
 
  [ req_distinguished_name ]
  C                      = US
- ST                     = SC
- L                      = New York
- O                      = Texas Instruments, Inc.
- OU                     = DSP
- CN                     = Albert
- emailAddress           = Albert@gt.ti.com
+ ST                     = TX
+ L                      = Dallas
+ O                      = Texas Instruments Incorporated
+ OU                     = Processors
+ CN                     = TI Support
+ emailAddress           = support@ti.com
 
  [ v3_ca ]
  basicConstraints = CA:true
