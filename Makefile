@@ -51,7 +51,7 @@ SYSFW_HS_INNER_CERT_PATH ?= ti-sci-firmware-am65x-hs-cert.bin
 SYSFW_HS_CERTS_PATH ?= ti-sci-firmware-am65x-hs-certs.bin
 
 # Must use FULL Git hash below, as it is used as part of an URL for direct DL
-SYSFW_GIT_HASH ?= 77bd5534eb33c2f9654ab1b56fcdff4e8b7143e0
+SYSFW_GIT_HASH ?= b41c4f097ab6f341462645f76059f48f78bbd17e
 
 # URL to download SYSFW release binary from if not provided otherwise
 SYSFW_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-firmware/blobs/raw/$(SYSFW_GIT_HASH)/ti-sysfw/$(SYSFW_PATH)
