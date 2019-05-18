@@ -72,7 +72,8 @@ CROSS_COMPILE ?= arm-linux-gnueabihf-
 CFLAGS ?= \
 	-fno-builtin \
 	-Wall \
-	-Iinclude/soc/${SOC}/
+	-Iinclude/soc/${SOC}/ \
+	-Iinclude
 
 BINS ?= \
 	sysfw.bin \
