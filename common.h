@@ -126,7 +126,7 @@ struct boardcfg_dbg_cfg {
 	u16					trace_src_enables;
 } __attribute__((__packed__));
 
-struct k3_boardcfg {
+struct boardcfg {
 	struct boardcfg_abi_rev			rev;
 	struct boardcfg_control			control;
 	struct boardcfg_secproxy		secproxy;
@@ -343,19 +343,19 @@ struct boardcfg_rm_resasg {
 	struct boardcfg_rm_resasg_entry		resasg_entries[];
 } __attribute__((__packed__));
 
-struct k3_boardcfg_rm {
+struct boardcfg_rm {
 	struct boardcfg_abi_rev			rev;
 	struct boardcfg_rm_host_cfg		host_cfg;
 	struct boardcfg_rm_resasg		resasg;
 } __attribute__((__packed__));
 
 /*
- * This is essentially 'struct k3_boardcfg_rm', but modified to pull
+ * This is essentially 'struct boardcfg_rm', but modified to pull
  * .resasg_entries which is a member of 'struct boardcfg_rm_resasg' into
  * the outer structure for easier explicit initialization.
  */
-struct am65_boardcfg_rm_local {
-	struct k3_boardcfg_rm			rm_boardcfg;
+struct boardcfg_rm_local {
+	struct boardcfg_rm			rm_boardcfg;
 	struct boardcfg_rm_resasg_entry
 				resasg_entries[BOARDCFG_RM_RESASG_ENTRIES];
 } __attribute__((__packed__));
@@ -391,7 +391,7 @@ struct boardcfg_host_hierarchy {
 				 host_hierarchy_entries[HOST_HIERARCHY_ENTRIES];
 } __attribute__((__packed__));
 
-struct k3_boardcfg_security {
+struct boardcfg_security {
 	struct boardcfg_abi_rev			rev;
 	struct boardcfg_proc_acl		processor_acl_list;
 	struct boardcfg_host_hierarchy		host_hierarchy;
@@ -400,16 +400,8 @@ struct k3_boardcfg_security {
 /**
  * Definitions, types, etc. as used for PM configuration
  */
-struct k3_boardcfg_pm {
+struct boardcfg_pm {
 	struct boardcfg_abi_rev			rev;
 } __attribute__((__packed__));
-
-/**
- * Export different board configuration structures
- */
-extern const struct k3_boardcfg am65_boardcfg_data;
-extern const struct am65_boardcfg_rm_local am65_boardcfg_rm_data;
-extern const struct k3_boardcfg_security am65_boardcfg_security_data;
-extern const struct k3_boardcfg_pm am65_boardcfg_pm_data;
 
 #endif /* COMMON_H */

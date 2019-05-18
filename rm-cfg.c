@@ -35,7 +35,7 @@
 
 #include "common.h"
 
-const struct am65_boardcfg_rm_local am65_boardcfg_rm_data = {
+const struct boardcfg_rm_local am65_boardcfg_rm_data = {
 	.rm_boardcfg = {
 		/* boardcfg_abi_rev */
 		.rev = {
@@ -61,7 +61,7 @@ const struct am65_boardcfg_rm_local am65_boardcfg_rm_data = {
 			.resasg_entries_size = BOARDCFG_RM_RESASG_ENTRIES *
 					sizeof(struct boardcfg_rm_resasg_entry),
 			.reserved = 0,
-			/* .resasg_entries is set via k3_boardcfg_rm_local */
+			/* .resasg_entries is set via boardcfg_rm_local */
 		},
 	},
 

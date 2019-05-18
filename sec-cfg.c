@@ -1,7 +1,7 @@
 /*
  * K3 System Firmware Security Configuration Data
  *
- * Copyright (C) 2018 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2018-2019 Texas Instruments Incorporated - http://www.ti.com/
  *	Andreas Dannenberg <dannenberg@ti.com>
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,7 +35,7 @@
 
 #include "common.h"
 
-const struct k3_boardcfg_security am65_boardcfg_security_data = {
+const struct boardcfg_security am65_boardcfg_security_data = {
 	/* boardcfg_abi_rev */
 	.rev = {
 		.boardcfg_abi_maj = 0x0,
