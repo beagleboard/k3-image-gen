@@ -35,6 +35,8 @@
 #  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+SOC ?= am65x
+
 # The HS SYSFW will only work on HS hardware when signed with valid
 # keys, warn HS users if the SECDEV environment variable is not set
 ifdef HS
@@ -45,10 +47,10 @@ endif
 
 # If using the default SYSFW make sure to manually copy/populate the unsigned
 # image into the root folder of this repository.
-SYSFW_PATH ?= ti-sci-firmware-am65x-gp.bin
-SYSFW_HS_PATH ?= ti-sci-firmware-am65x-hs-enc.bin
-SYSFW_HS_INNER_CERT_PATH ?= ti-sci-firmware-am65x-hs-cert.bin
-SYSFW_HS_CERTS_PATH ?= ti-sci-firmware-am65x-hs-certs.bin
+SYSFW_PATH ?= ti-sci-firmware-${SOC}-gp.bin
+SYSFW_HS_PATH ?= ti-sci-firmware-${SOC}-hs-enc.bin
+SYSFW_HS_INNER_CERT_PATH ?= ti-sci-firmware-${SOC}-hs-cert.bin
+SYSFW_HS_CERTS_PATH ?= ti-sci-firmware-${SOC}-hs-certs.bin
 
 # Must use FULL Git hash below, as it is used as part of an URL for direct DL
 SYSFW_GIT_HASH ?= b41c4f097ab6f341462645f76059f48f78bbd17e
@@ -69,7 +71,8 @@ CROSS_COMPILE ?= arm-linux-gnueabihf-
 
 CFLAGS ?= \
 	-fno-builtin \
-	-Wall
+	-Wall \
+	-Iinclude/soc/${SOC}/
 
 BINS ?= \
 	sysfw.bin \
