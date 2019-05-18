@@ -1,7 +1,7 @@
 /*
  * K3 System Firmware Resource Management Configuration Data
  *
- * Copyright (C) 2018 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2018-2019 Texas Instruments Incorporated - http://www.ti.com/
  *	Andreas Dannenberg <dannenberg@ti.com>
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,7 +58,7 @@ const struct am65_boardcfg_rm_local am65_boardcfg_rm_data = {
 				.magic = BOARDCFG_RM_RESASG_MAGIC_NUM,
 				.size = sizeof(struct boardcfg_rm_resasg),
 			},
-			.resasg_entries_size = AM65_BOARDCFG_RM_RESASG_ENTRIES *
+			.resasg_entries_size = BOARDCFG_RM_RESASG_ENTRIES *
 					sizeof(struct boardcfg_rm_resasg_entry),
 			.reserved = 0,
 			/* .resasg_entries is set via k3_boardcfg_rm_local */

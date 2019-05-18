@@ -1,7 +1,7 @@
 /*
  * K3 System Firmware Board Configuration Data Structures
  *
- * Copyright (C) 2018 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2018-2019 Texas Instruments Incorporated - http://www.ti.com/
  *	Andreas Dannenberg <dannenberg@ti.com>
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,6 +32,11 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+#ifndef COMMON_H
+#define COMMON_H
+
+#include <sysfw_img_cfg.h>
 
 /**
  * Standard Linux Kernel integer types
@@ -344,8 +349,6 @@ struct k3_boardcfg_rm {
 	struct boardcfg_rm_resasg		resasg;
 } __attribute__((__packed__));
 
-#define AM65_BOARDCFG_RM_RESASG_ENTRIES		59
-
 /*
  * This is essentially 'struct k3_boardcfg_rm', but modified to pull
  * .resasg_entries which is a member of 'struct boardcfg_rm_resasg' into
@@ -354,7 +357,7 @@ struct k3_boardcfg_rm {
 struct am65_boardcfg_rm_local {
 	struct k3_boardcfg_rm			rm_boardcfg;
 	struct boardcfg_rm_resasg_entry
-				resasg_entries[AM65_BOARDCFG_RM_RESASG_ENTRIES];
+				resasg_entries[BOARDCFG_RM_RESASG_ENTRIES];
 } __attribute__((__packed__));
 
 /**
@@ -408,3 +411,5 @@ extern const struct k3_boardcfg am65_boardcfg_data;
 extern const struct am65_boardcfg_rm_local am65_boardcfg_rm_data;
 extern const struct k3_boardcfg_security am65_boardcfg_security_data;
 extern const struct k3_boardcfg_pm am65_boardcfg_pm_data;
+
+#endif /* COMMON_H */
