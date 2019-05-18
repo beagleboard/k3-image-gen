@@ -86,9 +86,6 @@ MKIMAGE ?= mkimage
 .PHONY: all
 all: $(ITB)
 
-%.o: %.S
-	$(CROSS_COMPILE)as -o $@ $<
-
 %.o: %.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@ $<
 
