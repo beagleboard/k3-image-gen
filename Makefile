@@ -137,13 +137,13 @@ sysfw_version: $(SYSFW_PATH)
 
 .PHONY: clean
 clean:
-	-rm $(BINS)
-	-rm $(ITB)
-	-rm $(ITS)
-	-rm $(SYSFW_HS_CERTS_PATH)
+	-rm -f $(BINS)
+	-rm -f $(ITB)
+	-rm -f $(ITS)
+	-rm -f $(SYSFW_HS_CERTS_PATH)
 
 .PHONY: mrproper
 mrproper: clean
-	-rm $(SYSFW_PATH)
-	-rm $(SYSFW_HS_PATH)
-	-rm $(SYSFW_HS_INNER_CERT_PATH)
+	-rm -f $(SYSFW_PATH)
+	-rm -f $(SYSFW_HS_PATH)
+	-rm -f $(SYSFW_HS_INNER_CERT_PATH)
