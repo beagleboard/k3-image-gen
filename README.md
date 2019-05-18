@@ -88,6 +88,12 @@ To extract and show the release version of the SYSFW image being used...
     $ make sysfw_version
     SYSFW Version: v2018.08a (Curious Crow)
 
+To extract the 'creator' information from the final generated
+**sysfw-{soc}-{configuration}.itb** image tree blob...
+
+    $ fdtget sysfw-am65x-evm.itb / creator
+    SIG am65x/evm-ti2019.01-14-g47b8d
+
 The workspace can be cleaned up by doing...
 
     $ make clean

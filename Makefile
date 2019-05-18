@@ -155,7 +155,7 @@ $(soc_objroot)/sysfw.bin: $(SYSFW_PATH) sysfw_version
 endif
 
 $(ITS): soc_objs $(SOC_BINS)
-	./gen_its.sh $(SOC_BIN_NAMES) > $@
+	./gen_its.sh $(SOC) $(CONFIG) $(SOC_BIN_NAMES) > $@
 
 $(ITB): $(ITS)
 	$(MKIMAGE) -f $< -r $@

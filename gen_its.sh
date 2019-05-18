@@ -5,7 +5,7 @@
 # multiple domain-specific fragments in binary format all specified via
 # command line.
 #
-# Copyright (C) 2018 Texas Instruments Incorporated - http://www.ti.com/
+# Copyright (C) 2018-2019 Texas Instruments Incorporated - http://www.ti.com/
 #	Andreas Dannenberg <dannenberg@ti.com>
 #
 #  Redistribution and use in source and binary forms, with or without
@@ -36,8 +36,16 @@
 #  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 #  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# usage: $0 <bin_name> [<bin_name> [<bin_name] ...]
+# usage: $0 <soc_name> <config_name> <bin_name> [<bin_name> [<bin_name] ...]
 #
+
+SOC=$1
+shift
+
+CONFIG=$1
+shift
+
+SYSFW_IMG_GEN_REV=`git describe --tags --abbrev=5 --dirty`
 
 cat << __HEADER_EOF
 /dts-v1/;
@@ -45,6 +53,8 @@ cat << __HEADER_EOF
 / {
 	description = "SYSFW and Config Fragments";
 	#address-cells = <1>;
+
+	creator = "SIG $SOC/$CONFIG-$SYSFW_IMG_GEN_REV";
 
 	images {
 __HEADER_EOF
