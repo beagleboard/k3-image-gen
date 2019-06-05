@@ -117,8 +117,13 @@ sysfw.bin: $(SYSFW_HS_CERTS_PATH) $(SYSFW_HS_PATH)
 	cat $^ > $@
 else
 sysfw.bin: $(SYSFW_PATH) sysfw_version
-	@echo "Signing the SYSFW release image with random key..."
-	./gen_x509_cert.sh -c m3 -b $< -o $@ -l 0x40000
+	@if [ -n "$(KEY)" ]; then \
+		echo "Signing the SYSFW release image with $(KEY) key..."; \
+		./gen_x509_cert.sh -c m3 -b $< -o $@ -l 0x40000 -k $(KEY); \
+	else \
+		echo "Signing the SYSFW release image with random key..."; \
+		./gen_x509_cert.sh -c m3 -b $< -o $@ -l 0x40000; \
+	fi
 endif
 
 $(ITS): $(BINS)
