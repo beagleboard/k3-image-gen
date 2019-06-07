@@ -1,5 +1,5 @@
-System Firmware (SYSFW) and Configuration Image Generator for AM65x
-===================================================================
+System Firmware (SYSFW) and Configuration Image Generator TI K3 Family SoCs
+===========================================================================
 
 Overview
 --------
@@ -16,13 +16,22 @@ case. The domain-specific configuration artifacts to be tailored are:
 * *rm-cfg.c* contains the resource management / allocation related configuration
 * *sec-cfg.c* contains the security configuration
 
+These files exist under {srcroot}/soc/{soc}/{configuration}/ folders, Where:
+* srcroot - Is the root folder of source code
+* soc - Is one of the supported SoCs. Example: am65x
+* configuration - This is one of the supported configurations for various
+  resource division desired. Example: evm
+
+NOTE: The definitions for the same are available under
+{srcroot}/include/soc/{soc} folder
+
 The build process consumes a raw (unsigned) SYSFW binary image as released by
 the SYSFW development team and signs it by adding an X.509 certificate using a
 random key.
 
 The signed SYSFW image as well as the configuration artifacts will then all get
-build into an ITB blob (FIT image) named **sysfw.itb** ready for consumption by
-U-Boot SPL.
+build into an ITB blob (FIT image) named **sysfw-{soc}-{configuration}.itb**
+ready for consumption by U-Boot SPL.
 
 
 Building SYSFW Image and Configuration Data
@@ -44,9 +53,10 @@ this project, otherwise a version specified in the Makefile via Git commit hash
 will be downloaded from the TI SYSFW release URL (see download location below).
 
 The default SYSFW image consumed by the build process is called
-**ti-sci-firmware-am65x-gp.bin** however this may be overwritten and customized
+**ti-sci-firmware-{soc}-gp.bin** however this may be overwritten and customized
 using the **SYSFW_PATH** make variable. The build process will fail if the
-image can't be downloaded or no such file is provided.
+image can't be downloaded to {srcroot} or no such file has gotten populated into
+that folder by other means.
 
 Further note by default the SYSFW image for use with general purpose (GP) devices
 (as opposed to high security devices) is signed with the TI degenerate key to
@@ -59,9 +69,19 @@ setting by passing in **KEY=""** a random key will get generated and used during
 the build process.
 
 In order to download the SYSFW release image (if needed) and build the final
-**sysfw.itb** for consumption by U-Boot simply perform a make...
+**sysfw-{soc}-{configuration}.itb** for consumption by U-Boot SPL simply by
+perform a make.
 
     $ make
+
+Note that in case of filesystem-based boot such as booting from SD card
+**sysfw-{soc}-{configuration}.itb** needs to be manually renamed to
+**syswfw.itb** before populating it to the (SD card) boot media as this is the
+file name U-Boot SPL will be trying to load early during the boot process. This
+renaming step is not necessary for RAW boot modes such as eMMC (in RAW mode),
+(x)SPI, and others.
+
+    $ mv sysfw-{soc}-{configuration}.itb syswfw.itb
 
 To extract and show the release version of the SYSFW image being used...
 
@@ -75,6 +95,17 @@ The workspace can be cleaned up by doing...
 To also remove the SYSFW image do this...
 
     $ make mrproper
+
+The following flags further modify the build steps:
+* SOC - Choose one of the supported SoCs (see folder name under {srcroot}/soc).
+  Defaults to am65x
+* CONFIG - Choose of various configurations supported (see folder name under
+  {srcroot}/soc/{soc}). Defaults to evm
+* O - Choose where the intermediate build files need to be located
+* BIN_DIR - Choose where the final output sysfw-{soc}-{configuration}.itb needs
+  to be generated to.
+* KEY - Choose key to use for the signing system firmware image
+
 
 Building SYSFW Image for High-Security(HS) devices
 --------------------------------------------------
@@ -90,13 +121,14 @@ the TI Secure Development Tools package.
 
 There are two images downloaded and consumed by the build process.
 
-    * ti-sci-firmware-am65x-hs-enc.bin: Encrypted HS SYSFW image
-    * ti-sci-firmware-am65x-hs-cert.bin: Inner-certificate for HS SYSFW image
+    * ti-sci-firmware-{soc}-hs-enc.bin: Encrypted HS SYSFW image
+    * ti-sci-firmware-{soc}-hs-cert.bin: Inner-certificate for HS SYSFW image
 
 The inner-certificate is signed by the key provided by the **TI_SECURE_DEV_PKG**
 path producing an outer-certificate. These images are then appended to produce
-the final **sysfw.bin** which is bundled with the configuration data exactly as
-the non-HS version above.
+the final **sysfw-{soc}-{configuration}.bin** which is bundled with the
+configuration data exactly as the non-HS version above.
+
 
 Important Notes
 ---------------

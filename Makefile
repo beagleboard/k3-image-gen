@@ -36,6 +36,18 @@
 #
 
 SOC ?= am65x
+CONFIG ?= evm
+
+BUILD_SRC ?= .
+O ?= out
+BIN_DIR ?= .
+
+srcroot = $(BUILD_SRC)
+soc_srcroot = $(srcroot)/soc/${SOC}/${CONFIG}
+objroot = $(O)
+soc_objroot = $(objroot)/soc/${SOC}/${CONFIG}
+
+binroot = $(BIN_DIR)
 
 # The HS SYSFW will only work on HS hardware when signed with valid
 # keys, warn HS users if the SECDEV environment variable is not set
@@ -72,29 +84,42 @@ CROSS_COMPILE ?= arm-linux-gnueabihf-
 CFLAGS ?= \
 	-fno-builtin \
 	-Wall \
-	-Iinclude/soc/${SOC}/ \
+	-Iinclude/soc/${SOC} \
+	-Isoc/${SOC}/${CONFIG} \
 	-Iinclude
 
-BINS ?= \
-	sysfw.bin \
-	board-cfg.bin \
-	pm-cfg.bin \
-	rm-cfg.bin \
-	sec-cfg.bin
 
-ITB ?= sysfw.itb
-ITS ?= $(basename $(ITB)).its
+SOURCES ?= \
+	board-cfg.c \
+	pm-cfg.c \
+	rm-cfg.c \
+	sec-cfg.c
+
+SOC_SOURCES=$(SOURCES:%.c=$(soc_srcroot)/%.c)
+SOC_OBJS=$(SOURCES:%.c=$(soc_objroot)/%.o)
+
+SOC_BINS=$(soc_objroot)/sysfw.bin
+SOC_BIN_NAMES=sysfw.bin
+
+SOC_BINS += $(SOURCES:%.c=$(soc_objroot)/%.bin)
+SOC_BIN_NAMES += $(SOURCES:%.c=%.bin)
+
+ITB ?= $(binroot)/sysfw-$(SOC)-$(CONFIG).itb
+ITS ?= $(soc_objroot)/$(basename $(notdir $(ITB))).its
+
+vpath %.itb $(soc_objroot)
+vpath %.bin $(soc_objroot)
+vpath %.o $(soc_objroot)
+vpath %.c $(soc_srcroot)
 
 MKIMAGE ?= mkimage
 
-.PHONY: all
-all: $(ITB)
+.PHONY: all _objtree_build
 
-%.o: %.c
-	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@ $<
+all: _objtree_build $(ITB)
 
-%.bin: %.o
-	$(CROSS_COMPILE)objcopy -S -O binary $< $@
+_objtree_build:
+	@mkdir -p $(objroot) $(soc_objroot) $(binroot)
 
 $(SYSFW_PATH):
 	@echo "Downloading SYSFW release image..."
@@ -116,10 +141,10 @@ $(SYSFW_HS_CERTS_PATH): $(SYSFW_HS_INNER_CERT_PATH)
 	@echo "Signing the SYSFW inner certificate with $(KEY) key...";
 	./gen_x509_cert.sh -d -c m3 -b $< -o $@ -l 0x40000 -k $(KEY);
 
-sysfw.bin: $(SYSFW_HS_CERTS_PATH) $(SYSFW_HS_PATH)
+$(soc_objroot)/sysfw.bin: $(SYSFW_HS_CERTS_PATH) $(SYSFW_HS_PATH) sysfw_version
 	cat $^ > $@
 else
-sysfw.bin: $(SYSFW_PATH) sysfw_version
+$(soc_objroot)/sysfw.bin: $(SYSFW_PATH) sysfw_version
 	@if [ -n "$(KEY)" ]; then \
 		echo "Signing the SYSFW release image with $(KEY) key..."; \
 		./gen_x509_cert.sh -c m3 -b $< -o $@ -l 0x40000 -k $(KEY); \
@@ -129,11 +154,21 @@ sysfw.bin: $(SYSFW_PATH) sysfw_version
 	fi
 endif
 
-$(ITS): $(BINS)
-	./gen_its.sh $(BINS) > $@
+$(ITS): soc_objs $(SOC_BINS)
+	./gen_its.sh $(SOC_BIN_NAMES) > $@
 
-$(ITB): $(ITS) $(BINS)
+$(ITB): $(ITS)
 	$(MKIMAGE) -f $< -r $@
+
+soc_objs: $(SOC_OBJS)
+
+
+$(soc_objroot)/%.o: %.c
+	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@ $<
+
+%.bin: %.o
+	$(CROSS_COMPILE)objcopy -S -O binary $< $@
+
 
 .PHONY: sysfw_version
 sysfw_version: $(SYSFW_PATH)
@@ -141,10 +176,11 @@ sysfw_version: $(SYSFW_PATH)
 
 .PHONY: clean
 clean:
-	-rm -f $(BINS)
+	-rm -f $(SOC_BINS) $(SOC_OBJS)
 	-rm -f $(ITB)
 	-rm -f $(ITS)
 	-rm -f $(SYSFW_HS_CERTS_PATH)
+	-rm -rf $(objroot)
 
 .PHONY: mrproper
 mrproper: clean
