@@ -153,4 +153,4 @@ an unsuitable or invalid resource management configuration.
 References
 ----------
 * [Latest SYSFW Release Documentation](http://software-dl.ti.com/tisci/esd/latest/)
-* [Official SYSFW Release Download Location](https://git.ti.com/processor-firmware/ti-linux-firmware/trees/ti-linux-firmware-4.1.y/ti-sysfw)
+* [Official SYSFW Release Download Location](https://git.ti.com/processor-firmware/ti-linux-firmware/trees/ti-linux-firmware/ti-sysfw)
