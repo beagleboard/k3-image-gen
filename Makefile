@@ -141,10 +141,10 @@ $(SYSFW_HS_CERTS_PATH): $(SYSFW_HS_INNER_CERT_PATH)
 	@echo "Signing the SYSFW inner certificate with $(KEY) key...";
 	./gen_x509_cert.sh -d -c m3 -b $< -o $@ -l 0x40000 -k $(KEY);
 
-$(soc_objroot)/sysfw.bin: $(SYSFW_HS_CERTS_PATH) $(SYSFW_HS_PATH) sysfw_version
+$(soc_objroot)/sysfw.bin: $(SYSFW_HS_CERTS_PATH) $(SYSFW_HS_PATH)
 	cat $^ > $@
 else
-$(soc_objroot)/sysfw.bin: $(SYSFW_PATH) sysfw_version
+$(soc_objroot)/sysfw.bin: $(SYSFW_PATH)
 	@if [ -n "$(KEY)" ]; then \
 		echo "Signing the SYSFW release image with $(KEY) key..."; \
 		./gen_x509_cert.sh -c m3 -b $< -o $@ -l 0x40000 -k $(KEY); \
