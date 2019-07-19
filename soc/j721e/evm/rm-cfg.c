@@ -1258,6 +1258,13 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 25,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_MCU_0_R5_2,
 		},
 		{
@@ -1338,6 +1345,13 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
 			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 25,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_RX_CHAN),
+			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 25,
@@ -1448,6 +1462,13 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 25,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_MCU_0_R5_2,
 		},
 		{
@@ -1528,6 +1549,13 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX),
 			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 73,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_RX),
+			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 73,
@@ -1620,6 +1648,13 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 4,
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 68,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
 			.host_id = HOST_ID_MCU_0_R5_2,
 		},
 		{
@@ -1679,6 +1714,13 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_GP),
 			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 156,
+			.num_resource = 12,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_GP),
+			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 156,
