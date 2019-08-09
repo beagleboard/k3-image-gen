@@ -75,10 +75,17 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		/* GIC/CLEC slot assignment for NAVSS INTR */
 		{
 			.start_resource = 392,
-			.num_resource = 56,
+			.num_resource = 32,
 			.type = RESASG_UTYPE (J721E_DEV_COMPUTE_CLUSTER0_GIC500SS,
 					RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0),
 			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 424,
+			.num_resource = 24,
+			.type = RESASG_UTYPE (J721E_DEV_COMPUTE_CLUSTER0_GIC500SS,
+					RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0),
+			.host_id = HOST_ID_A72_3,
 		},
 		{
 			.start_resource = 960,
