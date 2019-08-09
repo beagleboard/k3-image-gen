@@ -959,7 +959,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 64,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
-			.host_id = HOST_ID_MAIN_0_R5_0,
+			.host_id = HOST_ID_ALL,
 		},
 		{
 			.start_resource = 236,
@@ -967,13 +967,6 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
 			.host_id = HOST_ID_MAIN_0_R5_2,
-		},
-		{
-			.start_resource = 244,
-			.num_resource = 56,
-			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
-			.host_id = HOST_ID_ALL,
 		},
 
 		/* Main Nav Free Ring */
