@@ -78,5 +78,16 @@ const struct boardcfg am65_boardcfg_data = {
 			.magic = BOARDCFG_DBG_CFG_MAGIC_NUM,
 			.size = sizeof(struct boardcfg_dbg_cfg),
 		},
+#ifdef ENABLE_TRACE
+		.trace_dst_enables = BOARDCFG_TRACE_DST_UART0 |
+				     BOARDCFG_TRACE_DST_ITM |
+				     BOARDCFG_TRACE_DST_MEM,
+		.trace_src_enables = BOARDCFG_TRACE_SRC_PM |
+				     BOARDCFG_TRACE_SRC_RM |
+				     BOARDCFG_TRACE_SRC_SEC |
+				     BOARDCFG_TRACE_SRC_BASE |
+				     BOARDCFG_TRACE_SRC_USER |
+				     BOARDCFG_TRACE_SRC_SUPR,
+#endif
 	},
 };

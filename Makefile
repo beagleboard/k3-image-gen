@@ -88,6 +88,9 @@ CFLAGS ?= \
 	-Isoc/${SOC}/${CONFIG} \
 	-Iinclude
 
+ifdef ENABLE_TRACE
+CFLAGS += -DENABLE_TRACE
+endif
 
 SOURCES ?= \
 	board-cfg.c \

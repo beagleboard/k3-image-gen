@@ -111,6 +111,7 @@ The following flags further modify the build steps:
 * BIN_DIR - Choose where the final output sysfw-{soc}-{configuration}.itb needs
   to be generated to.
 * KEY - Choose key to use for the signing system firmware image
+* ENABLE_TRACE=1 - Choose to enable sysfw traces while booting.
 
 
 Building SYSFW Image for High-Security(HS) devices
