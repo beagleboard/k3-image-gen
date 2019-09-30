@@ -169,9 +169,16 @@ soc_objs: $(SOC_OBJS)
 $(soc_objroot)/%.o: %.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@ $<
 
+# On HS board configuration binaries must be signed
+ifdef HS
+%.bin.unsigned: %.o
+	$(CROSS_COMPILE)objcopy -S -O binary $< $@
+%.bin: %.bin.unsigned
+	$(TI_SECURE_DEV_PKG)/scripts/secure-binary-image.sh $< $@
+else
 %.bin: %.o
 	$(CROSS_COMPILE)objcopy -S -O binary $< $@
-
+endif
 
 .PHONY: sysfw_version
 sysfw_version: $(SYSFW_PATH)
