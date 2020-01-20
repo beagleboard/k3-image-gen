@@ -1,7 +1,7 @@
 /*
  * K3 System Firmware Board Configuration Data Structures
  *
- * Copyright (C) 2018-2019 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2018-2020 Texas Instruments Incorporated - http://www.ti.com/
  *	Andreas Dannenberg <dannenberg@ti.com>
  *
  * Redistribution and use in source and binary forms, with or without
@@ -79,6 +79,7 @@ typedef u8 ftbool;
 #define BOARDCFG_RESASG_MAGIC_NUM		0x4C41
 #define BOARDCFG_DBG_CFG_MAGIC_NUM		0x020C
 #define BOARDCFG_PMIC_CFG_MAGIC_NUM		0x3172
+#define BOARDCFG_OTP_CFG_MAGIC_NUM		0x4081
 
 struct boardcfg_substructure_header {
 	u16	magic;
@@ -217,10 +218,24 @@ struct boardcfg_host_hierarchy {
 				 host_hierarchy_entries[HOST_HIERARCHY_ENTRIES];
 } __attribute__((__packed__));
 
+struct boardcfg_extended_otp_entry {
+	u8	host_id;
+	u8	host_perms;
+} __attribute__((__packed__));
+
+#define MAX_NUM_EXT_OTP_MMRS			32
+
+struct boardcfg_extended_otp {
+	struct boardcfg_substructure_header	subhdr;
+	struct boardcfg_extended_otp_entry	otp_entry[MAX_NUM_EXT_OTP_MMRS];
+	u8					write_host_id;
+} __attribute__((__packed__));
+
 struct boardcfg_security {
 	struct boardcfg_abi_rev			rev;
 	struct boardcfg_proc_acl		processor_acl_list;
 	struct boardcfg_host_hierarchy		host_hierarchy;
+	struct boardcfg_extended_otp		otp_config;
 } __attribute__((__packed__));
 
 /**

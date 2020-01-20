@@ -1,7 +1,7 @@
 /*
  * K3 System Firmware Security Configuration Data
  *
- * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
  *	Andreas Dannenberg <dannenberg@ti.com>
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,5 +58,17 @@ const struct boardcfg_security j721e_boardcfg_security_data = {
 				.size = sizeof(struct boardcfg_host_hierarchy),
 			},
 			.host_hierarchy_entries = {{ 0 } },
+	},
+
+	/* OTP access configuration */
+	.otp_config = {
+		.subhdr = {
+			.magic = BOARDCFG_OTP_CFG_MAGIC_NUM,
+			.size = sizeof(struct boardcfg_extended_otp),
+		},
+		/* Host ID 0 is DMSC. This means no host has write access to OTP array */
+		.write_host_id = 0,
+		/* This is an array with 32 entries */
+		.otp_entry = {{ 0 } },
 	},
 };
