@@ -1,7 +1,7 @@
 /*
  * K3 System Firmware Board Configuration Data Definitions
  *
- * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -167,6 +167,12 @@
 #define RESASG_SUBTYPES_IRQ_CNT (0x005AU)
 
 /**
+ * Proxy subtypes definitions
+ */
+#define RESASG_SUBTYPE_PROXY_PROXIES (0x0000U)
+#define RESASG_SUBTYPES_PROXY_CNT (0x0001U)
+
+/**
  * RA subtypes definitions
  */
 #define RESASG_SUBTYPE_RA_ERROR_OES (0x0000U)
@@ -179,7 +185,8 @@
 #define RESASG_SUBTYPE_RA_UDMAP_TX_H (0x0007U)
 #define RESASG_SUBTYPE_RA_UDMAP_TX_UH (0x0008U)
 #define RESASG_SUBTYPE_RA_VIRTID (0x000AU)
-#define RESASG_SUBTYPES_RA_CNT (0x000AU)
+#define RESASG_SUBTYPE_RA_MONITORS (0x000BU)
+#define RESASG_SUBTYPES_RA_CNT (0x000BU)
 
 /**
  * UDMAP subtypes definitions
@@ -201,6 +208,6 @@
 /**
  * Total number of unique resource types for J721E
  */
-#define RESASG_UTYPE_CNT 134U
+#define RESASG_UTYPE_CNT 138U
 
 #endif /* RESASG_TYPES_H */

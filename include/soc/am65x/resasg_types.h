@@ -1,7 +1,7 @@
 /*
  * K3 System Firmware Board Configuration Data Definitions
  *
- * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -94,6 +94,10 @@
 #define RESASG_TYPE_ICSSG1_IRQ   (0x00FU)
 /** ICSSG 2 IRQ (input interrupts) */
 #define RESASG_TYPE_ICSSG2_IRQ   (0x010U)
+/** Main domain Navigator Subsystem proxy */
+#define RESASG_TYPE_MAIN_NAV_PROXY   (0x011U)
+/** MCU domain Navigator Subsystem proxy */
+#define RESASG_TYPE_MCU_NAV_PROXY   (0x012U)
 /** Maximum RESASG_TYPE value.  DO NOT create types with a value
  *  greater than this */
 #define RESASG_TYPE_MAX   (0x3FFU)
@@ -201,8 +205,15 @@
 #define RESASG_SUBTYPE_MAIN_NAV_RA_ERROR_OES   (0x03U)
 /** Main Nav RA driver ring virtids */
 #define RESASG_SUBTYPE_MAIN_NAV_RA_VIRTID   (0x04U)
+/** Main Nav RA driver ring monitors */
+#define RESASG_SUBTYPE_MAIN_NAV_RA_MONITOR   (0x05U)
 /** Total Main Nav RA subtypes. Update when subtypes are added */
-#define RESASG_SUBTYPE_MAIN_NAV_RA_CNT   (0x05U)
+#define RESASG_SUBTYPE_MAIN_NAV_RA_CNT   (0x06U)
+
+/** Main Nav proxy driver proxies */
+#define RESASG_SUBTYPE_MAIN_NAV_PROXY_PROXIES   (0x00U)
+/** Total Main Nav proxy subtypes. Update when subtypes are added */
+#define RESASG_SUBTYPE_MAIN_NAV_PROXY_CNT   (0x01U)
 
 /** MCU Nav RA driver UDMAP tx rings */
 #define RESASG_SUBTYPE_MCU_NAV_RA_RING_UDMAP_TX   (0x00U)
@@ -214,8 +225,10 @@
 #define RESASG_SUBTYPE_MCU_NAV_RA_ERROR_OES   (0x03U)
 /** MCU Nav RA driver ring virtids */
 #define RESASG_SUBTYPE_MCU_NAV_RA_VIRTID   (0x04U)
+/** MCU Nav RA driver ring monitors */
+#define RESASG_SUBTYPE_MCU_NAV_RA_MONITOR   (0x05U)
 /** Total MCU Nav RA subtypes. Update when subtypes added */
-#define RESASG_SUBTYPE_MCU_NAV_RA_CNT   (0x05U)
+#define RESASG_SUBTYPE_MCU_NAV_RA_CNT   (0x06U)
 
 /** GIC IRQ inputs (64 - 127) from Main Nav */
 #define RESASG_SUBTYPE_GIC_IRQ_MAIN_NAV_SET0   (0x00U)
@@ -273,6 +286,11 @@
 /** Total ICSSG2 IRQ subtypes. Update when subtypes added */
 #define RESASG_SUBTYPE_ICSSG2_IRQ_CNT   (0x02U)
 
+/** MCU Nav proxy driver proxies */
+#define RESASG_SUBTYPE_MCU_NAV_PROXY_PROXIES   (0x00U)
+/** Total MCU Nav proxy subtypes. Update when subtypes are added */
+#define RESASG_SUBTYPE_MCU_NAV_PROXY_CNT   (0x01U)
+
 /**
  * Total number of unique resource types for AM6
  */
@@ -288,6 +306,8 @@
 	 RESASG_SUBTYPE_MSMC_CNT + \
 	 RESASG_SUBTYPE_MAIN_NAV_RA_CNT + \
 	 RESASG_SUBTYPE_MCU_NAV_RA_CNT + \
+	 RESASG_SUBTYPE_MAIN_NAV_PROXY_CNT + \
+	 RESASG_SUBTYPE_MCU_NAV_PROXY_CNT + \
 	 RESASG_SUBTYPE_GIC_IRQ_CNT + \
 	 RESASG_SUBTYPE_PULSAR_C0_IRQ_CNT + \
 	 RESASG_SUBTYPE_PULSAR_C1_IRQ_CNT + \
