@@ -154,7 +154,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 376U,
-			.num_resource = 8U,
+			.num_resource = 4U,
 			.type = RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE0,
 					RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0),
 			.host_id = HOST_ID_MCU_0_R5_0,
@@ -190,8 +190,8 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_2,
 		},
 		{
-			.start_resource = 376U,
-			.num_resource = 8U,
+			.start_resource = 380U,
+			.num_resource = 4U,
 			.type = RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE1,
 					RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0),
 			.host_id = HOST_ID_MCU_0_R5_2,
