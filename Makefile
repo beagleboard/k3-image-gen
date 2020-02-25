@@ -119,7 +119,7 @@ MKIMAGE ?= mkimage
 
 .PHONY: all _objtree_build
 
-all: _objtree_build $(ITB)
+all: _objtree_build $(ITB) sysfw.itb
 
 _objtree_build:
 	@mkdir -p $(objroot) $(soc_objroot) $(binroot)
@@ -163,6 +163,9 @@ $(ITS): soc_objs $(SOC_BINS)
 $(ITB): $(ITS)
 	$(MKIMAGE) -f $< -r $@
 
+sysfw.itb: $(ITB)
+	@cp $< $@
+
 soc_objs: $(SOC_OBJS)
 
 
@@ -187,7 +190,7 @@ sysfw_version: $(SYSFW_PATH)
 .PHONY: clean
 clean:
 	-rm -f $(SOC_BINS) $(SOC_OBJS)
-	-rm -f $(ITB)
+	-rm -f $(ITB) sysfw.itb
 	-rm -f $(ITS)
 	-rm -f $(SYSFW_HS_CERTS_PATH)
 	-rm -rf $(objroot)
