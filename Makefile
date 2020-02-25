@@ -79,7 +79,7 @@ else
 KEY ?= ti-degenerate-key.pem
 endif
 
-CROSS_COMPILE ?= arm-linux-gnueabihf-
+CROSS_COMPILE ?= arm-none-linux-gnueabihf-
 
 CFLAGS ?= \
 	-fno-builtin \
