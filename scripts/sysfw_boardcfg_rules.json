@@ -1,0 +1,2125 @@
+{
+    "comment": "Python struct module (https://docs.python.org/2/library/struct.html#module-struct) format codes and validation rules for the board configuration structures",
+    "format_rules": {
+        "boardcfg_substructure_header": {
+            "magic": {
+                "fmt": "H"
+            },
+            "size": {
+                "fmt": "H"
+            }
+        },
+        "boardcfg_abi_rev": {
+            "boardcfg_abi_maj": {
+                "fmt": "B"
+            },
+            "boardcfg_abi_min": {
+                "fmt": "B"
+            }
+        },
+        "boardcfg_rm_host_cfg_entry": {
+            "host_id": {
+                "fmt": "B"
+            },
+            "allowed_atype": {
+                "fmt": "B"
+            },
+            "allowed_qos": {
+                "fmt": "H"
+            },
+            "allowed_orderid": {
+                "fmt": "I"
+            },
+            "allowed_priority": {
+                "fmt": "H"
+            },
+            "allowed_sched_priority": {
+                "fmt": "B"
+            }
+        },
+        "boardcfg_rm_host_cfg": {
+            "subhdr": {
+                "fmt": "boardcfg_substructure_header",
+                "value": {
+                    "magic": "0x4c41",
+                    "size": "boardcfg_rm_host_cfg"
+                }
+            },
+            "host_cfg_entries": {
+                "fmt": "boardcfg_rm_host_cfg_entry",
+                "elements": 32
+            }
+        },
+        "boardcfg_rm_resasg_entry": {
+            "start_resource": {
+                "fmt": "H"
+            },
+            "num_resource": {
+                "fmt": "H"
+            },
+            "type": {
+                "fmt": "H"
+            },
+            "host_id": {
+                "fmt": "B"
+            },
+            "reserved": {
+                "fmt": "B"
+            }
+        },
+        "boardcfg_rm_resasg": {
+            "subhdr": {
+                "fmt": "boardcfg_substructure_header",
+                "value": {
+                    "magic": "0x7b25",
+                    "size": "boardcfg_rm_resasg"
+                }
+            },
+            "resasg_entries_size": {
+                "fmt": "H"
+            },
+            "reserved": {
+                "fmt": "H"
+            },
+            "resasg_entries": {
+                "fmt": "boardcfg_rm_resasg_entry",
+                "validator": "boardcfg_rm_resasg_entry",
+                "size_bytes": "resasg_entries_size",
+                "incomplete_type": "",
+                "sort_order": [
+                    "type",
+                    "start_resource"
+                ]
+            }
+        },
+        "boardcfg_rm": {
+            "rev": {
+                "fmt": "boardcfg_abi_rev"
+            },
+            "host_cfg": {
+                "fmt": "boardcfg_rm_host_cfg"
+            },
+            "resasg": {
+                "fmt": "boardcfg_substructure_header"
+            }
+        },
+        "boardcfg_pm": {
+            "rev": {
+                "fmt": "boardcfg_abi_rev"
+            }
+        },
+        "boardcfg_control": {
+            "subhdr": {
+                "fmt": "boardcfg_substructure_header",
+                "value": {
+                    "magic": "0xc1d3",
+                    "size": "boardcfg_control"
+                }
+            },
+            "main_isolation_enable": {
+                "fmt": "?"
+            },
+            "main_isolation_hostid": {
+                "fmt": "H"
+            }
+        },
+        "boardcfg_secproxy": {
+            "subhdr": {
+                "fmt": "boardcfg_substructure_header",
+                "value": {
+                    "magic": "0x1207",
+                    "size": "boardcfg_secproxy"
+                }
+            },
+            "scaling_factor": {
+                "fmt": "B"
+            },
+            "scaling_profile": {
+                "fmt": "B"
+            },
+            "disable_main_nav_secure_proxy": {
+                "fmt": "B"
+            }
+        },
+        "boardcfg_msmc": {
+            "subhdr": {
+                "fmt": "boardcfg_substructure_header",
+                "value": {
+                    "magic": "0xa5c3",
+                    "size": "boardcfg_msmc"
+                }
+            },
+            "msmc_cache_size": {
+                "fmt": "B"
+            }
+        },
+        "boardcfg_proc_acl_entry": {
+            "processor_id": {
+                "fmt": "B"
+            },
+            "proc_access_master": {
+                "fmt": "B"
+            },
+            "proc_access_secondary": {
+                "fmt": "B",
+                "elements": 3
+            }
+        },
+        "boardcfg_proc_acl": {
+            "subhdr": {
+                "fmt": "boardcfg_substructure_header",
+                "value": {
+                    "magic": "0xf1ea",
+                    "size": "boardcfg_proc_acl"
+                }
+            },
+            "boardcfg_proc_acl_entry": {
+                "fmt": "boardcfg_proc_acl_entry",
+                "elements": 32
+            }
+        },
+        "boardcfg_host_hierarchy_entry": {
+            "host_id": {
+                "fmt": "B"
+            },
+            "supervisor_host_id": {
+                "fmt": "B"
+            }
+        },
+        "boardcfg_host_hierarchy": {
+            "subhdr": {
+                "fmt": "boardcfg_substructure_header",
+                "value": {
+                    "magic": "0x8d27",
+                    "size": "boardcfg_host_hierarchy"
+                }
+            },
+            "host_hierarchy_entries": {
+                "fmt": "boardcfg_host_hierarchy_entry",
+                "elements": 32
+            }
+        },
+        "boardcfg_extended_otp_entry": {
+            "host_id": {
+                "fmt": "B"
+            },
+            "host_perms": {
+                "fmt": "B"
+            }
+        },
+        "boardcfg_extended_otp": {
+            "subhdr": {
+                "fmt": "boardcfg_substructure_header",
+                "value": {
+                    "magic": "0x4081",
+                    "size": "boardcfg_extended_otp"
+                }
+            },
+            "otp_entry": {
+                "fmt": "boardcfg_extended_otp_entry",
+                "elements": 32
+            },
+            "write_host_id": {
+                "fmt": "B"
+            }
+        },
+        "boardcfg_sec": {
+            "rev": {
+                "fmt": "boardcfg_abi_rev"
+            },
+            "processor_acl_list": {
+                "fmt": "boardcfg_proc_acl"
+            },
+            "host_hierarchy": {
+                "fmt": "boardcfg_host_hierarchy"
+            },
+            "otp_config": {
+                "fmt": "boardcfg_extended_otp"
+            }
+        },
+        "boardcfg_orderid": {
+            "allowed": {
+                "fmt": "I"
+            }
+        },
+        "boardcfg_dbg_cfg": {
+            "subhdr": {
+                "fmt": "boardcfg_substructure_header",
+                "value": {
+                    "magic": "0x020c",
+                    "size": "boardcfg_dbg_cfg"
+                }
+            },
+            "trace_dst_enables": {
+                "fmt": "H"
+            },
+            "trace_src_enables": {
+                "fmt": "H"
+            }
+        },
+        "boardcfg": {
+            "rev": {
+                "fmt": "boardcfg_abi_rev"
+            },
+            "control": {
+                "fmt": "boardcfg_control"
+            },
+            "secproxy": {
+                "fmt": "boardcfg_secproxy"
+            },
+            "msmc": {
+                "fmt": "boardcfg_msmc"
+            },
+            "debug_cfg": {
+                "fmt": "boardcfg_dbg_cfg"
+            }
+        }
+    },
+    "validation_rules": {
+        "boardcfg_rm_resasg_entry": {
+            "comment": "values array contain each resources valid range AFTER accounting for DMSC reserved resources",
+            "am6": {
+                "values": [
+                    {
+                        "start_resource": 16,
+                        "num_resource": 240,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMASS_IA0, RESASG_SUBTYPE_MAIN_NAV_UDMASS_IA0_VINT)",
+                        "type": 0
+                    },
+                    {
+                        "start_resource": 16,
+                        "num_resource": 4592,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMASS_IA0, RESASG_SUBTYPE_MAIN_NAV_UDMASS_IA0_SEVI)",
+                        "type": 1
+                    },
+                    {
+                        "start_resource": 32768,
+                        "num_resource": 512,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMASS_IA0, RESASG_SUBTYPE_MAIN_NAV_UDMASS_IA0_MEVI)",
+                        "type": 2
+                    },
+                    {
+                        "start_resource": 36864,
+                        "num_resource": 512,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMASS_IA0, RESASG_SUBTYPE_MAIN_NAV_UDMASS_IA0_GEVI)",
+                        "type": 3
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 64,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_MODSS_IA0, RESASG_SUBTYPE_MAIN_NAV_MODSS_IA0_VINT)",
+                        "type": 64
+                    },
+                    {
+                        "start_resource": 20480,
+                        "num_resource": 1024,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_MODSS_IA0, RESASG_SUBTYPE_MAIN_NAV_MODSS_IA0_SEVI)",
+                        "type": 65
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 64,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_MODSS_IA1, RESASG_SUBTYPE_MAIN_NAV_MODSS_IA1_VINT)",
+                        "type": 128
+                    },
+                    {
+                        "start_resource": 22528,
+                        "num_resource": 1024,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_MODSS_IA1, RESASG_SUBTYPE_MAIN_NAV_MODSS_IA1_SEVI)",
+                        "type": 129
+                    },
+                    {
+                        "start_resource": 8,
+                        "num_resource": 248,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMASS_IA0, RESASG_SUBTYPE_MCU_NAV_UDMASS_IA0_VINT)",
+                        "type": 192
+                    },
+                    {
+                        "start_resource": 16392,
+                        "num_resource": 1528,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMASS_IA0, RESASG_SUBTYPE_MCU_NAV_UDMASS_IA0_SEVI)",
+                        "type": 193
+                    },
+                    {
+                        "start_resource": 34816,
+                        "num_resource": 128,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMASS_IA0, RESASG_SUBTYPE_MCU_NAV_UDMASS_IA0_MEVI)",
+                        "type": 194
+                    },
+                    {
+                        "start_resource": 39936,
+                        "num_resource": 256,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMASS_IA0, RESASG_SUBTYPE_MCU_NAV_UDMASS_IA0_GEVI)",
+                        "type": 195
+                    },
+                    {
+                        "start_resource": 43008,
+                        "num_resource": 4,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_MCRC, RESASG_SUBTYPE_MAIN_NAV_MCRC_LEVI)",
+                        "type": 256
+                    },
+                    {
+                        "start_resource": 43136,
+                        "num_resource": 4,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_MCRC, RESASG_SUBTYPE_MCU_NAV_MCRC_LEVI)",
+                        "type": 320
+                    },
+                    {
+                        "start_resource": 49152,
+                        "num_resource": 1024,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMAP, RESASG_SUBTYPE_MAIN_NAV_UDMAP_TRIGGER)",
+                        "type": 384
+                    },
+                    {
+                        "start_resource": 1,
+                        "num_resource": 7,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMAP, RESASG_SUBTYPE_MAIN_NAV_UDMAP_TX_HCHAN)",
+                        "type": 385
+                    },
+                    {
+                        "start_resource": 8,
+                        "num_resource": 112,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMAP, RESASG_SUBTYPE_MAIN_NAV_UDMAP_TX_CHAN)",
+                        "type": 386
+                    },
+                    {
+                        "start_resource": 120,
+                        "num_resource": 32,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMAP, RESASG_SUBTYPE_MAIN_NAV_UDMAP_TX_ECHAN)",
+                        "type": 387
+                    },
+                    {
+                        "start_resource": 2,
+                        "num_resource": 6,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMAP, RESASG_SUBTYPE_MAIN_NAV_UDMAP_RX_HCHAN)",
+                        "type": 388
+                    },
+                    {
+                        "start_resource": 8,
+                        "num_resource": 142,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMAP, RESASG_SUBTYPE_MAIN_NAV_UDMAP_RX_CHAN)",
+                        "type": 389
+                    },
+                    {
+                        "start_resource": 150,
+                        "num_resource": 150,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMAP,SG_SUBTYPE_MAIN_NAV_UDMAP_RX_FLOW_COMMON)",
+                        "type": 390
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 1,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMAP,SG_SUBTYPE_MAIN_NAV_UDMAP_INVALID_FLOW_OES)",
+                        "type": 391
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 1,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_UDMAP, RESASG_SUBTYPE_MAIN_NAV_UDMAP_GCFG)",
+                        "type": 392
+                    },
+                    {
+                        "start_resource": 56320,
+                        "num_resource": 256,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMAP, RESASG_SUBTYPE_MCU_NAV_UDMAP_TRIGGER)",
+                        "type": 448
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 2,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMAP, RESASG_SUBTYPE_MCU_NAV_UDMAP_TX_HCHAN)",
+                        "type": 449
+                    },
+                    {
+                        "start_resource": 2,
+                        "num_resource": 46,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMAP, RESASG_SUBTYPE_MCU_NAV_UDMAP_TX_CHAN)",
+                        "type": 450
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 2,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMAP, RESASG_SUBTYPE_MCU_NAV_UDMAP_RX_HCHAN)",
+                        "type": 451
+                    },
+                    {
+                        "start_resource": 2,
+                        "num_resource": 46,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMAP, RESASG_SUBTYPE_MCU_NAV_UDMAP_RX_CHAN)",
+                        "type": 452
+                    },
+                    {
+                        "start_resource": 48,
+                        "num_resource": 48,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMAP,SG_SUBTYPE_MCU_NAV_UDMAP_RX_FLOW_COMMON)",
+                        "type": 453
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 1,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMAP,SG_SUBTYPE_MCU_NAV_UDMAP_INVALID_FLOW_OES)",
+                        "type": 454
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 1,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_UDMAP, RESASG_SUBTYPE_MCU_NAV_UDMAP_GCFG)",
+                        "type": 455
+                    },
+                    {
+                        "start_resource": 61440,
+                        "num_resource": 64,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MSMC, RESASG_SUBTYPE_MSMC_DRU)",
+                        "type": 512
+                    },
+                    {
+                        "start_resource": 1,
+                        "num_resource": 151,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_RA, RESASG_SUBTYPE_MAIN_NAV_RA_RING_UDMAP_TX)",
+                        "type": 576
+                    },
+                    {
+                        "start_resource": 153,
+                        "num_resource": 149,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_RA, RESASG_SUBTYPE_MAIN_NAV_RA_RING_UDMAP_RX)",
+                        "type": 577
+                    },
+                    {
+                        "start_resource": 304,
+                        "num_resource": 464,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_RA, RESASG_SUBTYPE_MAIN_NAV_RA_RING_GP)",
+                        "type": 578
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 1,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_RA, RESASG_SUBTYPE_MAIN_NAV_RA_ERROR_OES)",
+                        "type": 579
+                    },
+                    {
+                        "start_resource": 1024,
+                        "num_resource": 1024,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_RA, RESASG_SUBTYPE_MAIN_NAV_RA_VIRTID)",
+                        "type": 580
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 32,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_RA, RESASG_SUBTYPE_MAIN_NAV_RA_MONITOR)",
+                        "type": 581
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 48,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_RA, RESASG_SUBTYPE_MCU_NAV_RA_RING_UDMAP_TX)",
+                        "type": 640
+                    },
+                    {
+                        "start_resource": 48,
+                        "num_resource": 48,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_RA, RESASG_SUBTYPE_MCU_NAV_RA_RING_UDMAP_RX)",
+                        "type": 641
+                    },
+                    {
+                        "start_resource": 96,
+                        "num_resource": 160,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_RA, RESASG_SUBTYPE_MCU_NAV_RA_RING_GP)",
+                        "type": 642
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 1,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_RA, RESASG_SUBTYPE_MCU_NAV_RA_ERROR_OES)",
+                        "type": 643
+                    },
+                    {
+                        "start_resource": 2048,
+                        "num_resource": 1024,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_RA, RESASG_SUBTYPE_MCU_NAV_RA_VIRTID)",
+                        "type": 644
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 32,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_RA, RESASG_SUBTYPE_MCU_NAV_RA_MONITOR)",
+                        "type": 645
+                    },
+                    {
+                        "start_resource": 80,
+                        "num_resource": 48,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_GIC_IRQ, RESASG_SUBTYPE_GIC_IRQ_MAIN_NAV_SET0)",
+                        "type": 704
+                    },
+                    {
+                        "start_resource": 392,
+                        "num_resource": 32,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_GIC_IRQ, RESASG_SUBTYPE_GIC_IRQ_MAIN_GPIO)",
+                        "type": 705
+                    },
+                    {
+                        "start_resource": 448,
+                        "num_resource": 56,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_GIC_IRQ, RESASG_SUBTYPE_GIC_IRQ_MAIN_NAV_SET1)",
+                        "type": 706
+                    },
+                    {
+                        "start_resource": 544,
+                        "num_resource": 16,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_GIC_IRQ, RESASG_SUBTYPE_GIC_IRQ_COMP_EVT)",
+                        "type": 707
+                    },
+                    {
+                        "start_resource": 712,
+                        "num_resource": 16,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_GIC_IRQ, RESASG_SUBTYPE_GIC_IRQ_WKUP_GPIO)",
+                        "type": 708
+                    },
+                    {
+                        "start_resource": 68,
+                        "num_resource": 28,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_PULSAR_C0_IRQ, RESASG_SUBTYPE_PULSAR_C0_IRQ_MCU_NAV)",
+                        "type": 768
+                    },
+                    {
+                        "start_resource": 124,
+                        "num_resource": 16,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_PULSAR_C0_IRQ, RESASG_SUBTYPE_PULSAR_C0_IRQ_WKUP_GPIO)",
+                        "type": 769
+                    },
+                    {
+                        "start_resource": 160,
+                        "num_resource": 64,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_PULSAR_C0_IRQ, RESASG_SUBTYPE_PULSAR_C0_IRQ_MAIN2MCU_LVL)",
+                        "type": 770
+                    },
+                    {
+                        "start_resource": 224,
+                        "num_resource": 48,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_PULSAR_C0_IRQ, RESASG_SUBTYPE_PULSAR_C0_IRQ_MAIN2MCU_PLS)",
+                        "type": 771
+                    },
+                    {
+                        "start_resource": 68,
+                        "num_resource": 28,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_PULSAR_C1_IRQ, RESASG_SUBTYPE_PULSAR_C1_IRQ_MCU_NAV)",
+                        "type": 832
+                    },
+                    {
+                        "start_resource": 124,
+                        "num_resource": 16,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_PULSAR_C1_IRQ, RESASG_SUBTYPE_PULSAR_C1_IRQ_WKUP_GPIO)",
+                        "type": 833
+                    },
+                    {
+                        "start_resource": 160,
+                        "num_resource": 64,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_PULSAR_C1_IRQ, RESASG_SUBTYPE_PULSAR_C1_IRQ_MAIN2MCU_LVL)",
+                        "type": 834
+                    },
+                    {
+                        "start_resource": 224,
+                        "num_resource": 48,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_PULSAR_C1_IRQ, RESASG_SUBTYPE_PULSAR_C1_IRQ_MAIN2MCU_PLS)",
+                        "type": 835
+                    },
+                    {
+                        "start_resource": 46,
+                        "num_resource": 8,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_ICSSG0_IRQ, RESASG_SUBTYPE_ICSSG0_IRQ_MAIN_NAV)",
+                        "type": 896
+                    },
+                    {
+                        "start_resource": 88,
+                        "num_resource": 8,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_ICSSG0_IRQ, RESASG_SUBTYPE_ICSSG0_IRQ_MAIN_GPIO)",
+                        "type": 897
+                    },
+                    {
+                        "start_resource": 46,
+                        "num_resource": 8,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_ICSSG1_IRQ, RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_NAV)",
+                        "type": 960
+                    },
+                    {
+                        "start_resource": 88,
+                        "num_resource": 8,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_ICSSG1_IRQ, RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_GPIO)",
+                        "type": 961
+                    },
+                    {
+                        "start_resource": 46,
+                        "num_resource": 8,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_ICSSG2_IRQ, RESASG_SUBTYPE_ICSSG2_IRQ_MAIN_NAV)",
+                        "type": 1024
+                    },
+                    {
+                        "start_resource": 88,
+                        "num_resource": 8,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_ICSSG2_IRQ, RESASG_SUBTYPE_ICSSG2_IRQ_MAIN_GPIO)",
+                        "type": 1025
+                    },
+                    {
+                        "start_resource": 1,
+                        "num_resource": 63,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MAIN_NAV_PROXY, RESASG_SUBTYPE_MAIN_NAV_PROXY_PROXIES)",
+                        "type": 1088
+                    },
+                    {
+                        "start_resource": 0,
+                        "num_resource": 64,
+			            "name": "RESASG_UTYPE(RESASG_TYPE_MCU_NAV_PROXY, RESASG_SUBTYPE_MCU_NAV_PROXY_PROXIES)",
+                        "type": 1152
+                    }
+                ]
+            },
+            "am65x_sr2": {
+                "values": [
+                    {
+                        "num_resource": 1,
+                        "type": 320,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_CPSW0, RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 321,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_CPSW0, RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 3328,
+                        "name": "RESASG_UTYPE(AM6_DEV_ESM0, RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 248
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 3329,
+                        "name": "RESASG_UTYPE(AM6_DEV_ESM0, RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 256
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 3330,
+                        "name": "RESASG_UTYPE(AM6_DEV_ESM0, RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 264
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 3456,
+                        "name": "RESASG_UTYPE(AM6_DEV_WKUP_ESM0, RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 88
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 3457,
+                        "name": "RESASG_UTYPE(AM6_DEV_WKUP_ESM0, RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 96
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 3458,
+                        "name": "RESASG_UTYPE(AM6_DEV_WKUP_ESM0, RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 104
+                    },
+                    {
+                        "num_resource": 48,
+                        "type": 3584,
+                        "name": "RESASG_UTYPE(AM6_DEV_GIC0, RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 80
+                    },
+                    {
+                        "num_resource": 32,
+                        "type": 3585,
+                        "name": "RESASG_UTYPE(AM6_DEV_GIC0, RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 392
+                    },
+                    {
+                        "num_resource": 56,
+                        "type": 3586,
+                        "name": "RESASG_UTYPE(AM6_DEV_GIC0, RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP1_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 448
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 3587,
+                        "name": "RESASG_UTYPE(AM6_DEV_GIC0, RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0)",
+                        "start_resource": 544
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 3588,
+                        "name": "RESASG_UTYPE(AM6_DEV_GIC0, RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 712
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 3968,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 3969,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 3970,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 3971,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 3
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 3972,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 3973,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 10
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 3974,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 46
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 3975,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_SLV_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 88
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 4032,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 4033,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 4034,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 4035,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 3
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 4036,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 4037,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 10
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 4038,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 46
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 4039,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_SLV_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 88
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 4096,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG2, RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 4097,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG2, RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 4098,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG2, RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 4099,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG2, RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 3
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 4100,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG2, RESASG_SUBTYPE_PRU_ICSSG2_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 4101,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG2, RESASG_SUBTYPE_PRU_ICSSG2_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 10
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 4102,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG2, RESASG_SUBTYPE_PRU_ICSSG2_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 46
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 4103,
+                        "name": "RESASG_UTYPE(AM6_DEV_PRU_ICSSG2, RESASG_SUBTYPE_PRU_ICSSG2_PR1_SLV_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 88
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7552,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0, RESASG_SUBTYPE_NAVSS0_CPTS0_HW1_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7553,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0, RESASG_SUBTYPE_NAVSS0_CPTS0_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7554,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0, RESASG_SUBTYPE_NAVSS0_CPTS0_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7555,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0, RESASG_SUBTYPE_NAVSS0_CPTS0_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 3
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7556,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0, RESASG_SUBTYPE_NAVSS0_CPTS0_HW5_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7557,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0, RESASG_SUBTYPE_NAVSS0_CPTS0_HW6_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 5
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7558,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0, RESASG_SUBTYPE_NAVSS0_CPTS0_HW7_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 6
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7559,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0, RESASG_SUBTYPE_NAVSS0_CPTS0_HW8_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 7
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7680,
+                        "name": "RESASG_UTYPE(AM6_DEV_PCIE0, RESASG_SUBTYPE_PCIE0_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7744,
+                        "name": "RESASG_UTYPE(AM6_DEV_PCIE1, RESASG_SUBTYPE_PCIE1_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 7936,
+                        "name": "RESASG_UTYPE(AM6_DEV_PDMA1, RESASG_SUBTYPE_PDMA1_LEVENT_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 7937,
+                        "name": "RESASG_UTYPE(AM6_DEV_PDMA1, RESASG_SUBTYPE_PDMA1_LEVENT_IN_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0)",
+                        "start_resource": 8
+                    },
+                    {
+                        "num_resource": 28,
+                        "type": 10176,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_ARMSS0_CPU0, RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 68
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 10177,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_ARMSS0_CPU0, RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 124
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 10178,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_ARMSS0_CPU0, RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0)",
+                        "start_resource": 160
+                    },
+                    {
+                        "num_resource": 48,
+                        "type": 10179,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_ARMSS0_CPU0, RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0)",
+                        "start_resource": 224
+                    },
+                    {
+                        "num_resource": 12,
+                        "type": 10304,
+                        "name": "RESASG_UTYPE(AM6_DEV_WKUP_DMSC0_CORTEX_M3_0, RESASG_SUBTYPE_WKUP_DMSC0_CORTEX_M3_0_NVIC_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 184
+                    },
+                    {
+                        "num_resource": 240,
+                        "type": 11466,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMASS_INTA0, RESASG_SUBTYPE_IA_VINT)",
+                        "start_resource": 16
+                    },
+                    {
+                        "num_resource": 4592,
+                        "type": 11469,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMASS_INTA0, RESASG_SUBTYPE_GLOBAL_EVENT_SEVT)",
+                        "start_resource": 16
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 11530,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_MODSS_INTA0, RESASG_SUBTYPE_IA_VINT)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1024,
+                        "type": 11533,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_MODSS_INTA0, RESASG_SUBTYPE_GLOBAL_EVENT_SEVT)",
+                        "start_resource": 20480
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 11594,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_MODSS_INTA1, RESASG_SUBTYPE_IA_VINT)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1024,
+                        "type": 11597,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_MODSS_INTA1, RESASG_SUBTYPE_GLOBAL_EVENT_SEVT)",
+                        "start_resource": 22528
+                    },
+                    {
+                        "num_resource": 63,
+                        "type": 11840,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_PROXY0, RESASG_SUBTYPE_PROXY_PROXIES)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 11968,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_ERROR_OES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 464,
+                        "type": 11969,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_GP)",
+                        "start_resource": 304
+                    },
+                    {
+                        "num_resource": 142,
+                        "type": 11970,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_RX)",
+                        "start_resource": 160
+                    },
+                    {
+                        "num_resource": 112,
+                        "type": 11971,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_TX)",
+                        "start_resource": 8
+                    },
+                    {
+                        "num_resource": 32,
+                        "type": 11972,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_TX_EXT)",
+                        "start_resource": 120
+                    },
+                    {
+                        "num_resource": 7,
+                        "type": 11973,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_RX_H)",
+                        "start_resource": 153
+                    },
+                    {
+                        "num_resource": 7,
+                        "type": 11975,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_TX_H)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 11978,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_VIRTID)",
+                        "start_resource": 64
+                    },
+                    {
+                        "num_resource": 32,
+                        "type": 11979,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_MONITORS)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 150,
+                        "type": 12032,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON)",
+                        "start_resource": 150
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12033,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_INVALID_FLOW_OES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1024,
+                        "type": 12034,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMAP0, RESASG_SUBTYPE_GLOBAL_EVENT_TRIGGER)",
+                        "start_resource": 49152
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12035,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_GLOBAL_CONFIG)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 142,
+                        "type": 12042,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_RX_CHAN)",
+                        "start_resource": 8
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 12043,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_RX_HCHAN)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 112,
+                        "type": 12045,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_TX_CHAN)",
+                        "start_resource": 8
+                    },
+                    {
+                        "num_resource": 32,
+                        "type": 12046,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_TX_ECHAN)",
+                        "start_resource": 120
+                    },
+                    {
+                        "num_resource": 7,
+                        "type": 12047,
+                        "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_TX_HCHAN)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 248,
+                        "type": 12106,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_INTR_AGGR_0, RESASG_SUBTYPE_IA_VINT)",
+                        "start_resource": 8
+                    },
+                    {
+                        "num_resource": 1528,
+                        "type": 12109,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_INTR_AGGR_0, RESASG_SUBTYPE_GLOBAL_EVENT_SEVT)",
+                        "start_resource": 16392
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 12224,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_PROXY0, RESASG_SUBTYPE_PROXY_PROXIES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 48,
+                        "type": 12416,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON)",
+                        "start_resource": 48
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12417,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_INVALID_FLOW_OES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 256,
+                        "type": 12418,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_UDMAP0, RESASG_SUBTYPE_GLOBAL_EVENT_TRIGGER)",
+                        "start_resource": 56320
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12419,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_GLOBAL_CONFIG)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 46,
+                        "type": 12426,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_RX_CHAN)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 12427,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_RX_HCHAN)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 46,
+                        "type": 12429,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_TX_CHAN)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 12431,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_UDMAP0, RESASG_SUBTYPE_UDMAP_TX_HCHAN)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12480,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_ERROR_OES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 160,
+                        "type": 12481,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_GP)",
+                        "start_resource": 96
+                    },
+                    {
+                        "num_resource": 46,
+                        "type": 12482,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_RX)",
+                        "start_resource": 50
+                    },
+                    {
+                        "num_resource": 46,
+                        "type": 12483,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_TX)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 12485,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_RX_H)",
+                        "start_resource": 48
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 12487,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_TX_H)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 12490,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_VIRTID)",
+                        "start_resource": 128
+                    },
+                    {
+                        "num_resource": 32,
+                        "type": 12491,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_MONITORS)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 28,
+                        "type": 15680,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_ARMSS0_CPU1, RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 68
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 15681,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_ARMSS0_CPU1, RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 124
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 15682,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_ARMSS0_CPU1, RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0)",
+                        "start_resource": 160
+                    },
+                    {
+                        "num_resource": 48,
+                        "type": 15683,
+                        "name": "RESASG_UTYPE(AM6_DEV_MCU_ARMSS0_CPU1, RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0)",
+                        "start_resource": 224
+                    }
+                ]
+            },
+            "j721e": {
+                "values": [
+                    {
+                        "num_resource": 54,
+                        "type": 384,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_CLEC, RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 74
+                    },
+                    {
+                        "num_resource": 56,
+                        "type": 385,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_CLEC, RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 392
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 386,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_CLEC, RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP1_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 448
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 387,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_CLEC, RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0)",
+                        "start_resource": 544
+                    },
+                    {
+                        "num_resource": 60,
+                        "type": 388,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_CLEC, RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP2_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 672
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 389,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_CLEC, RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 960
+                    },
+                    {
+                        "num_resource": 54,
+                        "type": 896,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_GIC500SS, RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 74
+                    },
+                    {
+                        "num_resource": 56,
+                        "type": 897,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_GIC500SS, RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 392
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 898,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_GIC500SS, RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP1_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 448
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 899,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_GIC500SS, RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0)",
+                        "start_resource": 544
+                    },
+                    {
+                        "num_resource": 60,
+                        "type": 900,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_GIC500SS, RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP2_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 672
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 901,
+                        "name": "RESASG_UTYPE(J721E_DEV_COMPUTE_CLUSTER0_GIC500SS, RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 960
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1152,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_CPSW0, RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1153,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_CPSW0, RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1216,
+                        "name": "RESASG_UTYPE(J721E_DEV_CPSW0, RESASG_SUBTYPE_CPSW0_CPTS_HW1_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1217,
+                        "name": "RESASG_UTYPE(J721E_DEV_CPSW0, RESASG_SUBTYPE_CPSW0_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1218,
+                        "name": "RESASG_UTYPE(J721E_DEV_CPSW0, RESASG_SUBTYPE_CPSW0_CPTS_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1219,
+                        "name": "RESASG_UTYPE(J721E_DEV_CPSW0, RESASG_SUBTYPE_CPSW0_CPTS_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 3
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1220,
+                        "name": "RESASG_UTYPE(J721E_DEV_CPSW0, RESASG_SUBTYPE_CPSW0_CPTS_HW5_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1221,
+                        "name": "RESASG_UTYPE(J721E_DEV_CPSW0, RESASG_SUBTYPE_CPSW0_CPTS_HW6_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 5
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1222,
+                        "name": "RESASG_UTYPE(J721E_DEV_CPSW0, RESASG_SUBTYPE_CPSW0_CPTS_HW7_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 6
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 1223,
+                        "name": "RESASG_UTYPE(J721E_DEV_CPSW0, RESASG_SUBTYPE_CPSW0_CPTS_HW8_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 7
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 6208,
+                        "name": "RESASG_UTYPE(J721E_DEV_ESM0, RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 632
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 6209,
+                        "name": "RESASG_UTYPE(J721E_DEV_ESM0, RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 640
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 6210,
+                        "name": "RESASG_UTYPE(J721E_DEV_ESM0, RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 648
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 6336,
+                        "name": "RESASG_UTYPE(J721E_DEV_WKUP_ESM0, RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 88
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 6337,
+                        "name": "RESASG_UTYPE(J721E_DEV_WKUP_ESM0, RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 96
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 6338,
+                        "name": "RESASG_UTYPE(J721E_DEV_WKUP_ESM0, RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 104
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7616,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7617,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7618,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7619,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 3
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 7620,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 7621,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 10
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 7622,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG0, RESASG_SUBTYPE_PRU_ICSSG0_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 46
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7680,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7681,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7682,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 7683,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 3
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 7684,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 6,
+                        "type": 7685,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 10
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 7686,
+                        "name": "RESASG_UTYPE(J721E_DEV_PRU_ICSSG1, RESASG_SUBTYPE_PRU_ICSSG1_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 46
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 9088,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS0_CORE0, RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP0_FROM_C66SS0_INTROUTER0)",
+                        "start_resource": 8
+                    },
+                    {
+                        "num_resource": 81,
+                        "type": 9089,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS0_CORE0, RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP1_FROM_C66SS0_INTROUTER0)",
+                        "start_resource": 15
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 9090,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS0_CORE0, RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP2_FROM_C66SS0_INTROUTER0)",
+                        "start_resource": 99
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 9091,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS0_CORE0, RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP3_FROM_C66SS0_INTROUTER0)",
+                        "start_resource": 102
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 9092,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS0_CORE0, RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP4_FROM_C66SS0_INTROUTER0)",
+                        "start_resource": 114
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 9152,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS1_CORE0, RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP0_FROM_C66SS1_INTROUTER0)",
+                        "start_resource": 8
+                    },
+                    {
+                        "num_resource": 81,
+                        "type": 9153,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS1_CORE0, RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP1_FROM_C66SS1_INTROUTER0)",
+                        "start_resource": 15
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 9154,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS1_CORE0, RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP2_FROM_C66SS1_INTROUTER0)",
+                        "start_resource": 99
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 9155,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS1_CORE0, RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP3_FROM_C66SS1_INTROUTER0)",
+                        "start_resource": 102
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 9156,
+                        "name": "RESASG_UTYPE(J721E_DEV_C66SS1_CORE0, RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP4_FROM_C66SS1_INTROUTER0)",
+                        "start_resource": 114
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12736,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS512L_MAIN_0, RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW1_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12737,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS512L_MAIN_0, RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12738,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS512L_MAIN_0, RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12739,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS512L_MAIN_0, RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 3
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12740,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS512L_MAIN_0, RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW5_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12741,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS512L_MAIN_0, RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW6_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 5
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12742,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS512L_MAIN_0, RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW7_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 6
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 12743,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS512L_MAIN_0, RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW8_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 7
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 13258,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_MODSS_INTAGGR_0, RESASG_SUBTYPE_IA_VINT)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1024,
+                        "type": 13261,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_MODSS_INTAGGR_0, RESASG_SUBTYPE_GLOBAL_EVENT_SEVT)",
+                        "start_resource": 20480
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 13322,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_MODSS_INTAGGR_1, RESASG_SUBTYPE_IA_VINT)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1024,
+                        "type": 13325,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_MODSS_INTAGGR_1, RESASG_SUBTYPE_GLOBAL_EVENT_SEVT)",
+                        "start_resource": 22528
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 13376,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMASS_INTAGGR_0, RESASG_SUBTYPE_NAVSS0_UDMASS_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 52
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 13377,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMASS_INTAGGR_0, RESASG_SUBTYPE_NAVSS0_UDMASS_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0)",
+                        "start_resource": 60
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 13378,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMASS_INTAGGR_0, RESASG_SUBTYPE_NAVSS0_UDMASS_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 68
+                    },
+                    {
+                        "num_resource": 218,
+                        "type": 13386,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMASS_INTAGGR_0, RESASG_SUBTYPE_IA_VINT)",
+                        "start_resource": 38
+                    },
+                    {
+                        "num_resource": 4570,
+                        "type": 13389,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMASS_INTAGGR_0, RESASG_SUBTYPE_GLOBAL_EVENT_SEVT)",
+                        "start_resource": 38
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 13440,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_PROXY_0, RESASG_SUBTYPE_PROXY_PROXIES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 13504,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_ERROR_OES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 534,
+                        "type": 13505,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_GP)",
+                        "start_resource": 440
+                    },
+                    {
+                        "num_resource": 124,
+                        "type": 13506,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_RX)",
+                        "start_resource": 316
+                    },
+                    {
+                        "num_resource": 124,
+                        "type": 13507,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX)",
+                        "start_resource": 16
+                    },
+                    {
+                        "num_resource": 160,
+                        "type": 13508,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX_EXT)",
+                        "start_resource": 140
+                    },
+                    {
+                        "num_resource": 12,
+                        "type": 13509,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_RX_H)",
+                        "start_resource": 304
+                    },
+                    {
+                        "num_resource": 4,
+                        "type": 13510,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_RX_UH)",
+                        "start_resource": 300
+                    },
+                    {
+                        "num_resource": 12,
+                        "type": 13511,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX_H)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 4,
+                        "type": 13512,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX_UH)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 13514,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_VIRTID)",
+                        "start_resource": 64
+                    },
+                    {
+                        "num_resource": 32,
+                        "type": 13515,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_MONITORS)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 160,
+                        "type": 13568,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON)",
+                        "start_resource": 140
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 13569,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_INVALID_FLOW_OES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1024,
+                        "type": 13570,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_GLOBAL_EVENT_TRIGGER)",
+                        "start_resource": 49152
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 13571,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_GLOBAL_CONFIG)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 124,
+                        "type": 13578,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_CHAN)",
+                        "start_resource": 16
+                    },
+                    {
+                        "num_resource": 12,
+                        "type": 13579,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_HCHAN)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 4,
+                        "type": 13580,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_UHCHAN)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 124,
+                        "type": 13581,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_CHAN)",
+                        "start_resource": 16
+                    },
+                    {
+                        "num_resource": 160,
+                        "type": 13582,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_ECHAN)",
+                        "start_resource": 140
+                    },
+                    {
+                        "num_resource": 12,
+                        "type": 13583,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_HCHAN)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 4,
+                        "type": 13584,
+                        "name": "RESASG_UTYPE(J721E_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_UHCHAN)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 14912,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_INTAGGR_0, RESASG_SUBTYPE_MCU_NAVSS0_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 4
+                    },
+                    {
+                        "num_resource": 248,
+                        "type": 14922,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_INTAGGR_0, RESASG_SUBTYPE_IA_VINT)",
+                        "start_resource": 8
+                    },
+                    {
+                        "num_resource": 1528,
+                        "type": 14925,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_INTAGGR_0, RESASG_SUBTYPE_GLOBAL_EVENT_SEVT)",
+                        "start_resource": 16392
+                    },
+                    {
+                        "num_resource": 63,
+                        "type": 14976,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_PROXY_0, RESASG_SUBTYPE_PROXY_PROXIES)",
+                        "start_resource": 1
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 15040,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_ERROR_OES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 156,
+                        "type": 15041,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_GP)",
+                        "start_resource": 96
+                    },
+                    {
+                        "num_resource": 43,
+                        "type": 15042,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_RX)",
+                        "start_resource": 50
+                    },
+                    {
+                        "num_resource": 44,
+                        "type": 15043,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 15045,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_RX_H)",
+                        "start_resource": 48
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 15047,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX_H)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 15050,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_VIRTID)",
+                        "start_resource": 128
+                    },
+                    {
+                        "num_resource": 32,
+                        "type": 15051,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_MONITORS)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 48,
+                        "type": 15104,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON)",
+                        "start_resource": 48
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 15105,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_INVALID_FLOW_OES)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 256,
+                        "type": 15106,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_UDMAP_0, RESASG_SUBTYPE_GLOBAL_EVENT_TRIGGER)",
+                        "start_resource": 56320
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 15107,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_GLOBAL_CONFIG)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 43,
+                        "type": 15114,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_CHAN)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 15115,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_HCHAN)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 44,
+                        "type": 15117,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_CHAN)",
+                        "start_resource": 2
+                    },
+                    {
+                        "num_resource": 2,
+                        "type": 15119,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_HCHAN)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 15296,
+                        "name": "RESASG_UTYPE(J721E_DEV_PCIE0, RESASG_SUBTYPE_PCIE0_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 15360,
+                        "name": "RESASG_UTYPE(J721E_DEV_PCIE1, RESASG_SUBTYPE_PCIE1_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 15424,
+                        "name": "RESASG_UTYPE(J721E_DEV_PCIE2, RESASG_SUBTYPE_PCIE2_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 1,
+                        "type": 15488,
+                        "name": "RESASG_UTYPE(J721E_DEV_PCIE3, RESASG_SUBTYPE_PCIE3_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0)",
+                        "start_resource": 0
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 15680,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS0_CORE0, RESASG_SUBTYPE_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 176
+                    },
+                    {
+                        "num_resource": 28,
+                        "type": 15681,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS0_CORE0, RESASG_SUBTYPE_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 228
+                    },
+                    {
+                        "num_resource": 256,
+                        "type": 15682,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS0_CORE0, RESASG_SUBTYPE_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_R5FSS0_INTROUTER0)",
+                        "start_resource": 256
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 15744,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS0_CORE1, RESASG_SUBTYPE_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 176
+                    },
+                    {
+                        "num_resource": 28,
+                        "type": 15745,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS0_CORE1, RESASG_SUBTYPE_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 228
+                    },
+                    {
+                        "num_resource": 256,
+                        "type": 15746,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS0_CORE1, RESASG_SUBTYPE_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_R5FSS0_INTROUTER0)",
+                        "start_resource": 256
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 15808,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS1_CORE0, RESASG_SUBTYPE_R5FSS1_CORE0_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 176
+                    },
+                    {
+                        "num_resource": 28,
+                        "type": 15809,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS1_CORE0, RESASG_SUBTYPE_R5FSS1_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 228
+                    },
+                    {
+                        "num_resource": 256,
+                        "type": 15810,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS1_CORE0, RESASG_SUBTYPE_R5FSS1_CORE0_INTR_IRQ_GROUP0_FROM_R5FSS1_INTROUTER0)",
+                        "start_resource": 256
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 15872,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS1_CORE1, RESASG_SUBTYPE_R5FSS1_CORE1_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0)",
+                        "start_resource": 176
+                    },
+                    {
+                        "num_resource": 28,
+                        "type": 15873,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS1_CORE1, RESASG_SUBTYPE_R5FSS1_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 228
+                    },
+                    {
+                        "num_resource": 256,
+                        "type": 15874,
+                        "name": "RESASG_UTYPE(J721E_DEV_R5FSS1_CORE1, RESASG_SUBTYPE_R5FSS1_CORE1_INTR_IRQ_GROUP0_FROM_R5FSS1_INTROUTER0)",
+                        "start_resource": 256
+                    },
+                    {
+                        "num_resource": 28,
+                        "type": 16000,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE0, RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 68
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 16001,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE0, RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 124
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 16002,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE0, RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0)",
+                        "start_resource": 160
+                    },
+                    {
+                        "num_resource": 48,
+                        "type": 16003,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE0, RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0)",
+                        "start_resource": 224
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 16004,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE0, RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 376
+                    },
+                    {
+                        "num_resource": 28,
+                        "type": 16064,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE1, RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 68
+                    },
+                    {
+                        "num_resource": 16,
+                        "type": 16065,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE1, RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0)",
+                        "start_resource": 124
+                    },
+                    {
+                        "num_resource": 64,
+                        "type": 16066,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE1, RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0)",
+                        "start_resource": 160
+                    },
+                    {
+                        "num_resource": 48,
+                        "type": 16067,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE1, RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0)",
+                        "start_resource": 224
+                    },
+                    {
+                        "num_resource": 8,
+                        "type": 16068,
+                        "name": "RESASG_UTYPE(J721E_DEV_MCU_R5FSS0_CORE1, RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0)",
+                        "start_resource": 376
+                    }
+                ]
+            }
+        }
+    }
+}

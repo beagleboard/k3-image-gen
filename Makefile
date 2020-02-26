@@ -117,6 +117,10 @@ vpath %.c $(soc_srcroot)
 
 MKIMAGE ?= mkimage
 
+ifeq ($(shell which python3),)
+$(error "No python3 in $(PATH), consider installing python3")
+endif
+
 .PHONY: all _objtree_build
 
 all: _objtree_build $(ITB) sysfw.itb
@@ -170,7 +174,8 @@ soc_objs: $(SOC_OBJS)
 
 
 $(soc_objroot)/%.o: %.c
-	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@ $<
+	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@-pre-validated $<
+	python3 ./scripts/sysfw_boardcfg_validator.py -b $@-pre-validated -i -o $@ -s $(SOC) -l $@.log
 
 # On HS board configuration binaries must be signed
 ifdef HS
