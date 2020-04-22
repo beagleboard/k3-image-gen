@@ -71,4 +71,15 @@ const struct boardcfg_security am65_boardcfg_security_data = {
 		/* This is an array with 32 entries */
 		.otp_entry = {{ 0 } },
 	},
+
+	/* DKEK configuration */
+	.dkek_config = {
+		.subhdr = {
+			.magic = BOARDCFG_DKEK_CFG_MAGIC_NUM,
+			.size = sizeof(struct boardcfg_dkek),
+		},
+		.allowed_hosts = { HOST_ID_ALL, 0, 0, 0 },
+		.allow_dkek_export_tisci = 0x5A,
+		.rsvd = {0, 0, 0},
+	},
 };
