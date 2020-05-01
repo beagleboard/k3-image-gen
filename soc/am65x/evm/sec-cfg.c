@@ -82,4 +82,13 @@ const struct boardcfg_security am65_boardcfg_security_data = {
 		.allow_dkek_export_tisci = 0x5A,
 		.rsvd = {0, 0, 0},
 	},
+
+	/* SA2UL configuration */
+	.sa2ul_cfg = {
+		.subhdr = {
+			.magic = BOARDCFG_SA2UL_CFG_MAGIC_NUM_RSVD,
+			.size = 0,
+		},
+		.rsvd = {0, 0, 0, 0},
+	},
 };

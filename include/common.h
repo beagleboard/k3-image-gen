@@ -81,6 +81,7 @@ typedef u8 ftbool;
 #define BOARDCFG_PMIC_CFG_MAGIC_NUM		0x3172
 #define BOARDCFG_OTP_CFG_MAGIC_NUM		0x4081
 #define BOARDCFG_DKEK_CFG_MAGIC_NUM		0x5170
+#define BOARDCFG_SA2UL_CFG_MAGIC_NUM_RSVD	0x23BE
 
 struct boardcfg_substructure_header {
 	u16	magic;
@@ -241,12 +242,18 @@ struct boardcfg_dkek {
 	u8					rsvd[3];
 } __attribute__((__packed__));
 
+struct boardcfg_sa2ul_cfg {
+	struct boardcfg_substructure_header	subhdr;
+	u8					rsvd[4];
+};
+
 struct boardcfg_security {
 	struct boardcfg_abi_rev			rev;
 	struct boardcfg_proc_acl		processor_acl_list;
 	struct boardcfg_host_hierarchy		host_hierarchy;
 	struct boardcfg_extended_otp		otp_config;
 	struct boardcfg_dkek			dkek_config;
+	struct boardcfg_sa2ul_cfg		sa2ul_cfg;
 } __attribute__((__packed__));
 
 /**
