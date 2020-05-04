@@ -367,17 +367,31 @@ const struct boardcfg_rm_local am65_boardcfg_rm_data = {
 			.num_resource = 32,
 			.host_id = HOST_ID_A53_2,
 		},
+		/* Main 2 MCU level IRQ IR */
 		{
 			.type = RESASG_UTYPE(AM6_DEV_MAIN2MCU_LVL_INTRTR0, RESASG_SUBTYPE_IR_OUTPUT),
 			.start_resource = 0,
-			.num_resource = 64,
+			.num_resource = 32,
+			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.type = RESASG_UTYPE(AM6_DEV_MAIN2MCU_LVL_INTRTR0, RESASG_SUBTYPE_IR_OUTPUT),
+			.start_resource = 32,
+			.num_resource = 32,
+			.host_id = HOST_ID_R5_2,
+		},
+		/* Main 2 MCU Pulse IRQ IR */
+		{
+			.type = RESASG_UTYPE(AM6_DEV_MAIN2MCU_PLS_INTRTR0, RESASG_SUBTYPE_IR_OUTPUT),
+			.start_resource = 0,
+			.num_resource = 24,
 			.host_id = HOST_ID_R5_0,
 		},
 		{
 			.type = RESASG_UTYPE(AM6_DEV_MAIN2MCU_PLS_INTRTR0, RESASG_SUBTYPE_IR_OUTPUT),
-			.start_resource = 0,
-			.num_resource = 48,
-			.host_id = HOST_ID_R5_0,
+			.start_resource = 24,
+			.num_resource = 24,
+			.host_id = HOST_ID_R5_2,
 		},
 		{
 			.type = RESASG_UTYPE(AM6_DEV_GPIOMUX_INTRTR0, RESASG_SUBTYPE_IR_OUTPUT),
