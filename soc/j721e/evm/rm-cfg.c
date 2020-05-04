@@ -1302,7 +1302,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 142,
-			.num_resource = 32,
+			.num_resource = 46,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_C7X_1,
