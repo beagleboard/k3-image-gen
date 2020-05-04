@@ -1285,7 +1285,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 
-		/* NAVSS IR for others - Unassigned */
+		/* Main NAVSS IR */
 		{
 			.start_resource = 10,
 			.num_resource = 100,
@@ -1306,6 +1306,76 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_C7X_1,
+		},
+		{
+			.start_resource = 196,
+			.num_resource = 28,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
+		{
+			.start_resource = 228,
+			.num_resource = 28,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
+		{
+			.start_resource = 260,
+			.num_resource = 28,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MAIN_1_R5_0,
+		},
+		{
+			.start_resource = 292,
+			.num_resource = 28,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MAIN_1_R5_2,
+		},
+		{
+			.start_resource = 320,
+			.num_resource = 24,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_C6X_0_1,
+		},
+		{
+			.start_resource = 348,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_C6X_0_1,
+		},
+		{
+			.start_resource = 352,
+			.num_resource = 24,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_C6X_1_1,
+		},
+		{
+			.start_resource = 380,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_C6X_1_1,
+		},
+		{
+			.start_resource = 400,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 404,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MCU_0_R5_2,
 		},
 
 		/* MCU Nav IA VINT */
