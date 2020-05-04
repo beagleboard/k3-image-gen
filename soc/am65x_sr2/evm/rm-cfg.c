@@ -1,7 +1,7 @@
 /*
  * K3 System Firmware Resource Management Configuration Data
  *
- * Copyright (C) 2018-2019 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2018-2020 Texas Instruments Incorporated - http://www.ti.com/
  *	Andreas Dannenberg <dannenberg@ti.com>
  *
  * Redistribution and use in source and binary forms, with or without
@@ -400,8 +400,38 @@ const struct boardcfg_rm_local am65_boardcfg_rm_data = {
 		{
 			.type = RESASG_UTYPE(AM6_DEV_NAVSS0_INTR_ROUTER_0, RESASG_SUBTYPE_IR_OUTPUT),
 			.start_resource = 16,
-			.num_resource = 136,
+			.num_resource = 104,
 			.host_id = HOST_ID_A53_2,
+		},
+		{
+			.type = RESASG_UTYPE(AM6_DEV_NAVSS0_INTR_ROUTER_0, RESASG_SUBTYPE_IR_OUTPUT),
+			.start_resource = 120,
+			.num_resource = 4,
+			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.type = RESASG_UTYPE(AM6_DEV_NAVSS0_INTR_ROUTER_0, RESASG_SUBTYPE_IR_OUTPUT),
+			.start_resource = 124,
+			.num_resource = 4,
+			.host_id = HOST_ID_R5_2,
+		},
+		{
+			.type = RESASG_UTYPE(AM6_DEV_NAVSS0_INTR_ROUTER_0, RESASG_SUBTYPE_IR_OUTPUT),
+			.start_resource = 128,
+			.num_resource = 8,
+			.host_id = HOST_ID_ICSSG_0,
+		},
+		{
+			.type = RESASG_UTYPE(AM6_DEV_NAVSS0_INTR_ROUTER_0, RESASG_SUBTYPE_IR_OUTPUT),
+			.start_resource = 136,
+			.num_resource = 8,
+			.host_id = HOST_ID_ICSSG_1,
+		},
+		{
+			.type = RESASG_UTYPE(AM6_DEV_NAVSS0_INTR_ROUTER_0, RESASG_SUBTYPE_IR_OUTPUT),
+			.start_resource = 144,
+			.num_resource = 8,
+			.host_id = HOST_ID_ICSSG_2,
 		},
 		{
 			.type = RESASG_UTYPE(AM6_DEV_MCU_NAVSS0_INTR_ROUTER_0, RESASG_SUBTYPE_IR_OUTPUT),
