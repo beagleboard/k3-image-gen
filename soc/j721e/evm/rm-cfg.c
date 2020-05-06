@@ -72,7 +72,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 	/* This is actually part of .resasg */
 	.resasg_entries = {
 
-		/* C6x_0 IR */
+		/* Interrupt router for C6x_0 */
 		{
 			.start_resource = 4,
 			.num_resource = 93,
@@ -81,7 +81,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_C6X_0_1,
 		},
 
-		/* C6x_1 IR */
+		/* Interrupt router for C6x_1 */
 		{
 			.start_resource = 4,
 			.num_resource = 93,
@@ -90,7 +90,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_C6X_1_1,
 		},
 
-		/*  */
+		/* compare event IR */
 		{
 			.start_resource = 0,
 			.num_resource = 32,
@@ -145,7 +145,28 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_2,
 		},
 
-		/* Main GPIO IR for Compute cluster */
+		/* Main GPIO IR */
+		{
+			.start_resource = 0,
+			.num_resource = 8,
+			.type = RESASG_UTYPE (J721E_DEV_GPIOMUX_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 8,
+			.type = RESASG_UTYPE (J721E_DEV_GPIOMUX_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 8,
+			.num_resource = 8,
+			.type = RESASG_UTYPE (J721E_DEV_GPIOMUX_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MCU_0_R5_2,
+		},
 		{
 			.start_resource = 16,
 			.num_resource = 4,
@@ -210,7 +231,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_C7X_0,
 		},
 
-		/* Main R5FSS0 IR */
+		/* Interrupt router for R5FSS0 cluster */
 		{
 			.start_resource = 0,
 			.num_resource = 128,
@@ -226,7 +247,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 
-		/* Main R5FSS1 IR */
+		/* Interrupt router for R5FSS1 cluster */
 		{
 			.start_resource = 0,
 			.num_resource = 128,
@@ -242,7 +263,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_MAIN_1_R5_2,
 		},
 
-		/*  */
+		/* Timesync Router */
 		{
 			.start_resource = 0,
 			.num_resource = 48,
@@ -251,7 +272,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* WKUP GPIO IR for others */
+		/* WKUP GPIO IR */
 		{
 			.start_resource = 0,
 			.num_resource = 8,
@@ -275,23 +296,87 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 16,
-			.num_resource = 8,
+			.num_resource = 4,
 			.type = RESASG_UTYPE (J721E_DEV_WKUP_GPIOMUX_INTRTR0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
-			.start_resource = 24,
-			.num_resource = 4,
+			.start_resource = 20,
+			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_WKUP_GPIOMUX_INTRTR0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_A72_3,
 		},
 		{
-			.start_resource = 28,
-			.num_resource = 4,
+			.start_resource = 22,
+			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_WKUP_GPIOMUX_INTRTR0,
 					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MAIN_1_R5_0,
+		},
+		{
+			.start_resource = 24,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_WKUP_GPIOMUX_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MAIN_1_R5_2,
+		},
+		{
+			.start_resource = 26,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_WKUP_GPIOMUX_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_C7X_0,
+		},
+		{
+			.start_resource = 28,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_WKUP_GPIOMUX_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
+		{
+			.start_resource = 30,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_WKUP_GPIOMUX_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
+
+		/* MODSS INTA0 VINT */
+		{
+			.start_resource = 0,
+			.num_resource = 64,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_MODSS_INTAGGR_0,
+					RESASG_SUBTYPE_IA_VINT),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* MODSS INTA0 global events */
+		{
+			.start_resource = 20480,
+			.num_resource = 1024,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_MODSS_INTAGGR_0,
+					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* MODSS INTA1 VINT */
+		{
+			.start_resource = 0,
+			.num_resource = 64,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_MODSS_INTAGGR_1,
+					RESASG_SUBTYPE_IA_VINT),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* MODSS INTA1 global events */
+		{
+			.start_resource = 22528,
+			.num_resource = 1024,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_MODSS_INTAGGR_1,
+					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_ALL,
 		},
 
@@ -347,27 +432,27 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 216,
-			.num_resource = 8,
+			.num_resource = 28,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMASS_INTAGGR_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 224,
-			.num_resource = 24,
+			.start_resource = 244,
+			.num_resource = 8,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMASS_INTAGGR_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		{
-			.start_resource = 248,
-			.num_resource = 8,
+			.start_resource = 252,
+			.num_resource = 4,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMASS_INTAGGR_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* Main Nav IA SEVT */
+		/* Main Nav IA global events */
 		{
 			.start_resource = 38,
 			.num_resource = 1024,
@@ -440,14 +525,14 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 2918,
-			.num_resource = 256,
+			.num_resource = 512,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMASS_INTAGGR_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 3174,
-			.num_resource = 512,
+			.start_resource = 3430,
+			.num_resource = 256,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMASS_INTAGGR_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_MAIN_0_R5_2,
@@ -460,7 +545,109 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* Main Nav Free Ring */
+		/* Main Nav nonsecure proxies */
+		{
+			.start_resource = 0,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 4,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_A72_3,
+		},
+		{
+			.start_resource = 8,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 8,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 12,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MCU_0_R5_2,
+		},
+		{
+			.start_resource = 16,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MAIN_1_R5_0,
+		},
+		{
+			.start_resource = 20,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MAIN_1_R5_2,
+		},
+		{
+			.start_resource = 24,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_C7X_0,
+		},
+		{
+			.start_resource = 28,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_C6X_0_1,
+		},
+		{
+			.start_resource = 32,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_C6X_1_1,
+		},
+		{
+			.start_resource = 36,
+			.num_resource = 12,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
+		{
+			.start_resource = 48,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
+		{
+			.start_resource = 52,
+			.num_resource = 12,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* Main Nav Ring Error OES */
+		{
+			.start_resource = 0,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_ERROR_OES),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* Main Nav GP Ring / Free Ring */
 		{
 			.start_resource = 440,
 			.num_resource = 150,
@@ -533,14 +720,14 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 744,
-			.num_resource = 40,
+			.num_resource = 182,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_GP),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 784,
-			.num_resource = 182,
+			.start_resource = 926,
+			.num_resource = 40,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_GP),
 			.host_id = HOST_ID_MAIN_0_R5_2,
@@ -626,14 +813,14 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 418,
-			.num_resource = 7,
+			.num_resource = 20,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 425,
-			.num_resource = 15,
+			.start_resource = 438,
+			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX),
 			.host_id = HOST_ID_MAIN_0_R5_2,
@@ -712,27 +899,27 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 118,
-			.num_resource = 7,
+			.num_resource = 14,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 125,
-			.num_resource = 8,
+			.start_resource = 132,
+			.num_resource = 6,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		{
-			.start_resource = 133,
-			.num_resource = 7,
+			.start_resource = 138,
+			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* Main Nav TX Extended channel rings */
+		/* Main Nav TX rings for extended channels */
 		{
 			.start_resource = 140,
 			.num_resource = 16,
@@ -759,7 +946,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 132,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_EXT),
-			.host_id = HOST_ID_MAIN_0_R5_2,
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 
 		/* Main Nav High Capacity RX ring */
@@ -772,17 +959,10 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 308,
-			.num_resource = 2,
+			.num_resource = 6,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX_H),
 			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 310,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
-					RESASG_SUBTYPE_RA_UDMAP_RX_H),
-			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		{
 			.start_resource = 314,
@@ -805,7 +985,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX_UH),
-			.host_id = HOST_ID_MAIN_0_R5_2,
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 
 		/* Main Nav High Capacity TX ring */
@@ -818,17 +998,10 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 8,
-			.num_resource = 2,
+			.num_resource = 6,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_H),
 			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 10,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
-					RESASG_SUBTYPE_RA_UDMAP_TX_H),
-			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		{
 			.start_resource = 14,
@@ -851,7 +1024,30 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_UH),
-			.host_id = HOST_ID_MAIN_0_R5_2,
+			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
+
+		/* virt_id range */
+		{
+			.start_resource = 2,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_VIRTID),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 3,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_VIRTID),
+			.host_id = HOST_ID_A72_3,
+		},
+		{
+			.start_resource = 4,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_VIRTID),
+			.host_id = HOST_ID_ALL,
 		},
 
 		/* Main Nav ring monitors */
@@ -964,27 +1160,40 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 172,
-			.num_resource = 64,
-			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 236,
-			.num_resource = 8,
-			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
-			.host_id = HOST_ID_MAIN_0_R5_2,
-		},
-		{
-			.start_resource = 244,
-			.num_resource = 56,
+			.num_resource = 128,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* Main Nav Total RX channel */
+		/* Main Nav invalid flow OES */
+		{
+			.start_resource = 0,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_INVALID_FLOW_OES),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* Main Nav UDMA global event trigger */
+		{
+			.start_resource = 49152,
+			.num_resource = 1024,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_GLOBAL_EVENT_TRIGGER),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* Main Nav UDMA global event config */
+		{
+			.start_resource = 0,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_GLOBAL_CONFIG),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* Main Nav Normal Capacity RX channel */
 		{
 			.start_resource = 16,
 			.num_resource = 36,
@@ -1057,14 +1266,14 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 118,
-			.num_resource = 7,
+			.num_resource = 20,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 125,
-			.num_resource = 15,
+			.start_resource = 138,
+			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
 			.host_id = HOST_ID_MAIN_0_R5_2,
@@ -1080,17 +1289,10 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 8,
-			.num_resource = 2,
+			.num_resource = 6,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
 			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 10,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
-			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		{
 			.start_resource = 14,
@@ -1113,10 +1315,10 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_UHCHAN),
-			.host_id = HOST_ID_MAIN_0_R5_2,
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 
-		/* Main Nav Total TX channel */
+		/* Main Nav Normal Capacity TX channel */
 		{
 			.start_resource = 16,
 			.num_resource = 36,
@@ -1189,21 +1391,21 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 118,
-			.num_resource = 7,
+			.num_resource = 14,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 125,
-			.num_resource = 8,
+			.start_resource = 132,
+			.num_resource = 6,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		{
-			.start_resource = 133,
-			.num_resource = 7,
+			.start_resource = 138,
+			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_ALL,
@@ -1236,7 +1438,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 132,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
-			.host_id = HOST_ID_MAIN_0_R5_2,
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 
 		/* Main Nav High Capacity TX channel */
@@ -1249,17 +1451,10 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 8,
-			.num_resource = 2,
+			.num_resource = 6,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
 			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 10,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
-			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		{
 			.start_resource = 14,
@@ -1282,10 +1477,10 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_UHCHAN),
-			.host_id = HOST_ID_MAIN_0_R5_2,
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 
-		/* Main NAVSS IR */
+		/* Main Nav IR */
 		{
 			.start_resource = 10,
 			.num_resource = 100,
@@ -1371,11 +1566,25 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
+			.start_resource = 400,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
 			.start_resource = 404,
 			.num_resource = 4,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MCU_0_R5_2,
+		},
+		{
+			.start_resource = 408,
+			.num_resource = 104,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_ALL,
 		},
 
 		/* MCU Nav IA VINT */
@@ -1451,14 +1660,14 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 180,
-			.num_resource = 16,
+			.num_resource = 24,
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_INTAGGR_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 196,
-			.num_resource = 16,
+			.start_resource = 204,
+			.num_resource = 8,
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_INTAGGR_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MAIN_0_R5_2,
@@ -1471,7 +1680,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* MCU Nav IA SEVT */
+		/* MCU Nav IA global events */
 		{
 			.start_resource = 16392,
 			.num_resource = 128,
@@ -1564,7 +1773,109 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* MCU Nav Free Ring */
+		/* MCU Nav nonsecure proxies */
+		{
+			.start_resource = 1,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 5,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_A72_3,
+		},
+		{
+			.start_resource = 9,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 9,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 13,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MCU_0_R5_2,
+		},
+		{
+			.start_resource = 17,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MAIN_1_R5_0,
+		},
+		{
+			.start_resource = 21,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MAIN_1_R5_2,
+		},
+		{
+			.start_resource = 25,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_C7X_0,
+		},
+		{
+			.start_resource = 29,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_C6X_0_1,
+		},
+		{
+			.start_resource = 33,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_C6X_1_1,
+		},
+		{
+			.start_resource = 37,
+			.num_resource = 16,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
+		{
+			.start_resource = 53,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
+		{
+			.start_resource = 57,
+			.num_resource = 7,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_PROXY_0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* MCU Nav Ring Error OES */
+		{
+			.start_resource = 0,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_ERROR_OES),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* MCU Nav GP Ring / Free Ring */
 		{
 			.start_resource = 96,
 			.num_resource = 20,
@@ -1657,7 +1968,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* MCU Nav Rx ring */
+		/* MCU Nav Normal Capacity Rx ring */
 		{
 			.start_resource = 50,
 			.num_resource = 12,
@@ -1750,7 +2061,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* MCU Nav Tx ring */
+		/* MCU Nav Normal Capacity Tx ring */
 		{
 			.start_resource = 2,
 			.num_resource = 12,
@@ -1873,6 +2184,29 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_H),
 			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+
+		/* virt_id range */
+		{
+			.start_resource = 2,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_VIRTID),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 3,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_VIRTID),
+			.host_id = HOST_ID_A72_3,
+		},
+		{
+			.start_resource = 4,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_VIRTID),
+			.host_id = HOST_ID_ALL,
 		},
 
 		/* MCU Nav ring monitors */
@@ -2033,7 +2367,34 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_ALL,
 		},
 
-		/* MCU Nav Total RX channel */
+		/* MCU Nav invalid flow OES */
+		{
+			.start_resource = 0,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_INVALID_FLOW_OES),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* MCU Nav UDMA global event trigger */
+		{
+			.start_resource = 56320,
+			.num_resource = 256,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_GLOBAL_EVENT_TRIGGER),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* MCU Nav UDMA global event config */
+		{
+			.start_resource = 0,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_GLOBAL_CONFIG),
+			.host_id = HOST_ID_ALL,
+		},
+
+		/* MCU Nav Normal Capacity RX channel */
 		{
 			.start_resource = 2,
 			.num_resource = 12,
@@ -2142,7 +2503,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 
-		/* MCU Nav Total TX channel */
+		/* MCU Nav Normal Capacity TX channel */
 		{
 			.start_resource = 2,
 			.num_resource = 12,
@@ -2251,24 +2612,24 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 
-		/* MCU NAVSS IR for MCU R5 */
+		/* MCU Nav IR */
 		{
 			.start_resource = 4,
-			.num_resource = 14,
+			.num_resource = 28,
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_INTR_ROUTER_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
 			.start_resource = 4,
-			.num_resource = 14,
+			.num_resource = 28,
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_INTR_ROUTER_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
-			.start_resource = 18,
-			.num_resource = 14,
+			.start_resource = 36,
+			.num_resource = 28,
 			.type = RESASG_UTYPE (J721E_DEV_MCU_NAVSS0_INTR_ROUTER_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MCU_0_R5_2,
