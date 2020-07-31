@@ -1,5 +1,7 @@
 /*
- * K3 System Firmware Configuration Data
+ * K3 System Firmware Resource Management Board Config Data
+ * Auto generated from K3 Resource Partitioning tool
+ *
  *
  * Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
  *
@@ -35,6 +37,6 @@
 #ifndef SYSFW_IMG_CFG_H
 #define SYSFW_IMG_CFG_H
 
-#define BOARDCFG_RM_RESASG_ENTRIES	349
+#define BOARDCFG_RM_RESASG_ENTRIES	346
 
 #endif /* SYSFW_IMG_CFG_H */
