@@ -90,4 +90,16 @@ const struct boardcfg_security am65_boardcfg_security_data = {
 		},
 		.rsvd = {0, 0, 0, 0},
 	},
+
+	/* Secure JTAG Unlock Configuration */
+	.sec_dbg_config = {
+		.subhdr = {
+			.magic = BOARDCFG_SEC_DBG_CTRL_MAGIC_NUM,
+			.size = sizeof(struct boardcfg_secure_debug_config),
+		},
+		.allow_jtag_unlock = 0x5A,
+		.allow_wildcard_unlock = 0x5A,
+		.min_cert_rev = 0x0,
+		.jtag_unlock_hosts = {0, 0, 0, 0},
+	},
 };
