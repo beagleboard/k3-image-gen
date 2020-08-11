@@ -145,40 +145,58 @@ class sysfw_boardcfg_rules:
 
     def validate_rm_resources(self, resources, validator):
         r_dict = [r._asdict() for r in resources]
+        num_entries = len(r_dict)
+        max_entries = 0
 
-        for entry in r_dict:
-            valid = False
-            closest_matches = list()
-            e_start = entry['start_resource']
-            e_end = entry['start_resource'] + entry['num_resource'] - 1
-
-            for v_entry in validator['values']:
-                if entry['type'] == v_entry['type']:
-                    v_start = v_entry['start_resource']
-                    v_end = v_entry['start_resource'] + \
-                        v_entry['num_resource'] - 1
-                    closest_matches.append(v_entry)
-
-                    if e_start >= v_start and e_end <= v_end:
-                        valid = True
-
-            if not valid:
-                self.output_class.send_next_line(
-                    'ERROR: Entry does not match any valid entries!')
-                for k, v in entry.items():
-                    self.output_class.send_next_line('%s - %s' % (k, v))
-
-                self.output_class.send_next_line(
-                    'Closest validation matches...')
-                if closest_matches:
-                    for cm in closest_matches:
-                        for k, v in cm.items():
-                            self.output_class.send_next_line(
-                                '%s - %s' % (k, v))
-                else:
-                    self.output_class.send_next_line('None')
-
+        for constraint in validator['constraints']:
+            for k, v in constraint.items():
+                if k == 'max_resource_entries':
+                    max_entries = v
+                    break
+            if max_entries:
                 break
+
+        if num_entries > max_entries:
+            self.output_class.send_next_line(
+                'ERROR: Found %s resource entries when only %s allowed!' % (num_entries, max_entries))
+            valid = False
+        else:
+            self.output_class.send_next_line(
+                'Found %s resource entries' % num_entries)
+
+            for entry in r_dict:
+                valid = False
+                closest_matches = list()
+                e_start = entry['start_resource']
+                e_end = entry['start_resource'] + entry['num_resource'] - 1
+
+                for v_entry in validator['values']:
+                    if entry['type'] == v_entry['type']:
+                        v_start = v_entry['start_resource']
+                        v_end = v_entry['start_resource'] + \
+                            v_entry['num_resource'] - 1
+                        closest_matches.append(v_entry)
+
+                        if e_start >= v_start and e_end <= v_end:
+                            valid = True
+
+                if not valid:
+                    self.output_class.send_next_line(
+                        'ERROR: Entry does not match any valid entries!')
+                    for k, v in entry.items():
+                        self.output_class.send_next_line('%s - %s' % (k, v))
+
+                    self.output_class.send_next_line(
+                        'Closest validation matches...')
+                    if closest_matches:
+                        for cm in closest_matches:
+                            for k, v in cm.items():
+                                self.output_class.send_next_line(
+                                    '%s - %s' % (k, v))
+                    else:
+                        self.output_class.send_next_line('None')
+
+                    break
 
         if valid:
             host_id_all = 128

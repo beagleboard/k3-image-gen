@@ -621,6 +621,11 @@
                         "start_resource": 0,
                         "num_resource": 32
                     }
+                ],
+                "constraints": [
+                    {
+                        "max_resource_entries": 104
+                    }
                 ]
             },
             "am65x_sr2": {
@@ -942,6 +947,11 @@
                         "type": 12491,
                         "start_resource": 0,
                         "num_resource": 32
+                    }
+                ],
+                "constraints": [
+                    {
+                        "max_resource_entries": 104
                     }
                 ]
             },
@@ -1348,6 +1358,11 @@
                         "type": 15168,
                         "start_resource": 36,
                         "num_resource": 28
+                    }
+                ],
+                "constraints": [
+                    {
+                        "max_resource_entries": 420
                     }
                 ]
             }
