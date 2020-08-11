@@ -38,6 +38,8 @@
 SOC ?= am65x
 CONFIG ?= evm
 
+include soc/$(SOC)/Makefile
+
 BUILD_SRC ?= .
 O ?= out
 BIN_DIR ?= .
@@ -122,10 +124,7 @@ ifeq ($(shell which python3),)
 $(error "No python3 in $(PATH), consider installing python3")
 endif
 
-.PHONY: all _objtree_build
-
-all: _objtree_build $(ITB) sysfw.itb
-
+.PHONY: _objtree_build
 _objtree_build:
 	@mkdir -p $(objroot) $(soc_objroot) $(binroot)
 
