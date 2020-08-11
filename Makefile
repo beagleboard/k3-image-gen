@@ -109,6 +109,7 @@ SOC_BIN_NAMES += $(SOURCES:%.c=%.bin)
 
 ITB ?= $(binroot)/sysfw-$(SOC)-$(CONFIG).itb
 ITS ?= $(soc_objroot)/$(basename $(notdir $(ITB))).its
+COMBINED_BRDCFG ?= $(soc_objroot)/combined-cfg.bin
 
 vpath %.itb $(soc_objroot)
 vpath %.bin $(soc_objroot)
@@ -172,6 +173,8 @@ sysfw.itb: $(ITB)
 
 soc_objs: $(SOC_OBJS)
 
+$(COMBINED_BRDCFG): $(SOC_BINS)
+	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
 
 $(soc_objroot)/%.o: %.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@-pre-validated $<
