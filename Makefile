@@ -176,6 +176,9 @@ soc_objs: $(SOC_OBJS)
 $(COMBINED_BRDCFG): $(SOC_BINS)
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
 
+tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_BRDCFG)
+	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m 0x40000 -d $(COMBINED_BRDCFG) -n $(COMBINED_BRDCFG_LOADADDR) -k $(KEY) -o $@
+
 $(soc_objroot)/%.o: %.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@-pre-validated $<
 	python3 ./scripts/sysfw_boardcfg_validator.py -b $@-pre-validated -i -o $@ -s $(SOC) -l $@.log
