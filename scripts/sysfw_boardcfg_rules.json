@@ -420,8 +420,8 @@
                     {
                         "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_RX_H)",
                         "type": 11973,
-                        "start_resource": 153,
-                        "num_resource": 7
+                        "start_resource": 154,
+                        "num_resource": 6
                     },
                     {
                         "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_TX_H)",
@@ -742,8 +742,8 @@
                     {
                         "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_RX_H)",
                         "type": 11973,
-                        "start_resource": 153,
-                        "num_resource": 7
+                        "start_resource": 154,
+                        "num_resource": 6
                     },
                     {
                         "name": "RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0, RESASG_SUBTYPE_RA_UDMAP_TX_H)",

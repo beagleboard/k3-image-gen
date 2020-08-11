@@ -271,8 +271,8 @@ const struct boardcfg_rm_local am65_boardcfg_rm_data = {
 			.host_id = HOST_ID_A53_2,
 		},
 		{
-			.start_resource = 153,
-			.num_resource = 7,
+			.start_resource = 154,
+			.num_resource = 6,
 			.type = RESASG_UTYPE(AM6_DEV_NAVSS0_RINGACC0,
 				      RESASG_SUBTYPE_RA_UDMAP_RX_H),
 			.host_id = HOST_ID_A53_2,
