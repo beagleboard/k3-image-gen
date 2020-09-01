@@ -67,7 +67,7 @@ SYSFW_HS_INNER_CERT_PATH ?= ti-sci-firmware-${SOC}-hs-cert.bin
 SYSFW_HS_CERTS_PATH ?= ti-sci-firmware-${SOC}-hs-certs.bin
 
 # Must use FULL Git hash below, as it is used as part of an URL for direct DL
-SYSFW_GIT_HASH ?= 8762ac51ba85781805d607a5df43f44e7d95e827
+SYSFW_GIT_HASH ?= f5438e998a7a8d23722fa4dcd1cdb62dec7a41d2
 
 # URL to download SYSFW release binary from if not provided otherwise
 SYSFW_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-firmware/blobs/raw/$(SYSFW_GIT_HASH)/ti-sysfw/$(SYSFW_PATH)
