@@ -2,7 +2,7 @@
  * K3 System Firmware Resource Management Configuration Data
  * Auto generated from K3 Resource Partitioning tool
  *
- * Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2019-2020 Texas Instruments Incorporated - https://www.ti.com/
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -982,18 +982,32 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 168,
-			.num_resource = 4,
+			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_EXT),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
+		{
+			.start_resource = 170,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_EXT),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
 		/* Main NAVSS Rings for extended Tx channels for HWA */
 		{
 			.start_resource = 172,
-			.num_resource = 128,
+			.num_resource = 96,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_EXT),
 			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
+		{
+			.start_resource = 268,
+			.num_resource = 32,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_EXT),
+			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		/* Main NAVSS Rings for High capacity Rx channels */
 		{
@@ -1439,10 +1453,17 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		/* Main NAVSS UDMA extended Tx channels for HWA */
 		{
 			.start_resource = 172,
-			.num_resource = 128,
+			.num_resource = 96,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
 			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
+		{
+			.start_resource = 268,
+			.num_resource = 32,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
+			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		/* Main NAVSS UDMA extended Tx channels for DRU */
 		{
@@ -1468,10 +1489,17 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 168,
-			.num_resource = 4,
+			.num_resource = 2,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
 			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
+		{
+			.start_resource = 170,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
+			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		/* Main NAVSS UDMA High capacity Tx channels */
 		{
