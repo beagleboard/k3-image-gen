@@ -83,6 +83,7 @@ typedef u8 ftbool;
 #define BOARDCFG_DKEK_CFG_MAGIC_NUM		0x5170
 #define BOARDCFG_SA2UL_CFG_MAGIC_NUM_RSVD	0x23BE
 #define BOARDCFG_SEC_DBG_CTRL_MAGIC_NUM		0x42AF
+#define BOARDCFG_SEC_HANDOVER_CFG_MAGIC_NUM	0x608F
 
 struct boardcfg_substructure_header {
 	u16	magic;
@@ -260,6 +261,13 @@ struct boardcfg_secure_debug_config {
 	u8					jtag_unlock_hosts[BOARDCFG_SEC_MAX_NUM_JTAG_UNLOCK_HOSTS];
 } __attribute__((__packed__));
 
+struct boardcfg_sec_handover {
+	struct boardcfg_substructure_header	subhdr;
+	u8					handover_msg_sender;
+	u8					handover_to_host_id;
+	u8					rsvd[4];
+};
+
 struct boardcfg_security {
 	struct boardcfg_abi_rev			rev;
 	struct boardcfg_proc_acl		processor_acl_list;
@@ -268,6 +276,7 @@ struct boardcfg_security {
 	struct boardcfg_dkek			dkek_config;
 	struct boardcfg_sa2ul_cfg		sa2ul_cfg;
 	struct boardcfg_secure_debug_config	sec_dbg_config;
+	struct boardcfg_sec_handover		sec_handover_cfg;
 } __attribute__((__packed__));
 
 /**

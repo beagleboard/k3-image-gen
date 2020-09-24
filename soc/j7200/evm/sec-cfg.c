@@ -102,4 +102,15 @@ const struct boardcfg_security j7200_boardcfg_security_data = {
 		.min_cert_rev = 0x0,
 		.jtag_unlock_hosts = {0, 0, 0, 0},
 	},
+
+	/* Secure Handover Configuration */
+	.sec_handover_cfg = {
+		.subhdr = {
+			.magic = BOARDCFG_SEC_HANDOVER_CFG_MAGIC_NUM,
+			.size = sizeof(struct boardcfg_sec_handover),
+		},
+		.handover_msg_sender = 0,
+		.handover_to_host_id = 0,
+		.rsvd = {0,0,0,0},
+	},
 };
