@@ -539,7 +539,7 @@ class sysfw_trace_cli:
             help="SoC supported by input binary",
             action="store",
             type=str,
-            choices={'am65x', 'am65x_sr2', 'j721e', 'j7200'},
+            choices={'am65x', 'am65x_sr2', 'am64x', 'j721e', 'j721e_legacy', 'j7200'},
             required=True)
 
         # Required output arguments
@@ -600,9 +600,6 @@ class sysfw_trace_cli:
         if self.cmd_args.log_output_file is not None:
             self.output_class = sysfw_validation_output_file(
                 self.cmd_args.log_output_file)
-
-        if self.cmd_args.soc == 'am65x':
-            self.cmd_args.soc = 'am6'
 
     def process_data(self):
         self.rules.process_data(
