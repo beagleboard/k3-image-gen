@@ -146,7 +146,7 @@ $(SYSFW_HS_INNER_CERT_PATH):
 ifdef HS
 $(SYSFW_HS_CERTS_PATH): $(SYSFW_HS_INNER_CERT_PATH)
 	@echo "Signing the SYSFW inner certificate with $(KEY) key...";
-	./gen_x509_cert.sh -d -c m3 -b $< -o $@ -l 0x40000 -k $(KEY);
+	./gen_x509_cert.sh -d -c m3 -b $< -o $@ -l $(LOADADDR) -k $(KEY);
 
 $(soc_objroot)/sysfw.bin: $(SYSFW_HS_CERTS_PATH) $(SYSFW_HS_PATH)
 	cat $^ > $@
@@ -154,10 +154,10 @@ else
 $(soc_objroot)/sysfw.bin: $(SYSFW_PATH)
 	@if [ -n "$(KEY)" ]; then \
 		echo "Signing the SYSFW release image with $(KEY) key..."; \
-		./gen_x509_cert.sh -c m3 -b $< -o $@ -l 0x40000 -k $(KEY); \
+		./gen_x509_cert.sh -c m3 -b $< -o $@ -l $(LOADADDR) -k $(KEY); \
 	else \
 		echo "Signing the SYSFW release image with random key..."; \
-		./gen_x509_cert.sh -c m3 -b $< -o $@ -l 0x40000; \
+		./gen_x509_cert.sh -c m3 -b $< -o $@ -l $(LOADADDR); \
 	fi
 endif
 

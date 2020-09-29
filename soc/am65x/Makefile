@@ -30,5 +30,7 @@
 #  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+LOADADDR ?= 0x40000
+
 .PHONY: all
 all: _objtree_build $(ITB) sysfw.itb
