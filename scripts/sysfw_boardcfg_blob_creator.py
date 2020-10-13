@@ -28,7 +28,7 @@ class BoardCfgDesc():
             self.fh = open(outfile, 'wb')
             bytes = self.fh.write(struct.pack('<BB', num_elems, sw_rev))
             self.offset += bytes
-            self.offset += 4 * struct.calcsize(self.fmt)
+            self.offset += num_elems * struct.calcsize(self.fmt)
             self.tmpdir = tempfile.mkdtemp()
             descfile = os.path.join(self.tmpdir, "desc")
             bcfgfile = os.path.join(self.tmpdir, "bcfg")
@@ -66,23 +66,29 @@ class BoardCfgDesc():
 def create_sysfw_blob(args):
     """Create a SYSFW data blob to be used as a component in combined image """
 
-    if args.boardcfg is None or args.boardcfg_sec is None or args.boardcfg_pm is None or args.boardcfg_rm is None:
-        logging.error("**** All 4 boardcfg binaries need to be provided ****")
-        raise Exception("Insufficient arguments")
-
     logging.info("#### Creating SYSFW data blob - %s ####", args.output_file.name)
     logging.info("#### SW Rev = %d", args.sw_rev)
     logging.info("#### Device Group = %d", args.devgrp)
-    logging.info("#### Board config binary - %s", args.boardcfg.name)
-    logging.info("#### Board config security binary - %s", args.boardcfg_sec.name)
-    logging.info("#### Board config PM binary - %s", args.boardcfg_pm.name)
-    logging.info("#### Board config RM binary - %s", args.boardcfg_rm.name)
 
-    blob = BoardCfgDesc(args.output_file.name, args.devgrp, args.sw_rev)
-    blob.add_boardcfg(BOARDCFG, args.boardcfg.name)
-    blob.add_boardcfg(BOARDCFG_SEC, args.boardcfg_sec.name)
-    blob.add_boardcfg(BOARDCFG_PM, args.boardcfg_pm.name)
-    blob.add_boardcfg(BOARDCFG_RM, args.boardcfg_rm.name)
+    cnt = 0
+    if args.boardcfg is not None: cnt = cnt + 1
+    if args.boardcfg_sec is not None: cnt = cnt + 1
+    if args.boardcfg_pm is not None: cnt = cnt + 1
+    if args.boardcfg_rm is not None: cnt = cnt + 1
+
+    blob = BoardCfgDesc(args.output_file.name, args.devgrp, args.sw_rev, cnt)
+    if args.boardcfg is not None:
+        logging.info("#### Board config binary - %s", args.boardcfg.name)
+        blob.add_boardcfg(BOARDCFG, args.boardcfg.name)
+    if args.boardcfg_sec is not None:
+        logging.info("#### Board config security binary - %s", args.boardcfg_sec.name)
+        blob.add_boardcfg(BOARDCFG_SEC, args.boardcfg_sec.name)
+    if args.boardcfg_pm is not None:
+        logging.info("#### Board config PM binary - %s", args.boardcfg_pm.name)
+        blob.add_boardcfg(BOARDCFG_PM, args.boardcfg_pm.name)
+    if args.boardcfg_rm is not None:
+        logging.info("#### Board config RM binary - %s", args.boardcfg_rm.name)
+        blob.add_boardcfg(BOARDCFG_RM, args.boardcfg_rm.name)
 
     blob.finalize()
 
