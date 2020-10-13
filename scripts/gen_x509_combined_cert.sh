@@ -99,9 +99,11 @@ options_help[s]="SYSFW: Bin file corresponding to sysfw image"
 options_help[m]="SYSFW loadaddress: SYSFW image load address"
 options_help[d]="SYSFW_DATA: Bin file corresponding to combined board configurations"
 options_help[n]="SYSFW_DATA loadaddr: Combine board configuration load address"
+options_help[t]="DM_DATA: Bin file corresponding to combined board configurations for RM and PM. If this is used, RM and PM do not need to be provided as part of SYSFW_DATA."
+options_help[y]="DM_DATA loadaddr: Combine RM and PM blob board configuration load address"
 options_help[k]="key_file:file with key inside it. If not provided script generates a random key."
 
-while getopts "b:l:s:m:d:n:k:o:h" opt
+while getopts "b:l:s:m:d:n:k:o:h:t:y:" opt
 do
 	case $opt in
 	b)
@@ -121,6 +123,12 @@ do
 	;;
 	n)
 		SYSFW_DATA_LOADADDR=$OPTARG
+	;;
+	t)
+		DM_DATA=$OPTARG
+	;;
+	y)
+		DM_DATA_LOADADDR=$OPTARG
 	;;
 	k)
 		KEY=$OPTARG
@@ -182,7 +190,12 @@ SYSFW_ADDR=`printf "%08x" $SYSFW_LOADADDR`
 SYSFW_DATA_SHA_VAL=`openssl dgst -$SHA -hex $SYSFW_DATA | sed -e "s/^.*= //g"`
 SYSFW_DATA_SIZE=`cat $SYSFW_DATA | wc -c`
 SYSFW_DATA_ADDR=`printf "%08x" $SYSFW_DATA_LOADADDR`
-TOTAL_SIZE=$(expr $SBL_SIZE + $SYSFW_SIZE + $SYSFW_DATA_SIZE)
+
+DM_DATA_SHA_VAL=`openssl dgst -$SHA -hex $DM_DATA | sed -e "s/^.*= //g"`
+DM_DATA_SIZE=`cat $DM_DATA | wc -c`
+DM_DATA_ADDR=`printf "%08x" $DM_DATA_LOADADDR`
+
+TOTAL_SIZE=$(expr $SBL_SIZE + $SYSFW_SIZE + $SYSFW_DATA_SIZE + $DM_DATA_SIZE)
 
 # Generate x509 Template
 gen_template() {
@@ -213,10 +226,11 @@ cat << 'EOF' > $TEMP_X509
 
  [ext_boot_info]
  extImgSize=INTEGER:TOTAL_IMAGE_LENGTH
- numComp=INTEGER:3
+ numComp=INTEGER:4
  sbl=SEQUENCE:sbl
  sysfw=SEQUENCE:sysfw
  sysfw_data=SEQUENCE:sysfw_data
+ dm_data=SEQUENCE:dm_data
 
  [sbl]
  compType = INTEGER:1
@@ -244,6 +258,15 @@ cat << 'EOF' > $TEMP_X509
  compSize = INTEGER:SYSFW_DATA_IMAGE_SIZE
  shaType  = OID:SYSFW_DATA_IMAGE_SHA_OID
  shaValue = FORMAT:HEX,OCT:SYSFW_DATA_IMAGE_SHA_VAL
+
+ [dm_data]
+ compType = INTEGER:17
+ bootCore = INTEGER:16
+ compOpts = INTEGER:0
+ destAddr = FORMAT:HEX,OCT:DM_DATA_DEST_ADDR
+ compSize = INTEGER:DM_DATA_IMAGE_SIZE
+ shaType  = OID:DM_DATA_IMAGE_SHA_OID
+ shaValue = FORMAT:HEX,OCT:DM_DATA_IMAGE_SHA_VAL
 EOF
 }
 
@@ -264,6 +287,11 @@ gen_cert() {
 	sed -i "s/SYSFW_DATA_IMAGE_SIZE/$SYSFW_DATA_SIZE/" $TEMP_X509
 	sed -i "s/SYSFW_DATA_IMAGE_SHA_OID/$SHA_OID/" $TEMP_X509
 	sed -i "s/SYSFW_DATA_IMAGE_SHA_VAL/$SYSFW_DATA_SHA_VAL/" $TEMP_X509
+	#echo $DM_DATA_ADDR $DM_DATA_SIZE $DM_DATA_SHA_VAL
+	sed -i "s/DM_DATA_DEST_ADDR/$DM_DATA_ADDR/" $TEMP_X509
+	sed -i "s/DM_DATA_IMAGE_SIZE/$DM_DATA_SIZE/" $TEMP_X509
+	sed -i "s/DM_DATA_IMAGE_SHA_OID/$SHA_OID/" $TEMP_X509
+	sed -i "s/DM_DATA_IMAGE_SHA_VAL/$DM_DATA_SHA_VAL/" $TEMP_X509
 	#echo $TOTAL_SIZE
 	sed -i "s/TOTAL_IMAGE_LENGTH/$TOTAL_SIZE/" $TEMP_X509
 	openssl req -new -x509 -key $KEY -nodes -outform DER -out $CERT -config $TEMP_X509 -$SHA
@@ -271,7 +299,7 @@ gen_cert() {
 
 gen_template
 gen_cert
-cat $CERT $SBL $SYSFW $SYSFW_DATA > $OUTPUT
+cat $CERT $SBL $SYSFW $SYSFW_DATA $DM_DATA > $OUTPUT
 
 echo "SUCCESS: Image $OUTPUT generated."
 

@@ -111,7 +111,8 @@ SOC_BIN_NAMES += $(SOURCES:%.c=%.bin)
 
 ITB ?= $(binroot)/sysfw-$(SOC)-$(CONFIG).itb
 ITS ?= $(soc_objroot)/$(basename $(notdir $(ITB))).its
-COMBINED_BRDCFG ?= $(soc_objroot)/combined-cfg.bin
+COMBINED_SYSFW_BRDCFG ?= $(soc_objroot)/combined-sysfw-cfg.bin
+COMBINED_DM_BRDCFG ?= $(soc_objroot)/combined-dm-cfg.bin
 
 vpath %.itb $(soc_objroot)
 vpath %.bin $(soc_objroot)
@@ -172,11 +173,14 @@ sysfw.itb: $(ITB)
 
 soc_objs: $(SOC_OBJS)
 
-$(COMBINED_BRDCFG): $(SOC_BINS)
-	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
+$(COMBINED_SYSFW_BRDCFG): $(SOC_BINS)
+	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -o $@
 
-tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_BRDCFG)
-	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m 0x40000 -d $(COMBINED_BRDCFG) -n $(COMBINED_BRDCFG_LOADADDR) -k $(KEY) -o $@
+$(COMBINED_DM_BRDCFG): $(SOC_BINS)
+	python3 ./scripts/sysfw_boardcfg_blob_creator.py -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
+
+tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_SYSFW_BRDCFG) $(COMBINED_DM_BRDCFG)
+	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m 0x40000 -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -o $@
 
 $(soc_objroot)/%.o: %.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@-pre-validated $<
