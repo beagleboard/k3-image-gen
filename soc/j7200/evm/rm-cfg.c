@@ -2,7 +2,7 @@
  * K3 System Firmware Resource Management Configuration Data
  * Auto generated from K3 Resource Partitioning tool
  *
- * Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2019-2020 Texas Instruments Incorporated - https://www.ti.com/
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -699,10 +699,24 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		/* Main NAVSS Rings for High capacity Rx channels */
 		{
 			.start_resource = 62,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_H),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 62,
 			.num_resource = 1,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX_H),
 			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 62,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_H),
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
 			.start_resource = 63,
@@ -714,6 +728,13 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		/* Main NAVSS Rings for Ultra high capacity Rx channels */
 		{
 			.start_resource = 60,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_UH),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
+		{
+			.start_resource = 60,
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX_UH),
@@ -722,10 +743,24 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		/* Main NAVSS Rings for High capacity Tx channels */
 		{
 			.start_resource = 2,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_H),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 2,
 			.num_resource = 1,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_H),
 			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 2,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_H),
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
 			.start_resource = 3,
@@ -735,6 +770,13 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		/* Main NAVSS Rings for Ultra high capacity Tx channels */
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_UH),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
 		{
 			.start_resource = 0,
 			.num_resource = 2,
@@ -955,10 +997,24 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		/* Main NAVSS UDMA High capacity Rx channels */
 		{
 			.start_resource = 2,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 2,
 			.num_resource = 1,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
 			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 2,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
 			.start_resource = 3,
@@ -968,6 +1024,13 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		/* Main NAVSS UDMA Ultra high capacity Rx channels */
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_RX_UHCHAN),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
 		{
 			.start_resource = 0,
 			.num_resource = 2,
@@ -1063,10 +1126,24 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		/* Main NAVSS UDMA High capacity Tx channels */
 		{
 			.start_resource = 2,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 2,
 			.num_resource = 1,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
 			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 2,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
 			.start_resource = 3,
@@ -1076,6 +1153,13 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		/* Main NAVSS UDMA Ultra high capacity Tx channels */
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_UHCHAN),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
 		{
 			.start_resource = 0,
 			.num_resource = 2,
@@ -1135,114 +1219,114 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		},
 		/* MCU NAVSS Interrupt aggregator Virtual interrupts */
 		{
-			.start_resource = 8,
+			.start_resource = 15,
 			.num_resource = 32,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
-			.start_resource = 40,
+			.start_resource = 47,
 			.num_resource = 16,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_A72_3,
 		},
 		{
-			.start_resource = 56,
+			.start_resource = 63,
 			.num_resource = 64,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 56,
+			.start_resource = 63,
 			.num_resource = 64,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
-			.start_resource = 120,
+			.start_resource = 127,
 			.num_resource = 32,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MCU_0_R5_2,
 		},
 		{
-			.start_resource = 152,
+			.start_resource = 159,
 			.num_resource = 16,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 168,
+			.start_resource = 175,
 			.num_resource = 16,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		{
-			.start_resource = 184,
-			.num_resource = 72,
+			.start_resource = 191,
+			.num_resource = 65,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_ALL,
 		},
 		/* MCU NAVSS Interrupt aggregator Global events */
 		{
-			.start_resource = 16392,
+			.start_resource = 16399,
 			.num_resource = 128,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
-			.start_resource = 16520,
+			.start_resource = 16527,
 			.num_resource = 128,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_A72_3,
 		},
 		{
-			.start_resource = 16648,
+			.start_resource = 16655,
 			.num_resource = 256,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 16648,
+			.start_resource = 16655,
 			.num_resource = 256,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
-			.start_resource = 16904,
+			.start_resource = 16911,
 			.num_resource = 128,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_MCU_0_R5_2,
 		},
 		{
-			.start_resource = 17032,
+			.start_resource = 17039,
 			.num_resource = 128,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 17160,
+			.start_resource = 17167,
 			.num_resource = 128,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
 		{
-			.start_resource = 17288,
-			.num_resource = 632,
+			.start_resource = 17295,
+			.num_resource = 625,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_ALL,
@@ -1584,6 +1668,27 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		/* MCU NAVSS Rings for High capacity Rx channels */
 		{
 			.start_resource = 48,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_H),
+			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 48,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_H),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 48,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_H),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 48,
 			.num_resource = 1,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_RX_H),
@@ -1604,6 +1709,27 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		/* MCU NAVSS Rings for High capacity Tx channels */
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_H),
+			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_H),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_H),
+			.host_id = HOST_ID_A72_2,
+		},
 		{
 			.start_resource = 0,
 			.num_resource = 1,
@@ -1887,6 +2013,27 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		/* MCU NAVSS UDMA High capacity Rx channels */
 		{
 			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
+			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 0,
 			.num_resource = 1,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
@@ -2015,6 +2162,27 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		/* MCU NAVSS UDMA High capacity Tx channels */
 		{
 			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
+			.host_id = HOST_ID_MCU_0_R5_0,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
+			.host_id = HOST_ID_MCU_0_R5_1,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
+			.host_id = HOST_ID_A72_2,
+		},
+		{
+			.start_resource = 0,
 			.num_resource = 1,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
@@ -2036,15 +2204,15 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 		},
 		/* MCU NAVSS Interrupt router */
 		{
-			.start_resource = 4,
-			.num_resource = 28,
+			.start_resource = 11,
+			.num_resource = 20,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_INTR_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 4,
-			.num_resource = 28,
+			.start_resource = 11,
+			.num_resource = 20,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_INTR_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MCU_0_R5_1,
