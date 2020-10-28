@@ -31,6 +31,7 @@
 #
 
 LOADADDR ?= 0x40000
+SCIFS = sci
 
 .PHONY: all
 all: _objtree_build $(ITB) sysfw.itb

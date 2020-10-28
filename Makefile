@@ -61,13 +61,13 @@ endif
 
 # If using the default SYSFW make sure to manually copy/populate the unsigned
 # image into the root folder of this repository.
-SYSFW_PATH ?= ti-sci-firmware-${SOC}-gp.bin
-SYSFW_HS_PATH ?= ti-sci-firmware-${SOC}-hs-enc.bin
-SYSFW_HS_INNER_CERT_PATH ?= ti-sci-firmware-${SOC}-hs-cert.bin
-SYSFW_HS_CERTS_PATH ?= ti-sci-firmware-${SOC}-hs-certs.bin
+SYSFW_PATH ?= ti-$(SCIFS)-firmware-${SOC}-gp.bin
+SYSFW_HS_PATH ?= ti-$(SCIFS)-firmware-${SOC}-hs-enc.bin
+SYSFW_HS_INNER_CERT_PATH ?= ti-$(SCIFS)-firmware-${SOC}-hs-cert.bin
+SYSFW_HS_CERTS_PATH ?= ti-$(SCIFS)-firmware-${SOC}-hs-certs.bin
 
 # Must use FULL Git hash below, as it is used as part of an URL for direct DL
-SYSFW_GIT_HASH ?= 8a22979dc944f6f4f867e2ac637c51a317efaacd
+SYSFW_GIT_HASH ?= ae9394892a4e2302a75554ea2f3a3134ed0f28df
 
 # URL to download SYSFW release binary from if not provided otherwise
 SYSFW_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-firmware/blobs/raw/$(SYSFW_GIT_HASH)/ti-sysfw/$(SYSFW_PATH)
