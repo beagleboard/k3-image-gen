@@ -30,8 +30,14 @@
 #  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+SBL_LOADADDDR ?= 0x70020000
+COMBINED_SYSFW_BRDCFG_LOADADDR ?= 0x70000
 LOADADDR  ?= 0x44000
 SCIFS = sci
 
 .PHONY: all
+ifeq (,$(SBL))
 all: _objtree_build $(ITB) sysfw.itb
+else
+all: _objtree_build $(ITB) sysfw.itb tiboot3.bin
+endif
