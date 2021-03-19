@@ -163,34 +163,20 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MAIN_1_R5_3,
 		},
+		{
+			.start_resource = 32,
+			.num_resource = 8,
+			.type = RESASG_UTYPE (AM64X_DEV_CMP_EVENT_INTROUTER0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_ALL,
+		},
 		/* Main GPIO Interrupt Router */
 		{
 			.start_resource = 0,
-			.num_resource = 8,
+			.num_resource = 12,
 			.type = RESASG_UTYPE (AM64X_DEV_MAIN_GPIOMUX_INTROUTER0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 8,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (AM64X_DEV_MAIN_GPIOMUX_INTROUTER0,
-					RESASG_SUBTYPE_IR_OUTPUT),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 8,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (AM64X_DEV_MAIN_GPIOMUX_INTROUTER0,
-					RESASG_SUBTYPE_IR_OUTPUT),
-			.host_id = HOST_ID_MAIN_0_R5_1,
-		},
-		{
-			.start_resource = 10,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (AM64X_DEV_MAIN_GPIOMUX_INTROUTER0,
-					RESASG_SUBTYPE_IR_OUTPUT),
-			.host_id = HOST_ID_MAIN_0_R5_3,
 		},
 		{
 			.start_resource = 12,
