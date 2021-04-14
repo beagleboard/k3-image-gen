@@ -2,7 +2,7 @@
  * K3 System Firmware Resource Management Configuration Data
  * Auto generated from K3 Resource Partitioning tool
  *
- * Copyright (C) 2019-2020 Texas Instruments Incorporated - https://www.ti.com/
+ * Copyright (C) 2019-2021 Texas Instruments Incorporated - https://www.ti.com/
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -129,13 +129,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 0,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (J7200_DEV_MAIN2MCU_LVL_INTRTR0,
-					RESASG_SUBTYPE_IR_OUTPUT),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 32,
 			.num_resource = 32,
 			.type = RESASG_UTYPE (J7200_DEV_MAIN2MCU_LVL_INTRTR0,
@@ -151,13 +144,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 0,
-			.num_resource = 24,
-			.type = RESASG_UTYPE (J7200_DEV_MAIN2MCU_PLS_INTRTR0,
-					RESASG_SUBTYPE_IR_OUTPUT),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 24,
 			.num_resource = 24,
 			.type = RESASG_UTYPE (J7200_DEV_MAIN2MCU_PLS_INTRTR0,
@@ -171,13 +157,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_GPIOMUX_INTRTR0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 0,
-			.num_resource = 8,
-			.type = RESASG_UTYPE (J7200_DEV_GPIOMUX_INTRTR0,
-					RESASG_SUBTYPE_IR_OUTPUT),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 8,
@@ -229,13 +208,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_WKUP_GPIOMUX_INTRTR0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 0,
-			.num_resource = 8,
-			.type = RESASG_UTYPE (J7200_DEV_WKUP_GPIOMUX_INTRTR0,
-					RESASG_SUBTYPE_IR_OUTPUT),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 8,
@@ -313,13 +285,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 136,
-			.num_resource = 16,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMASS_INTA_0,
-					RESASG_SUBTYPE_IA_VINT),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 152,
 			.num_resource = 16,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMASS_INTA_0,
@@ -370,13 +335,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 1554,
-			.num_resource = 128,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMASS_INTA_0,
-					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 1682,
 			.num_resource = 128,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMASS_INTA_0,
@@ -425,13 +383,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_PROXY_0,
 					RESASG_SUBTYPE_PROXY_PROXIES),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 8,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_PROXY_0,
-					RESASG_SUBTYPE_PROXY_PROXIES),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 12,
@@ -492,13 +443,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 360,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
-					RESASG_SUBTYPE_RA_GP),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 392,
 			.num_resource = 32,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
@@ -547,13 +491,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 70,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
-					RESASG_SUBTYPE_RA_UDMAP_RX),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 72,
@@ -632,13 +569,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 10,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
-					RESASG_SUBTYPE_RA_UDMAP_TX),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 12,
@@ -822,13 +752,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 5,
-			.num_resource = 1,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
-					RESASG_SUBTYPE_RA_MONITORS),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 6,
 			.num_resource = 1,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_RINGACC_0,
@@ -930,13 +853,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 10,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_CHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 12,
@@ -1059,13 +975,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 10,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_TX_CHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 12,
@@ -1204,13 +1113,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 400,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_INTR_ROUTER_0,
-					RESASG_SUBTYPE_IR_OUTPUT),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 404,
 			.num_resource = 4,
 			.type = RESASG_UTYPE (J7200_DEV_NAVSS0_INTR_ROUTER_0,
@@ -1238,13 +1140,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 63,
-			.num_resource = 64,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
-					RESASG_SUBTYPE_IA_VINT),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 127,
@@ -1297,13 +1192,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 16655,
-			.num_resource = 256,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
-					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 16911,
 			.num_resource = 128,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMASS_INTA_0,
@@ -1352,13 +1240,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_PROXY0,
 					RESASG_SUBTYPE_PROXY_PROXIES),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 13,
-			.num_resource = 16,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_PROXY0,
-					RESASG_SUBTYPE_PROXY_PROXIES),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 29,
@@ -1419,13 +1300,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 144,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_GP),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 176,
 			.num_resource = 32,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
@@ -1476,13 +1350,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 55,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_UDMAP_RX),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 57,
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
@@ -1523,13 +1390,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_RX),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 76,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_UDMAP_RX),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 80,
@@ -1582,13 +1442,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 7,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_UDMAP_TX),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 9,
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
@@ -1631,13 +1484,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 28,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_UDMAP_TX),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 32,
 			.num_resource = 4,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
@@ -1678,13 +1524,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.num_resource = 0,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_RX_H),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
-			.start_resource = 48,
-			.num_resource = 0,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_UDMAP_RX_H),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
@@ -1700,13 +1539,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_RX_H),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 49,
-			.num_resource = 1,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_UDMAP_RX_H),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		/* MCU NAVSS Rings for High capacity Tx channels */
 		{
@@ -1721,13 +1553,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.num_resource = 0,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_H),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
-			.start_resource = 0,
-			.num_resource = 0,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_UDMAP_TX_H),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
@@ -1743,13 +1568,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_H),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 1,
-			.num_resource = 1,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_UDMAP_TX_H),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		/* MCU NAVSS Ring accelerator virt_id range */
 		{
@@ -1787,13 +1605,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_MONITORS),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 5,
-			.num_resource = 6,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_MONITORS),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 11,
@@ -1844,13 +1655,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 60,
-			.num_resource = 8,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 68,
@@ -1927,13 +1731,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 7,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_CHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 9,
 			.num_resource = 2,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
@@ -1974,13 +1771,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 28,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_CHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 32,
@@ -2023,13 +1813,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.num_resource = 0,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
-			.start_resource = 0,
-			.num_resource = 0,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
@@ -2045,13 +1828,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 1,
-			.num_resource = 1,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		/* MCU NAVSS UDMA Normal capacity Tx channels */
 		{
@@ -2074,13 +1850,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 7,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_TX_CHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 9,
@@ -2125,13 +1894,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.host_id = HOST_ID_MCU_0_R5_0,
 		},
 		{
-			.start_resource = 28,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_TX_CHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
 			.start_resource = 32,
 			.num_resource = 4,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
@@ -2172,13 +1934,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.num_resource = 0,
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
-		},
-		{
-			.start_resource = 0,
-			.num_resource = 0,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
@@ -2194,13 +1949,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 1,
-			.num_resource = 1,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		/* MCU NAVSS Interrupt router */
 		{
@@ -2209,13 +1957,6 @@ const struct boardcfg_rm_local j7200_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_INTR_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_MCU_0_R5_0,
-		},
-		{
-			.start_resource = 11,
-			.num_resource = 20,
-			.type = RESASG_UTYPE (J7200_DEV_MCU_NAVSS0_INTR_0,
-					RESASG_SUBTYPE_IR_OUTPUT),
-			.host_id = HOST_ID_MCU_0_R5_1,
 		},
 		{
 			.start_resource = 36,
