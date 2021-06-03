@@ -2,7 +2,7 @@
  * K3 System Firmware Resource Management Configuration Data
  * Auto generated from K3 Resource Partitioning tool
  *
- * Copyright (C) 2019-2020 Texas Instruments Incorporated - https://www.ti.com/
+ * Copyright (C) 2019-2021 Texas Instruments Incorporated - https://www.ti.com/
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -837,46 +837,18 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 		/* Packet DMA Rings for ICSSG0 Tx channel */
 		{
 			.start_resource = 96,
-			.num_resource = 4,
+			.num_resource = 8,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_0_TX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 100,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_0_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 100,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_0_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA Rings for ICSSG1 Tx channel */
 		{
 			.start_resource = 104,
-			.num_resource = 4,
+			.num_resource = 8,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_1_TX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 108,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_1_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 108,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_1_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA Free rings for Rx channel */
 		{
@@ -971,46 +943,18 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 		/* Packet DMA Rings for ICSSG0 Rx channel */
 		{
 			.start_resource = 160,
-			.num_resource = 32,
+			.num_resource = 64,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_0_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 192,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_0_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 192,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_0_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA Rings for ICSSG1 Rx channel */
 		{
 			.start_resource = 224,
-			.num_resource = 32,
+			.num_resource = 64,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_1_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 256,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_1_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 256,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_ICSSG_1_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA Free Tx channels */
 		{
@@ -1081,46 +1025,18 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 		/* Packet DMA ICSSG0 Tx channels */
 		{
 			.start_resource = 26,
-			.num_resource = 4,
+			.num_resource = 8,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_ICSSG_0_TX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 30,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_ICSSG_0_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 30,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_ICSSG_0_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA ICSSG1 Tx channels */
 		{
 			.start_resource = 34,
-			.num_resource = 4,
+			.num_resource = 8,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_ICSSG_1_TX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 38,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_ICSSG_1_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 38,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_ICSSG_1_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA Free Rx channels */
 		{
@@ -1289,90 +1205,34 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 		/* Packet DMA ICSSG0 Rx channel */
 		{
 			.start_resource = 21,
-			.num_resource = 2,
+			.num_resource = 4,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_ICSSG_0_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 23,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_ICSSG_0_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 23,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_ICSSG_0_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA ICSSG0 Rx flows */
 		{
 			.start_resource = 48,
-			.num_resource = 32,
+			.num_resource = 64,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_FLOW_ICSSG_0_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 80,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_FLOW_ICSSG_0_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 80,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_FLOW_ICSSG_0_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA ICSSG1 Rx channel */
 		{
 			.start_resource = 25,
-			.num_resource = 2,
+			.num_resource = 4,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_ICSSG_1_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 27,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_ICSSG_1_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 27,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_ICSSG_1_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA ICSSG1 Rx flows */
 		{
 			.start_resource = 112,
-			.num_resource = 32,
+			.num_resource = 64,
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_FLOW_ICSSG_1_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 144,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_FLOW_ICSSG_1_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 144,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_FLOW_ICSSG_1_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* Packet DMA Ring accelerator error event */
 		{
