@@ -127,6 +127,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 16,
+			.num_resource = 8,
+			.type = RESASG_UTYPE (AM6_DEV_CMPEVENT_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 24,
 			.num_resource = 8,
 			.type = RESASG_UTYPE (AM6_DEV_CMPEVENT_INTRTR0,
@@ -142,6 +149,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 0,
+			.num_resource = 32,
+			.type = RESASG_UTYPE (AM6_DEV_MAIN2MCU_LVL_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 32,
 			.num_resource = 32,
 			.type = RESASG_UTYPE (AM6_DEV_MAIN2MCU_LVL_INTRTR0,
@@ -155,6 +169,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MAIN2MCU_PLS_INTRTR0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 24,
+			.type = RESASG_UTYPE (AM6_DEV_MAIN2MCU_PLS_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 24,
@@ -186,6 +207,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 24,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_GPIOMUX_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 28,
 			.num_resource = 4,
 			.type = RESASG_UTYPE (AM6_DEV_GPIOMUX_INTRTR0,
@@ -199,6 +227,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_TIMESYNC_INTRTR0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 16,
+			.type = RESASG_UTYPE (AM6_DEV_TIMESYNC_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 16,
@@ -237,6 +272,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 8,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_WKUP_GPIOMUX_INTRTR0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 12,
 			.num_resource = 4,
 			.type = RESASG_UTYPE (AM6_DEV_WKUP_GPIOMUX_INTRTR0,
@@ -264,6 +306,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMASS_INTA0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 126,
+			.num_resource = 50,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMASS_INTA0,
+					RESASG_SUBTYPE_IA_VINT),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 176,
@@ -300,6 +349,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMASS_INTA0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 1552,
+			.num_resource = 512,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMASS_INTA0,
+					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 2064,
@@ -370,6 +426,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 120,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 124,
 			.num_resource = 4,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_INTR_ROUTER_0,
@@ -404,6 +467,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_PROXY0,
 					RESASG_SUBTYPE_PROXY_PROXIES),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 17,
+			.num_resource = 16,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_PROXY0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 33,
@@ -450,6 +520,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 454,
+			.num_resource = 256,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_GP),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 710,
 			.num_resource = 32,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
@@ -477,6 +554,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_RX),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 172,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 172,
@@ -514,6 +598,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 238,
+			.num_resource = 32,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 270,
 			.num_resource = 14,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
@@ -541,6 +632,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 20,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 20,
@@ -576,6 +674,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 72,
+			.num_resource = 32,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 104,
@@ -614,6 +719,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 128,
+			.num_resource = 12,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_EXT),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 140,
 			.num_resource = 12,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
@@ -627,6 +739,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_RX_H),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 154,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_H),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 154,
@@ -657,6 +776,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 156,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_H),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 158,
 			.num_resource = 2,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
@@ -670,6 +796,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_H),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 1,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_H),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 1,
@@ -698,6 +831,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_H),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 4,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_H),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 6,
@@ -731,28 +871,28 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 8,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_MONITORS),
-			.host_id = HOST_ID_A53_3,
-		},
-		{
-			.start_resource = 12,
 			.num_resource = 8,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_MONITORS),
 			.host_id = HOST_ID_R5_0,
 		},
 		{
-			.start_resource = 20,
+			.start_resource = 8,
+			.num_resource = 8,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_MONITORS),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
+			.start_resource = 16,
 			.num_resource = 8,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_MONITORS),
 			.host_id = HOST_ID_R5_2,
 		},
 		{
-			.start_resource = 28,
-			.num_resource = 4,
+			.start_resource = 24,
+			.num_resource = 8,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_MONITORS),
 			.host_id = HOST_ID_ALL,
@@ -778,6 +918,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 222,
+			.num_resource = 64,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 286,
@@ -834,6 +981,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 20,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_CHAN),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
+			.start_resource = 20,
 			.num_resource = 0,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
@@ -868,6 +1022,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 86,
+			.num_resource = 32,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_CHAN),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 118,
 			.num_resource = 14,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
@@ -888,6 +1049,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 2,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 2,
@@ -918,6 +1086,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 4,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 6,
 			.num_resource = 2,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
@@ -938,6 +1113,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 20,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_TX_CHAN),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 20,
@@ -973,6 +1155,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 72,
+			.num_resource = 32,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_TX_CHAN),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 104,
@@ -1011,6 +1200,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 128,
+			.num_resource = 12,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 140,
 			.num_resource = 12,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
@@ -1024,6 +1220,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 1,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 1,
@@ -1054,6 +1257,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 4,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 6,
 			.num_resource = 2,
 			.type = RESASG_UTYPE (AM6_DEV_NAVSS0_UDMAP0,
@@ -1081,6 +1291,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_INTR_AGGR_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 118,
+			.num_resource = 50,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_INTR_AGGR_0,
+					RESASG_SUBTYPE_IA_VINT),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 168,
@@ -1119,6 +1336,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 17032,
+			.num_resource = 256,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_INTR_AGGR_0,
+					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 17288,
 			.num_resource = 256,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_INTR_AGGR_0,
@@ -1139,6 +1363,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_INTR_ROUTER_0,
 					RESASG_SUBTYPE_IR_OUTPUT),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 4,
+			.num_resource = 28,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_INTR_ROUTER_0,
+					RESASG_SUBTYPE_IR_OUTPUT),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 36,
@@ -1170,6 +1401,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 16,
+			.num_resource = 24,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_PROXY0,
+					RESASG_SUBTYPE_PROXY_PROXIES),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 40,
 			.num_resource = 24,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_PROXY0,
@@ -1197,6 +1435,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 68,
+			.num_resource = 16,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_FLOW_COMMON),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 84,
@@ -1253,6 +1498,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 4,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_CHAN),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
+			.start_resource = 4,
 			.num_resource = 0,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
@@ -1285,6 +1537,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 26,
+			.num_resource = 10,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_CHAN),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 36,
@@ -1308,6 +1567,20 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
 			.host_id = HOST_ID_R5_0,
 		},
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_RX_HCHAN),
+			.host_id = HOST_ID_R5_1,
+		},
 		/* MCU NAVSS UDMA Normal capacity Tx channels */
 		{
 			.start_resource = 2,
@@ -1322,6 +1595,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 4,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_TX_CHAN),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 4,
@@ -1359,6 +1639,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 26,
+			.num_resource = 10,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_TX_CHAN),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 36,
 			.num_resource = 12,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
@@ -1379,6 +1666,20 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
 					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_UDMAP0,
+					RESASG_SUBTYPE_UDMAP_TX_HCHAN),
+			.host_id = HOST_ID_R5_1,
 		},
 		/* MCU NAVSS Ring accelerator error event config */
 		{
@@ -1411,6 +1712,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 136,
+			.num_resource = 60,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_GP),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 196,
 			.num_resource = 60,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
@@ -1431,6 +1739,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_RX),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 52,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 52,
@@ -1468,6 +1783,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 74,
+			.num_resource = 10,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 84,
 			.num_resource = 12,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
@@ -1488,6 +1810,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 4,
+			.num_resource = 4,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX),
+			.host_id = HOST_ID_R5_1,
 		},
 		{
 			.start_resource = 4,
@@ -1525,6 +1854,13 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.host_id = HOST_ID_R5_0,
 		},
 		{
+			.start_resource = 26,
+			.num_resource = 10,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
 			.start_resource = 36,
 			.num_resource = 12,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
@@ -1546,6 +1882,20 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 					RESASG_SUBTYPE_RA_UDMAP_RX_H),
 			.host_id = HOST_ID_R5_0,
 		},
+		{
+			.start_resource = 48,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_H),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
+			.start_resource = 48,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_RX_H),
+			.host_id = HOST_ID_R5_1,
+		},
 		/* MCU NAVSS Rings for High capacity Tx channels */
 		{
 			.start_resource = 0,
@@ -1560,6 +1910,20 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_UDMAP_TX_H),
 			.host_id = HOST_ID_R5_0,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 0,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_H),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
+			.start_resource = 0,
+			.num_resource = 2,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_UDMAP_TX_H),
+			.host_id = HOST_ID_R5_1,
 		},
 		/* MCU NAVSS Ring accelerator virt_id range */
 		{
@@ -1586,28 +1950,28 @@ const struct boardcfg_rm_local am65x_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 8,
-			.num_resource = 4,
-			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
-					RESASG_SUBTYPE_RA_MONITORS),
-			.host_id = HOST_ID_A53_3,
-		},
-		{
-			.start_resource = 12,
 			.num_resource = 8,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_MONITORS),
 			.host_id = HOST_ID_R5_0,
 		},
 		{
-			.start_resource = 20,
+			.start_resource = 8,
+			.num_resource = 8,
+			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
+					RESASG_SUBTYPE_RA_MONITORS),
+			.host_id = HOST_ID_R5_1,
+		},
+		{
+			.start_resource = 16,
 			.num_resource = 8,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_MONITORS),
 			.host_id = HOST_ID_R5_2,
 		},
 		{
-			.start_resource = 28,
-			.num_resource = 4,
+			.start_resource = 24,
+			.num_resource = 8,
 			.type = RESASG_UTYPE (AM6_DEV_MCU_NAVSS0_RINGACC0,
 					RESASG_SUBTYPE_RA_MONITORS),
 			.host_id = HOST_ID_ALL,
