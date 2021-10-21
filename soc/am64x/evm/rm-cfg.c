@@ -818,14 +818,6 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 					RESASG_SUBTYPE_PKTDMA_RING_CPSW_TX_CHAN),
 			.host_id = HOST_ID_A53_2,
 		},
-		/* Packet DMA Rings for SA2UL Tx channel0 */
-		{
-			.start_resource = 81,
-			.num_resource = 7,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_SAUL_TX_0_CHAN),
-			.host_id = HOST_ID_ALL,
-		},
 		/* Packet DMA Rings for SA2UL Tx channel1 */
 		{
 			.start_resource = 88,
@@ -907,14 +899,6 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_RING_CPSW_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		/* Packet DMA Rings for SA2UL Rx channel0 */
-		{
-			.start_resource = 145,
-			.num_resource = 7,
-			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
-					RESASG_SUBTYPE_PKTDMA_RING_SAUL_RX_0_CHAN),
-			.host_id = HOST_ID_ALL,
 		},
 		/* Packet DMA Rings for SA2UL Rx channel1 */
 		{
