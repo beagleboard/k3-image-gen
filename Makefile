@@ -185,12 +185,22 @@ $(COMBINED_TIFS_BRDCFG): $(SOC_BINS)
 $(COMBINED_DM_BRDCFG): $(SOC_BINS)
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
 
+ifdef HS
+ifneq (,$(COMBINED_SYSFW_BRDCFG_LOADADDR))
+tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_SYSFW_BRDCFG)
+	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_HS_PATH) -m $(LOADADDR) -c $(SYSFW_HS_INNER_CERT_PATH) -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
+else
+tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
+	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_HS_PATH) -m 0x40000 -c $(SYSFW_HS_INNER_CERT_PATH) -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
+endif
+else
 ifneq (,$(COMBINED_SYSFW_BRDCFG_LOADADDR))
 tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_SYSFW_BRDCFG)
 	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m $(LOADADDR) -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 else
 tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
 	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m 0x40000 -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
+endif
 endif
 
 $(soc_objroot)/%.o: %.c
