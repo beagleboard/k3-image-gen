@@ -44,6 +44,8 @@ BUILD_SRC ?= .
 O ?= out
 BIN_DIR ?= .
 
+SW_REV ?= 0
+
 srcroot = $(BUILD_SRC)
 soc_srcroot = $(srcroot)/soc/${SOC}/${CONFIG}
 objroot = $(O)
@@ -185,10 +187,10 @@ $(COMBINED_DM_BRDCFG): $(SOC_BINS)
 
 ifneq (,$(COMBINED_SYSFW_BRDCFG_LOADADDR))
 tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_SYSFW_BRDCFG)
-	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m $(LOADADDR) -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -o $@
+	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m $(LOADADDR) -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 else
 tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
-	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m 0x40000 -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -o $@
+	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m 0x40000 -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 endif
 
 $(soc_objroot)/%.o: %.c

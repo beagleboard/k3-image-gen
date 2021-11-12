@@ -103,9 +103,11 @@ options_help[d]="SYSFW_DATA: Bin file corresponding to combined board configurat
 options_help[n]="SYSFW_DATA loadaddr: Combine board configuration load address"
 options_help[t]="DM_DATA: Bin file corresponding to combined board configurations for RM and PM. If this is used, RM and PM do not need to be provided as part of SYSFW_DATA. (OPTIONAL)"
 options_help[y]="DM_DATA loadaddr: Combine RM and PM blob board configuration load address (OPTIONAL)"
-options_help[k]="key_file:file with key inside it. If not provided script generates a random key."
+options_help[k]="key_file:file with key inside it. If not provided script generates a raindom key."
+options_help[r]="sw-rev: Software Revision other than 0. If not provided defaults to 0."
 
-while getopts "b:l:s:m:d:n:k:o:h:t:y:" opt
+SW_REV=0
+while getopts "b:l:s:m:d:n:k:o:h:t:y:r:" opt
 do
 	case $opt in
 	b)
@@ -137,6 +139,9 @@ do
 	;;
 	o)
 		OUTPUT=$OPTARG
+	;;
+        r)
+		SW_REV=$OPTARG
 	;;
 	h)
 		usage
@@ -244,7 +249,7 @@ cat << 'EOF' > $TEMP_X509
  1.3.6.1.4.1.294.1.9=ASN1:SEQUENCE:ext_boot_info
 
  [swrv]
- swrv=INTEGER:0
+ swrv=INTEGER:SW_REV
 
  [ext_boot_info]
  extImgSize=INTEGER:TOTAL_IMAGE_LENGTH
@@ -286,6 +291,8 @@ EOF
 
 gen_cert() {
 	echo "Certificate being generated :"
+	#echo $SW_REV
+	sed -i "s/SW_REV/$SW_REV/"  $TEMP_X509
 	#echo $SBL_ADDR $SBL_SIZE $SBL_SHA_VAL
 	sed -i "s/NUM_COMPS_COUNT/$NUM_COMPS_COUNT/"  $TEMP_X509
 	sed -i "s/SBL_DEST_ADDR/$SBL_ADDR/"  $TEMP_X509
