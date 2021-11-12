@@ -105,9 +105,10 @@ options_help[t]="DM_DATA: Bin file corresponding to combined board configuration
 options_help[y]="DM_DATA loadaddr: Combine RM and PM blob board configuration load address (OPTIONAL)"
 options_help[k]="key_file:file with key inside it. If not provided script generates a raindom key."
 options_help[r]="sw-rev: Software Revision other than 0. If not provided defaults to 0."
+options_help[c]="SYSFW CERT: SYSFW Inner Certificate"
 
 SW_REV=0
-while getopts "b:l:s:m:d:n:k:o:h:t:y:r:" opt
+while getopts "b:l:s:m:d:n:k:o:h:t:y:r:c:" opt
 do
 	case $opt in
 	b)
@@ -142,6 +143,9 @@ do
 	;;
         r)
 		SW_REV=$OPTARG
+	;;
+        c)
+		SYSFW_INNER_CERT=$OPTARG
 	;;
 	h)
 		usage
@@ -198,12 +202,36 @@ SYSFW_DATA_SHA_VAL=`openssl dgst -$SHA -hex $SYSFW_DATA | sed -e "s/^.*= //g"`
 SYSFW_DATA_SIZE=`cat $SYSFW_DATA | wc -c`
 SYSFW_DATA_ADDR=`printf "%08x" $SYSFW_DATA_LOADADDR`
 
+NUM_COMPS_COUNT=3
+
+# Only process Inner Certificate if this variable is provided, or set size to 0 and num_comps to 3 for cert
+if [ -n "$SYSFW_INNER_CERT" ]; then
+       SYSFW_INNER_CERT_SHA_VAL=`openssl dgst -$SHA -hex $SYSFW_INNER_CERT | sed -e "s/^.*= //g"`
+       SYSFW_INNER_CERT_SIZE=`cat $SYSFW_INNER_CERT | wc -c`
+       NUM_COMPS_COUNT=$(expr $NUM_COMPS_COUNT + 1)
+       SYSFW_INNER_CERT_EXT_BOOT_SEQUENCE_STRING="sysfw_inner_cert=SEQUENCE:sysfw_inner_cert"
+read -r -d '' SYSFW_INNER_CERT_EXT_BOOT_BLOCK << EOM
+       [sysfw_inner_cert]\\
+ compType = INTEGER:3\\
+ bootCore = INTEGER:0\\
+ compOpts = INTEGER:0\\
+ destAddr = FORMAT:HEX,OCT:00000000\\
+ compSize = INTEGER:SYSFW_INNER_CERT_IMAGE_SIZE\\
+ shaType  = OID:SYSFW_INNER_CERT_SHA_OID\\
+ shaValue = FORMAT:HEX,OCT:SYSFW_INNER_CERT_SHA_VAL
+EOM
+else
+       SYSFW_INNER_CERT_SIZE=`printf "%08x" 0`
+       SYSFW_INNER_CERT_EXT_BOOT_SEQUENCE_STRING=""
+       SYSFW_INNER_CERT_EXT_BOOT_BLOCK=""
+fi
+
 # Only process DM_DATA is variable is provided, or set size to 0 and num_comps to 3 for cert
 if [ -n "$DM_DATA" ]; then
 	DM_DATA_SHA_VAL=`openssl dgst -$SHA -hex $DM_DATA | sed -e "s/^.*= //g"`
 	DM_DATA_SIZE=`cat $DM_DATA | wc -c`
 	DM_DATA_ADDR=`printf "%08x" $DM_DATA_LOADADDR`
-	NUM_COMPS_COUNT=4
+	NUM_COMPS_COUNT=$(expr $NUM_COMPS_COUNT + 1)
 	DM_DATA_EXT_BOOT_SEQUENCE_STRING="dm_data=SEQUENCE:dm_data"
 read -r -d '' DM_DATA_EXT_BOOT_BLOCK << EOM
 	[dm_data]\\
@@ -217,12 +245,11 @@ read -r -d '' DM_DATA_EXT_BOOT_BLOCK << EOM
 EOM
 else
 	DM_DATA_SIZE=`printf "%08x" 0`
-	NUM_COMPS_COUNT=3
 	DM_DATA_EXT_BOOT_SEQUENCE_STRING=""
 	DM_DATA_EXT_BOOT_BLOCK=""
 fi
 
-TOTAL_SIZE=$(expr $SBL_SIZE + $SYSFW_SIZE + $SYSFW_DATA_SIZE + $DM_DATA_SIZE)
+TOTAL_SIZE=$(expr $SBL_SIZE + $SYSFW_SIZE + $SYSFW_DATA_SIZE + $SYSFW_INNER_CERT_SIZE + $DM_DATA_SIZE)
 
 # Generate x509 Template
 gen_template() {
@@ -257,6 +284,7 @@ cat << 'EOF' > $TEMP_X509
  sbl=SEQUENCE:sbl
  sysfw=SEQUENCE:sysfw
  sysfw_data=SEQUENCE:sysfw_data
+ SYSFW_INNER_CERT_EXT_BOOT_SEQUENCE_STRING
  DM_DATA_EXT_BOOT_SEQUENCE_STRING
 
  [sbl]
@@ -285,6 +313,7 @@ cat << 'EOF' > $TEMP_X509
  compSize = INTEGER:SYSFW_DATA_IMAGE_SIZE
  shaType  = OID:SYSFW_DATA_IMAGE_SHA_OID
  shaValue = FORMAT:HEX,OCT:SYSFW_DATA_IMAGE_SHA_VAL
+ SYSFW_INNER_CERT_EXT_BOOT_BLOCK
  DM_DATA_EXT_BOOT_BLOCK
 EOF
 }
@@ -309,6 +338,13 @@ gen_cert() {
 	sed -i "s/SYSFW_DATA_IMAGE_SIZE/$SYSFW_DATA_SIZE/" $TEMP_X509
 	sed -i "s/SYSFW_DATA_IMAGE_SHA_OID/$SHA_OID/" $TEMP_X509
 	sed -i "s/SYSFW_DATA_IMAGE_SHA_VAL/$SYSFW_DATA_SHA_VAL/" $TEMP_X509
+	#echo $SYSFW_INNER_CERT_ADDR $SYSFW_INNER_CERT_SIZE $SYSFW_INNER_CERT_VAL
+	sed -i "s/SYSFW_INNER_CERT_EXT_BOOT_BLOCK/$SYSFW_INNER_CERT_EXT_BOOT_BLOCK/" $TEMP_X509
+	sed -i "s/SYSFW_INNER_CERT_EXT_BOOT_SEQUENCE_STRING/$SYSFW_INNER_CERT_EXT_BOOT_SEQUENCE_STRING/" $TEMP_X509
+	sed -i "s/SYSFW_INNER_CERT_DEST_ADDR/$SYSFW_INNER_CERT_ADDR/" $TEMP_X509
+	sed -i "s/SYSFW_INNER_CERT_IMAGE_SIZE/$SYSFW_INNER_CERT_SIZE/" $TEMP_X509
+	sed -i "s/SYSFW_INNER_CERT_SHA_OID/$SHA_OID/" $TEMP_X509
+	sed -i "s/SYSFW_INNER_CERT_SHA_VAL/$SYSFW_INNER_CERT_SHA_VAL/" $TEMP_X509
 	#echo $DM_DATA_ADDR $DM_DATA_SIZE $DM_DATA_SHA_VAL
 	sed -i "s/DM_DATA_EXT_BOOT_BLOCK/$DM_DATA_EXT_BOOT_BLOCK/" $TEMP_X509
 	sed -i "s/DM_DATA_EXT_BOOT_SEQUENCE_STRING/$DM_DATA_EXT_BOOT_SEQUENCE_STRING/" $TEMP_X509
@@ -323,7 +359,7 @@ gen_cert() {
 
 gen_template
 gen_cert
-cat $CERT $SBL $SYSFW $SYSFW_DATA $DM_DATA > $OUTPUT
+cat $CERT $SBL $SYSFW $SYSFW_DATA $SYSFW_INNER_CERT $DM_DATA > $OUTPUT
 
 echo "SUCCESS: Image $OUTPUT generated."
 
