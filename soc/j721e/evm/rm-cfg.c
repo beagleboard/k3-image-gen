@@ -812,14 +812,14 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 349,
-			.num_resource = 28,
+			.num_resource = 47,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
-			.start_resource = 377,
-			.num_resource = 20,
+			.start_resource = 396,
+			.num_resource = 1,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_RX),
 			.host_id = HOST_ID_A72_3,
@@ -953,14 +953,14 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 49,
-			.num_resource = 28,
+			.num_resource = 47,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
-			.start_resource = 77,
-			.num_resource = 20,
+			.start_resource = 96,
+			.num_resource = 1,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_RINGACC_0,
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_A72_3,
@@ -1428,14 +1428,14 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 49,
-			.num_resource = 28,
+			.num_resource = 47,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
-			.start_resource = 77,
-			.num_resource = 20,
+			.start_resource = 96,
+			.num_resource = 1,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_RX_CHAN),
 			.host_id = HOST_ID_A72_3,
@@ -1634,14 +1634,14 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		},
 		{
 			.start_resource = 49,
-			.num_resource = 28,
+			.num_resource = 47,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_A72_2,
 		},
 		{
-			.start_resource = 77,
-			.num_resource = 20,
+			.start_resource = 96,
+			.num_resource = 1,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_A72_3,
@@ -1702,21 +1702,6 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_ALL,
 		},
-		/* Main NAVSS UDMA extended Tx channels for HWA */
-		{
-			.start_resource = 172,
-			.num_resource = 96,
-			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
-		},
-		{
-			.start_resource = 268,
-			.num_resource = 32,
-			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
-					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
-			.host_id = HOST_ID_MAIN_0_R5_2,
-		},
 		/* Main NAVSS UDMA extended Tx channels for DRU */
 		{
 			.start_resource = 140,
@@ -1749,6 +1734,21 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 		{
 			.start_resource = 170,
 			.num_resource = 2,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
+			.host_id = HOST_ID_MAIN_0_R5_2,
+		},
+		/* Main NAVSS UDMA extended Tx channels for HWA */
+		{
+			.start_resource = 172,
+			.num_resource = 96,
+			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
+					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
+			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
+		{
+			.start_resource = 268,
+			.num_resource = 32,
 			.type = RESASG_UTYPE (J721E_DEV_NAVSS0_UDMAP_0,
 					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
 			.host_id = HOST_ID_MAIN_0_R5_2,
