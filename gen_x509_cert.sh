@@ -45,6 +45,7 @@ SHA=sha512
 CORE=m3
 LOADADDR=0x00040000
 VALID_MASTERS="rom dmsc"
+SWRV=0
 
 declare -A sha_oids
 sha_oids["sha256"]=2.16.840.1.101.3.4.2.1
@@ -115,8 +116,10 @@ options_help[d]=":Countersign DMSC firmware image. This signs a previously signe
 options_help[s]="sha_type:sha type to be used for certificate generation. Default is sha512. Valid option are $VALID_SHAS"
 options_help[l]="loadaddr: Target load address of the binary in hex. Default to $LOADADDR"
 options_help[m]="master: Master name for which the image is created. This master software parses the certificate and load the images accordingly. Default to rom. valid options are $VALID_MASTERS"
+options_help[r]="SWRV: Software rev for X509 certificate"
 
-while getopts "e:b:k:o:c:ds:l:m:h" opt
+
+while getopts "e:b:k:o:c:ds:l:m:h:r:" opt
 do
 	case $opt in
 	e)
@@ -153,6 +156,9 @@ do
 	;;
 	d)
 		CERTTYPE=3	# CERT_TYPE_FIRMWARE_COUNTERSIGN
+	;;
+	r)
+		SWRV=$OPTARG
 	;;
 	m)
 		MASTER=$OPTARG
@@ -297,7 +303,7 @@ cat << 'EOF' > x509-template.txt
  shaValue = FORMAT:HEX,OCT:TEST_IMAGE_SHA_VAL
 
  [ swrv ]
- swrv = INTEGER:0
+ swrv = INTEGER:TEST_SWRV
 
 # [ encryption ]
 # initalVector = FORMAT:HEX,OCT:TEST_IMAGE_ENC_IV
@@ -324,6 +330,7 @@ gen_cert() {
 		-e "s/TEST_CERT_TYPE/$CERTTYPE/" \
 		-e "s/TEST_BOOT_CORE_OPTS/$BOOTCORE_OPTS/" \
 		-e "s/TEST_BOOT_CORE/$BOOTCORE/" \
+		-e "s/TEST_SWRV/$SWRV/" \
 		-e "s/TEST_BOOT_ADDR/$ADDR/" x509-template.txt > $TEMP_X509
 	openssl req -new -x509 -key $KEY -nodes -outform DER -out $CERT -config $TEMP_X509 -$SHA
 }
