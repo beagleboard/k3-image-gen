@@ -42,6 +42,12 @@ BASE_SOC = $(firstword $(subst _, ,${SOC}))
 
 include soc/$(BASE_SOC)/Makefile
 
+ifndef HS
+ifeq ($(SOC), j721e_sr1_1)
+override SOC = j721e
+endif
+endif
+
 BUILD_SRC ?= .
 O ?= out
 BIN_DIR ?= .
