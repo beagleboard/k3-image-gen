@@ -38,7 +38,9 @@
 SOC ?= am65x
 CONFIG ?= evm
 
-include soc/$(SOC)/Makefile
+BASE_SOC = $(firstword $(subst _, ,${SOC}))
+
+include soc/$(BASE_SOC)/Makefile
 
 BUILD_SRC ?= .
 O ?= out
@@ -47,9 +49,9 @@ BIN_DIR ?= .
 SW_REV ?= 0
 
 srcroot = $(BUILD_SRC)
-soc_srcroot = $(srcroot)/soc/${SOC}/${CONFIG}
+soc_srcroot = $(srcroot)/soc/${BASE_SOC}/${CONFIG}
 objroot = $(O)
-soc_objroot = $(objroot)/soc/${SOC}/${CONFIG}
+soc_objroot = $(objroot)/soc/${BASE_SOC}/${CONFIG}
 
 binroot = $(BIN_DIR)
 
@@ -88,8 +90,8 @@ CROSS_COMPILE ?= arm-none-linux-gnueabihf-
 CFLAGS ?= \
 	-fno-builtin \
 	-Wall \
-	-Iinclude/soc/${SOC} \
-	-Isoc/${SOC}/${CONFIG} \
+	-Iinclude/soc/${BASE_SOC} \
+	-Isoc/${BASE_SOC}/${CONFIG} \
 	-Iinclude
 
 ifdef ENABLE_TRACE
