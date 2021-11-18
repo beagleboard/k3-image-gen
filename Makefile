@@ -46,7 +46,7 @@ BUILD_SRC ?= .
 O ?= out
 BIN_DIR ?= .
 
-SW_REV ?= 0
+SW_REV ?= 1
 
 srcroot = $(BUILD_SRC)
 soc_srcroot = $(srcroot)/soc/${BASE_SOC}/${CONFIG}
