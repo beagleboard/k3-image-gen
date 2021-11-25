@@ -818,6 +818,13 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 					RESASG_SUBTYPE_PKTDMA_RING_CPSW_TX_CHAN),
 			.host_id = HOST_ID_A53_2,
 		},
+		{
+			.start_resource = 16,
+			.num_resource = 64,
+			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
+					RESASG_SUBTYPE_PKTDMA_RING_CPSW_TX_CHAN),
+			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
 		/* Packet DMA Rings for SA2UL Tx channel1 */
 		{
 			.start_resource = 88,
@@ -899,6 +906,13 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_RING_CPSW_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
+		},
+		{
+			.start_resource = 128,
+			.num_resource = 16,
+			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
+					RESASG_SUBTYPE_PKTDMA_RING_CPSW_RX_CHAN),
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		/* Packet DMA Rings for SA2UL Rx channel1 */
 		{
@@ -997,6 +1011,13 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_CPSW_TX_CHAN),
 			.host_id = HOST_ID_A53_2,
+		},
+		{
+			.start_resource = 16,
+			.num_resource = 8,
+			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
+					RESASG_SUBTYPE_PKTDMA_CPSW_TX_CHAN),
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		/* Packet DMA SA2UL Tx channel1 */
 		{
@@ -1130,6 +1151,13 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 					RESASG_SUBTYPE_PKTDMA_CPSW_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
 		},
+		{
+			.start_resource = 16,
+			.num_resource = 1,
+			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
+					RESASG_SUBTYPE_PKTDMA_CPSW_RX_CHAN),
+			.host_id = HOST_ID_MAIN_0_R5_0,
+		},
 		/* Packet DMA CPSW Rx flows */
 		{
 			.start_resource = 16,
@@ -1137,6 +1165,13 @@ const struct boardcfg_rm_local am64x_boardcfg_rm_data = {
 			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_FLOW_CPSW_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
+		},
+		{
+			.start_resource = 16,
+			.num_resource = 16,
+			.type = RESASG_UTYPE (AM64X_DEV_DMASS0_PKTDMA_0,
+					RESASG_SUBTYPE_PKTDMA_FLOW_CPSW_RX_CHAN),
+			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		/* Packet DMA SA2UL Rx channel0 flows */
 		{
