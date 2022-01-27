@@ -539,7 +539,7 @@ class sysfw_trace_cli:
             help="SoC supported by input binary",
             action="store",
             type=str,
-            choices={'am65x', 'am65x_sr2', 'am64x', 'j721e', 'j721e_legacy', 'j721e_sr1_1', 'j7200'},
+            choices={'am65x', 'am65x_sr2', 'am64x', 'j721e', 'j721e_sr1_1', 'j7200'},
             required=True)
 
         # Required output arguments
