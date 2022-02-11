@@ -97,7 +97,7 @@ def create_sysfw_blob(args):
 # parser for mandatory arguments
 pp = argparse.ArgumentParser(add_help=False)
 pp.add_argument('-l', '--log-level', type=str, default="INFO", choices=["INFO", "DEBUG"])
-pp.add_argument('--sw-rev', type=int, default=0)
+pp.add_argument('--sw-rev', type=int, default=1)
 pp.add_argument('-o', '--output-file', type=argparse.FileType('wb'), default="./sysfw-data.bin")
 pp.add_argument('-d', '--devgrp', type=int, default=0)
 pp.add_argument('-b', '--boardcfg', type=argparse.FileType('rb'))
