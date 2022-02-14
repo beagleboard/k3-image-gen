@@ -68,7 +68,7 @@ const struct boardcfg j721s2_boardcfg_data = {
 			.magic = BOARDCFG_MSMC_MAGIC_NUM,
 			.size = sizeof(struct boardcfg_msmc),
 		},
-		.msmc_cache_size = 0x10,
+		.msmc_cache_size = 0x0,
 	},
 
 	/* boardcfg_dbg_cfg */
