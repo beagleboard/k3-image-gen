@@ -246,7 +246,9 @@ struct boardcfg_dkek {
 
 struct boardcfg_sa2ul_cfg {
 	struct boardcfg_substructure_header	subhdr;
-	u8					rsvd[4];
+	u8					auth_resource_owner;
+	ftbool					enable_saul_psil_global_config_writes;
+	u8					rsvd[2];
 };
 
 #define BOARDCFG_SEC_MAX_NUM_JTAG_UNLOCK_HOSTS	4
