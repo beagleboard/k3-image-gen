@@ -645,7 +645,7 @@ const struct boardcfg_rm_local am62x_boardcfg_rm_data = {
 			.num_resource = 64,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_RING_CPSW_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
+			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* DMASS Packet DMA Rings for SA2UL Tx channel0 */
 		{
@@ -712,7 +712,7 @@ const struct boardcfg_rm_local am62x_boardcfg_rm_data = {
 			.num_resource = 16,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_RING_CPSW_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
+			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* DMASS Packet DMA Rings for SA2UL Rx channel0 */
 		{
@@ -795,7 +795,7 @@ const struct boardcfg_rm_local am62x_boardcfg_rm_data = {
 			.num_resource = 8,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_CPSW_TX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
+			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* DMASS Packet DMA SA2UL Tx channel0 */
 		{
@@ -898,7 +898,7 @@ const struct boardcfg_rm_local am62x_boardcfg_rm_data = {
 			.num_resource = 1,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_CPSW_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
+			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* DMASS Packet DMA CPSW Rx flows */
 		{
@@ -913,7 +913,7 @@ const struct boardcfg_rm_local am62x_boardcfg_rm_data = {
 			.num_resource = 16,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_PKTDMA_0,
 					RESASG_SUBTYPE_PKTDMA_FLOW_CPSW_RX_CHAN),
-			.host_id = HOST_ID_MAIN_0_R5_0,
+			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		/* DMASS Packet DMA SA2UL Rx channel0 */
 		{
