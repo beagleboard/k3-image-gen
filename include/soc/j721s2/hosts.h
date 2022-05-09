@@ -3,9 +3,9 @@
  *
  * Host IDs for J721S2 device
  *
- * Data version: 210528_144358
+ * Data version: 220323_094332
  *
- * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
+ * Copyright (C) 2021-2022 Texas Instruments Incorporated - http://www.ti.com/
  * ALL RIGHTS RESERVED
  */
 #ifndef J721S2_HOSTS_H
