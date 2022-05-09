@@ -2326,19 +2326,25 @@
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_GP)",
                         "type": 16577,
                         "start_resource": 423,
-                        "num_resource": 551
+                        "num_resource": 345
+                    },
+                    {
+                        "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_GP)",
+                        "type": 16577,
+                        "start_resource": 878,
+                        "num_resource": 146
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_RX)",
                         "type": 16578,
-                        "start_resource": 347,
-                        "num_resource": 76
+                        "start_resource": 345,
+                        "num_resource": 78
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX)",
                         "type": 16579,
-                        "start_resource": 6,
-                        "num_resource": 79
+                        "start_resource": 4,
+                        "num_resource": 81
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX_EXT)",
@@ -2350,7 +2356,7 @@
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_RX_H)",
                         "type": 16581,
                         "start_resource": 343,
-                        "num_resource": 4
+                        "num_resource": 2
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_RX_UH)",
@@ -2362,7 +2368,7 @@
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX_H)",
                         "type": 16583,
                         "start_resource": 2,
-                        "num_resource": 4
+                        "num_resource": 2
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_RINGACC_0, RESASG_SUBTYPE_RA_UDMAP_TX_UH)",
@@ -2409,14 +2415,14 @@
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_CHAN)",
                         "type": 16842,
-                        "start_resource": 6,
-                        "num_resource": 76
+                        "start_resource": 4,
+                        "num_resource": 78
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_HCHAN)",
                         "type": 16843,
                         "start_resource": 2,
-                        "num_resource": 4
+                        "num_resource": 2
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_RX_UHCHAN)",
@@ -2427,8 +2433,8 @@
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_CHAN)",
                         "type": 16845,
-                        "start_resource": 6,
-                        "num_resource": 79
+                        "start_resource": 4,
+                        "num_resource": 81
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_ECHAN)",
@@ -2440,7 +2446,7 @@
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_HCHAN)",
                         "type": 16847,
                         "start_resource": 2,
-                        "num_resource": 4
+                        "num_resource": 2
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_NAVSS0_UDMAP_0, RESASG_SUBTYPE_UDMAP_TX_UHCHAN)",
@@ -2650,7 +2656,7 @@
                         "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_INTAGGR_0, RESASG_SUBTYPE_IA_PKTDMA_TX_FLOW_COMPLETION_OES)",
                         "type": 19223,
                         "start_resource": 4608,
-                        "num_resource": 8
+                        "num_resource": 16
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_INTAGGR_0, RESASG_SUBTYPE_IA_PKTDMA_RX_CHAN_ERROR_OES)",
@@ -2695,10 +2701,16 @@
                         "num_resource": 0
                     },
                     {
+                        "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_RING_SAUL_TX_1_CHAN)",
+                        "type": 19283,
+                        "start_resource": 8,
+                        "num_resource": 8
+                    },
+                    {
                         "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_RING_SAUL_RX_0_CHAN)",
                         "type": 19288,
                         "start_resource": 16,
-                        "num_resource": 0
+                        "num_resource": 8
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_RING_SAUL_RX_1_CHAN)",
@@ -2707,10 +2719,28 @@
                         "num_resource": 0
                     },
                     {
+                        "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_RING_SAUL_RX_2_CHAN)",
+                        "type": 19290,
+                        "start_resource": 24,
+                        "num_resource": 8
+                    },
+                    {
+                        "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_RING_SAUL_RX_3_CHAN)",
+                        "type": 19291,
+                        "start_resource": 24,
+                        "num_resource": 8
+                    },
+                    {
                         "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_SAUL_TX_0_CHAN)",
                         "type": 19301,
                         "start_resource": 1,
                         "num_resource": 0
+                    },
+                    {
+                        "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_SAUL_TX_1_CHAN)",
+                        "type": 19302,
+                        "start_resource": 1,
+                        "num_resource": 1
                     },
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_SAUL_RX_0_CHAN)",
@@ -2733,6 +2763,30 @@
                     {
                         "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_FLOW_SAUL_RX_1_CHAN)",
                         "type": 19312,
+                        "start_resource": 0,
+                        "num_resource": 8
+                    },
+                    {
+                        "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_SAUL_RX_2_CHAN)",
+                        "type": 19313,
+                        "start_resource": 2,
+                        "num_resource": 1
+                    },
+                    {
+                        "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_FLOW_SAUL_RX_2_CHAN)",
+                        "type": 19314,
+                        "start_resource": 8,
+                        "num_resource": 8
+                    },
+                    {
+                        "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_SAUL_RX_3_CHAN)",
+                        "type": 19315,
+                        "start_resource": 3,
+                        "num_resource": 1
+                    },
+                    {
+                        "name": "RESASG_UTYPE(J721S2_DEV_MCU_SA3_SS0_PKTDMA_0, RESASG_SUBTYPE_PKTDMA_FLOW_SAUL_RX_3_CHAN)",
+                        "type": 19316,
                         "start_resource": 8,
                         "num_resource": 8
                     },
@@ -2751,7 +2805,7 @@
                 ],
                 "constraints": [
                     {
-                        "max_resource_entries": 900
+                        "max_resource_entries": 980
                     }
                 ]
             },
