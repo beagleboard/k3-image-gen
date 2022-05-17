@@ -89,7 +89,9 @@ const struct boardcfg_security j721e_boardcfg_security_data = {
 			.magic = BOARDCFG_SA2UL_CFG_MAGIC_NUM_RSVD,
 			.size = 0,
 		},
-		.rsvd = {0, 0, 0, 0},
+		.auth_resource_owner = 0,
+		.enable_saul_psil_global_config_writes = 0,
+		.rsvd = {0, 0},
 	},
 
 	/* Secure JTAG Unlock Configuration */
