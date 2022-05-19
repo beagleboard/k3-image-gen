@@ -65,7 +65,7 @@ binroot = $(BIN_DIR)
 # keys, warn HS users if the SECDEV environment variable is not set
 ifdef HS
 ifeq ($(TI_SECURE_DEV_PKG),)
-$(warning TI_SECURE_DEV_PKG should be set for HS, defaults may not work)
+$(error TI_SECURE_DEV_PKG must be set for HS, defaults will not work)
 endif
 endif
 
