@@ -37,7 +37,7 @@ SCIFS = sci
 
 .PHONY: all
 ifeq (,$(SBL))
-all: _objtree_build $(ITB) sysfw.itb
+all: _objtree_build sysfw.itb
 else
-all: _objtree_build $(ITB) sysfw.itb tiboot3.bin
+all: _objtree_build tiboot3.bin
 endif
