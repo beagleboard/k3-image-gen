@@ -215,9 +215,9 @@ $(soc_objroot)/%.o: %.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@-pre-validated $<
 	python3 ./scripts/sysfw_boardcfg_validator.py -b $@-pre-validated -i -o $@ -s $(SOC) -l $@.log
 
-# On HS board configuration binaries must be signed unless it is combined boot image (ie AM65x and J721e)
+# On HS board configuration binaries must be individually signed when not using a combined boot image
 ifdef HS
-ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("j721e" "am65x")))
+ifeq (,$(SBL))
 SIGN_BRDCFG=1
 endif
 endif
