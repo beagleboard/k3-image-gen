@@ -136,6 +136,19 @@ ifeq ($(shell which python3),)
 $(error "No python3 in $(PATH), consider installing python3")
 endif
 
+.PHONY: all
+ifeq (,$(SBL))
+ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("am62x")))
+$(error "Cannot build non-combined boot image for $(BASE_SOC), define SBL image")
+endif
+all: _objtree_build sysfw.itb
+else
+ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("j721e" "am65x")))
+$(error "Cannot build combined boot image for $(BASE_SOC), do not define SBL image")
+endif
+all: _objtree_build tiboot3.bin
+endif
+
 .PHONY: _objtree_build
 _objtree_build:
 	@mkdir -p $(objroot) $(soc_objroot) $(binroot)

@@ -34,10 +34,3 @@ SBL_LOADADDDR ?= 0x70000000
 COMBINED_SYSFW_BRDCFG_LOADADDR ?= 0x7b000
 LOADADDR  ?= 0x44000
 SCIFS = sci
-
-.PHONY: all
-ifeq (,$(SBL))
-all: _objtree_build sysfw.itb
-else
-all: _objtree_build tiboot3.bin
-endif
