@@ -180,7 +180,7 @@ $(ITB): $(ITS)
 	$(MKIMAGE) -f $< -r $@
 
 sysfw.itb: $(ITB)
-	@cp $< $@
+	@ln -sf $< $@
 
 soc_objs: $(SOC_OBJS)
 
