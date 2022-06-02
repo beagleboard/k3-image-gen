@@ -397,8 +397,8 @@ const struct boardcfg_rm_local am62x_boardcfg_rm_data = {
 		},
 		/* DMASS Interrupt aggregator Virtual interrupts */
 		{
-			.start_resource = 4,
-			.num_resource = 36,
+			.start_resource = 5,
+			.num_resource = 35,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_INTAGGR_0,
 					RESASG_SUBTYPE_IA_VINT),
 			.host_id = HOST_ID_A53_2,
@@ -426,36 +426,36 @@ const struct boardcfg_rm_local am62x_boardcfg_rm_data = {
 		},
 		/* DMASS Interrupt aggregator Global events */
 		{
-			.start_resource = 12,
+			.start_resource = 13,
 			.num_resource = 512,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_INTAGGR_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_A53_2,
 		},
 		{
-			.start_resource = 524,
+			.start_resource = 525,
 			.num_resource = 256,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_INTAGGR_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_MAIN_0_R5_0,
 		},
 		{
-			.start_resource = 524,
+			.start_resource = 525,
 			.num_resource = 256,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_INTAGGR_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_MAIN_0_R5_1,
 		},
 		{
-			.start_resource = 780,
+			.start_resource = 781,
 			.num_resource = 128,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_INTAGGR_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_M4_0,
 		},
 		{
-			.start_resource = 908,
-			.num_resource = 628,
+			.start_resource = 909,
+			.num_resource = 627,
 			.type = RESASG_UTYPE (AM62X_DEV_DMASS0_INTAGGR_0,
 					RESASG_SUBTYPE_GLOBAL_EVENT_SEVT),
 			.host_id = HOST_ID_ALL,
