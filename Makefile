@@ -197,13 +197,13 @@ sysfw.itb: $(ITB)
 
 soc_objs: $(SOC_OBJS)
 
-$(COMBINED_SYSFW_BRDCFG): $(SOC_BINS)
+$(COMBINED_SYSFW_BRDCFG): $(soc_objroot)/board-cfg.bin $(soc_objroot)/sec-cfg.bin $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
 
-$(COMBINED_TIFS_BRDCFG): $(SOC_BINS)
+$(COMBINED_TIFS_BRDCFG): $(soc_objroot)/board-cfg.bin $(soc_objroot)/sec-cfg.bin $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
 
-$(COMBINED_DM_BRDCFG): $(SOC_BINS)
+$(COMBINED_DM_BRDCFG): $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
 
 ifdef HS
