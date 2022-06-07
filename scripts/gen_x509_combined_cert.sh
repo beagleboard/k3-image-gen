@@ -211,7 +211,8 @@ if [ -n "$SYSFW_INNER_CERT" ]; then
        NUM_COMPS_COUNT=$(expr $NUM_COMPS_COUNT + 1)
        SYSFW_INNER_CERT_EXT_BOOT_SEQUENCE_STRING="sysfw_inner_cert=SEQUENCE:sysfw_inner_cert"
 read -r -d '' SYSFW_INNER_CERT_EXT_BOOT_BLOCK << EOM
-       [sysfw_inner_cert]\\
+\\
+ [sysfw_inner_cert]\\
  compType = INTEGER:3\\
  bootCore = INTEGER:0\\
  compOpts = INTEGER:0\\
@@ -234,7 +235,8 @@ if [ -n "$DM_DATA" ]; then
 	NUM_COMPS_COUNT=$(expr $NUM_COMPS_COUNT + 1)
 	DM_DATA_EXT_BOOT_SEQUENCE_STRING="dm_data=SEQUENCE:dm_data"
 read -r -d '' DM_DATA_EXT_BOOT_BLOCK << EOM
-	[dm_data]\\
+\\
+ [dm_data]\\
  compType = INTEGER:17\\
  bootCore = INTEGER:16\\
  compOpts = INTEGER:0\\
