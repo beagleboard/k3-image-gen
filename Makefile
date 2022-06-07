@@ -257,6 +257,6 @@ clean:
 
 .PHONY: mrproper
 mrproper: clean
-	-rm -f $(SYSFW_PATH)
-	-rm -f $(SYSFW_HS_PATH)
-	-rm -f $(SYSFW_HS_INNER_CERT_PATH)
+	-rm -f ti-$(SCIFS)-firmware-$(SOC)-gp.bin
+	-rm -f ti-$(SCIFS)-firmware-$(SOC)-hs-enc.bin
+	-rm -f ti-$(SCIFS)-firmware-$(SOC)-hs-cert.bin
