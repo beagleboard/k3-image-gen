@@ -36,6 +36,11 @@
 #
 
 SOC ?= am65x
+ifdef HS
+SOC_TYPE ?= hs
+else
+SOC_TYPE ?= gp
+endif
 CONFIG ?= evm
 
 BASE_SOC = $(firstword $(subst _, ,${SOC}))
@@ -71,10 +76,10 @@ endif
 
 # If using the default SYSFW make sure to manually copy/populate the unsigned
 # image into the root folder of this repository.
-SYSFW_PATH ?= ti-$(SCIFS)-firmware-${SOC}-gp.bin
-SYSFW_HS_PATH ?= ti-$(SCIFS)-firmware-${SOC}-hs-enc.bin
-SYSFW_HS_INNER_CERT_PATH ?= ti-$(SCIFS)-firmware-${SOC}-hs-cert.bin
-SYSFW_HS_CERTS_PATH ?= ti-$(SCIFS)-firmware-${SOC}-hs-certs.bin
+SYSFW_PATH ?= ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE).bin
+SYSFW_HS_PATH ?= ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-enc.bin
+SYSFW_HS_INNER_CERT_PATH ?= ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-cert.bin
+SYSFW_HS_CERTS_PATH ?= ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-certs.bin
 
 # Must use FULL Git hash below, as it is used as part of an URL for direct DL
 SYSFW_GIT_HASH ?= 5aa15e59927a5c4acc4dd61d213ab6cef7c0209f
@@ -257,6 +262,6 @@ clean:
 
 .PHONY: mrproper
 mrproper: clean
-	-rm -f ti-$(SCIFS)-firmware-$(SOC)-gp.bin
-	-rm -f ti-$(SCIFS)-firmware-$(SOC)-hs-enc.bin
-	-rm -f ti-$(SCIFS)-firmware-$(SOC)-hs-cert.bin
+	-rm -f ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE).bin
+	-rm -f ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-enc.bin
+	-rm -f ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-cert.bin
