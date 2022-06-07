@@ -186,7 +186,7 @@ $(soc_objroot)/sysfw.bin: $(SYSFW_PATH)
 	fi
 endif
 
-$(ITS): soc_objs $(SOC_BINS)
+$(ITS): $(SOC_BINS)
 	./gen_its.sh $(SOC) $(CONFIG) $(SOC_BIN_NAMES) > $@
 
 $(ITB): $(ITS)
@@ -194,8 +194,6 @@ $(ITB): $(ITS)
 
 sysfw.itb: $(ITB)
 	@ln -sf $< $@
-
-soc_objs: $(SOC_OBJS)
 
 $(COMBINED_SYSFW_BRDCFG): $(soc_objroot)/board-cfg.bin $(soc_objroot)/sec-cfg.bin $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
