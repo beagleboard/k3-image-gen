@@ -144,14 +144,16 @@ endif
 .PHONY: all
 ifeq (,$(SBL))
 ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("am62x")))
-$(error "Cannot build non-combined boot image for $(BASE_SOC), define SBL image")
-endif
+all: ; $(error "Cannot build non-combined boot image for $(BASE_SOC), define SBL image")
+else
 all: _objtree_build sysfw.itb
+endif
 else
 ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("j721e" "am65x")))
-$(error "Cannot build combined boot image for $(BASE_SOC), do not define SBL image")
-endif
+all: ; $(error "Cannot build combined boot image for $(BASE_SOC), do not define SBL image")
+else
 all: _objtree_build tiboot3.bin
+endif
 endif
 
 .PHONY: _objtree_build
