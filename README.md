@@ -119,9 +119,9 @@ Building SYSFW Image for High-Security(HS) devices
 The process for building and image suitable for use with HS devices is similar
 to the above process with the following differences:
 
-The make commands should be appended with HS=1,
+The make commands should be appended with `SOC_TYPE=hs`,
 
-    $ make HS=1
+    $ make SOC_TYPE=hs
 
 The environment variable **TI_SECURE_DEV_PKG** should be defined to point to
 the TI Secure Development Tools package.

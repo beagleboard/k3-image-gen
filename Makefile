@@ -47,7 +47,7 @@ BASE_SOC = $(firstword $(subst _, ,${SOC}))
 
 include soc/$(BASE_SOC)/Makefile
 
-ifndef HS
+ifeq ($(SOC_TYPE),gp)
 ifeq ($(SOC), j721e_sr1_1)
 override SOC = j721e
 endif
@@ -68,7 +68,7 @@ binroot = $(BIN_DIR)
 
 # The HS SYSFW will only work on HS hardware when signed with valid
 # keys, warn HS users if the SECDEV environment variable is not set
-ifdef HS
+ifneq ($(SOC_TYPE),gp)
 ifeq ($(TI_SECURE_DEV_PKG),)
 $(error TI_SECURE_DEV_PKG must be set for HS, defaults will not work)
 endif
@@ -81,7 +81,7 @@ endif
 # If using the default SYSFW make sure to manually copy/populate the unsigned
 # image into the root folder of this repository.
 SYSFW_DIR ?= .
-ifndef HS
+ifeq ($(SOC_TYPE),gp)
 SYSFW_PATH               ?= $(SYSFW_DIR)/ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE).bin
 else
 SYSFW_PATH               ?= $(SYSFW_DIR)/ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-enc.bin
@@ -98,7 +98,7 @@ SYSFW_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-firmware/blobs/ra
 SYSFW_HS_INNER_CERT_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-firmware/blobs/raw/$(SYSFW_GIT_HASH)/ti-sysfw/$(SYSFW_HS_INNER_CERT_PATH)
 
 # Set HS SYSFW image signing key
-ifdef HS
+ifneq ($(SOC_TYPE),gp)
 KEY ?= $(TI_SECURE_DEV_PKG)/keys/custMpk.pem
 else
 KEY ?= ti-degenerate-key.pem
@@ -177,7 +177,7 @@ $(SYSFW_HS_INNER_CERT_PATH):
 	wget $(SYSFW_HS_INNER_CERT_DL_URL)
 	@echo "Download SUCCESS!"
 
-ifdef HS
+ifneq ($(SOC_TYPE),gp)
 $(SYSFW_HS_CERTS_PATH): $(SYSFW_HS_INNER_CERT_PATH)
 	@echo "Signing the SYSFW inner certificate with $(KEY) key...";
 	./gen_x509_cert.sh -d -c m3 -b $< -o $@ -l $(LOADADDR) -k $(KEY) -r $(SW_REV);
