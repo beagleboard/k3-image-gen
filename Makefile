@@ -244,7 +244,7 @@ $(soc_objroot)/%.o: %.c
 
 .PHONY: sysfw_version
 sysfw_version: $(SYSFW_PATH)
-	@echo "SYSFW Version:" `strings $(SYSFW_PATH) | grep -o 'v20[0-9][0-9]\.[0-9][0-9].*(.*'`
+	@echo "SYSFW Version:" `strings $(SYSFW_PATH) | grep -o '[0-9]\.[0-9]\.[0-9].*(.*'`
 
 .PHONY: clean
 clean:
