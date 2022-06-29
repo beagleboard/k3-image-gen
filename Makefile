@@ -121,9 +121,6 @@ SOURCES ?= \
 	rm-cfg.c \
 	sec-cfg.c
 
-SOC_SOURCES=$(SOURCES:%.c=$(soc_srcroot)/%.c)
-SOC_OBJS=$(SOURCES:%.c=$(soc_objroot)/%.o)
-
 SOC_BINS=$(soc_objroot)/sysfw.bin-$(SOC_TYPE)
 ifdef SIGN_BRDCFG
 SOC_BINS += $(SOURCES:%.c=$(soc_objroot)/%.bin-signed)
@@ -251,7 +248,7 @@ sysfw_version: $(SYSFW_PATH)
 
 .PHONY: clean
 clean:
-	-rm -f $(SOC_BINS) $(SOC_OBJS)
+	-rm -f $(SOC_BINS)
 	-rm -f $(ITB) sysfw.itb
 	-rm -f $(ITS)
 	-rm -f $(TIBOOT3) tiboot3.bin
