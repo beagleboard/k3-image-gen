@@ -190,7 +190,7 @@ $(soc_objroot)/sysfw.bin: $(SYSFW_PATH)
 endif
 
 $(ITS): $(SOC_BINS)
-	./gen_its.sh $(SOC) $(CONFIG) $(SOC_BINS) > $@
+	./gen_its.sh $(SOC) $(SOC_TYPE) $(CONFIG) $(SOC_BINS) > $@
 
 $(ITB): $(ITS)
 	$(MKIMAGE) -f $< -r $@
