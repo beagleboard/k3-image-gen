@@ -72,6 +72,10 @@ ifdef HS
 ifeq ($(TI_SECURE_DEV_PKG),)
 $(error TI_SECURE_DEV_PKG must be set for HS, defaults will not work)
 endif
+# On HS board configuration binaries must be individually signed when not using a combined boot image
+ifeq (,$(SBL))
+SIGN_BRDCFG = 1
+endif
 endif
 
 # If using the default SYSFW make sure to manually copy/populate the unsigned
@@ -121,7 +125,11 @@ SOC_SOURCES=$(SOURCES:%.c=$(soc_srcroot)/%.c)
 SOC_OBJS=$(SOURCES:%.c=$(soc_objroot)/%.o)
 
 SOC_BINS=$(soc_objroot)/sysfw.bin-$(SOC_TYPE)
+ifdef SIGN_BRDCFG
+SOC_BINS += $(SOURCES:%.c=$(soc_objroot)/%.bin-signed)
+else
 SOC_BINS += $(SOURCES:%.c=$(soc_objroot)/%.bin)
+endif
 
 ITB ?= $(binroot)/sysfw-$(SOC)-$(CONFIG).itb
 ITS ?= $(soc_objroot)/$(basename $(notdir $(ITB))).its
@@ -231,22 +239,11 @@ $(soc_objroot)/%.o: %.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@-pre-validated $<
 	python3 ./scripts/sysfw_boardcfg_validator.py -b $@-pre-validated -i -o $@ -s $(SOC) -l $@.log
 
-# On HS board configuration binaries must be individually signed when not using a combined boot image
-ifdef HS
-ifeq (,$(SBL))
-SIGN_BRDCFG=1
-endif
-endif
-
-ifdef SIGN_BRDCFG
-%.bin.unsigned: %.o
-	$(CROSS_COMPILE)objcopy -S -O binary $< $@
-%.bin: %.bin.unsigned
+%.bin-signed: %.bin
 	$(TI_SECURE_DEV_PKG)/scripts/secure-binary-image.sh $< $@
-else
+
 %.bin: %.o
 	$(CROSS_COMPILE)objcopy -S -O binary $< $@
-endif
 
 .PHONY: sysfw_version
 sysfw_version: $(SYSFW_PATH)
