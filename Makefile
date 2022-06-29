@@ -76,9 +76,11 @@ endif
 
 # If using the default SYSFW make sure to manually copy/populate the unsigned
 # image into the root folder of this repository.
-SYSFW_PATH ?= ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE).bin
-SYSFW_HS_PATH ?= ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-enc.bin
-SYSFW_HS_INNER_CERT_PATH ?= ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-cert.bin
+SYSFW_DIR ?= .
+SYSFW_PATH               ?= $(SYSFW_DIR)/ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE).bin
+SYSFW_HS_PATH            ?= $(SYSFW_DIR)/ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-enc.bin
+SYSFW_HS_INNER_CERT_PATH ?= $(SYSFW_DIR)/ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-cert.bin
+
 SYSFW_HS_CERTS_PATH ?= ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-certs.bin
 
 # Must use FULL Git hash below, as it is used as part of an URL for direct DL
