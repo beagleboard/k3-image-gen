@@ -129,6 +129,7 @@ ITS ?= $(soc_objroot)/$(basename $(notdir $(ITB))).its
 COMBINED_SYSFW_BRDCFG ?= $(soc_objroot)/combined-sysfw-cfg.bin
 COMBINED_TIFS_BRDCFG ?= $(soc_objroot)/combined-tifs-cfg.bin
 COMBINED_DM_BRDCFG ?= $(soc_objroot)/combined-dm-cfg.bin
+TIBOOT3 ?= $(binroot)/tiboot3-$(SOC)-$(SOC_TYPE)-$(CONFIG).bin
 
 vpath %.itb $(soc_objroot)
 vpath %.bin $(soc_objroot)
@@ -208,21 +209,24 @@ $(COMBINED_DM_BRDCFG): $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 
 ifdef HS
 ifneq (,$(COMBINED_SYSFW_BRDCFG_LOADADDR))
-tiboot3.bin: $(SBL) $(SYSFW_HS_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_SYSFW_BRDCFG)
+$(TIBOOT3): $(SBL) $(SYSFW_HS_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_SYSFW_BRDCFG)
 	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_HS_PATH) -m $(LOADADDR) -c $(SYSFW_HS_INNER_CERT_PATH) -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 else
-tiboot3.bin: $(SBL) $(SYSFW_HS_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
+$(TIBOOT3): $(SBL) $(SYSFW_HS_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
 	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_HS_PATH) -m 0x40000 -c $(SYSFW_HS_INNER_CERT_PATH) -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 endif
 else
 ifneq (,$(COMBINED_SYSFW_BRDCFG_LOADADDR))
-tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_SYSFW_BRDCFG)
+$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(COMBINED_SYSFW_BRDCFG)
 	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m $(LOADADDR) -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 else
-tiboot3.bin: $(SBL) $(SYSFW_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
+$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
 	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m 0x40000 -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 endif
 endif
+
+tiboot3.bin: $(TIBOOT3)
+	@ln -sf $< $@
 
 $(soc_objroot)/%.o: %.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@-pre-validated $<
@@ -254,6 +258,7 @@ clean:
 	-rm -f $(SOC_BINS) $(SOC_OBJS)
 	-rm -f $(ITB) sysfw.itb
 	-rm -f $(ITS)
+	-rm -f $(TIBOOT3) tiboot3.bin
 	-rm -f $(SYSFW_HS_CERTS_PATH)
 	-rm -rf $(objroot)
 
