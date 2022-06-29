@@ -121,10 +121,8 @@ SOC_SOURCES=$(SOURCES:%.c=$(soc_srcroot)/%.c)
 SOC_OBJS=$(SOURCES:%.c=$(soc_objroot)/%.o)
 
 SOC_BINS=$(soc_objroot)/sysfw.bin
-SOC_BIN_NAMES=sysfw.bin
 
 SOC_BINS += $(SOURCES:%.c=$(soc_objroot)/%.bin)
-SOC_BIN_NAMES += $(SOURCES:%.c=%.bin)
 
 ITB ?= $(binroot)/sysfw-$(SOC)-$(CONFIG).itb
 ITS ?= $(soc_objroot)/$(basename $(notdir $(ITB))).its
@@ -192,7 +190,7 @@ $(soc_objroot)/sysfw.bin: $(SYSFW_PATH)
 endif
 
 $(ITS): $(SOC_BINS)
-	./gen_its.sh $(SOC) $(CONFIG) $(SOC_BIN_NAMES) > $@
+	./gen_its.sh $(SOC) $(CONFIG) $(SOC_BINS) > $@
 
 $(ITB): $(ITS)
 	$(MKIMAGE) -f $< -r $@

@@ -64,7 +64,7 @@ do
 	cat << __CFG_IMAGE_EOF
 		$(basename $bin_name) {
 			description = "$(basename $bin_name .bin)";
-			data = /incbin/("$bin_name");
+			data = /incbin/("$(basename $bin_name)");
 			type = "firmware";
 			arch = "arm";
 			compression = "none";
