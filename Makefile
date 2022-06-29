@@ -184,13 +184,8 @@ $(soc_objroot)/sysfw.bin: $(SYSFW_HS_CERTS_PATH) $(SYSFW_HS_PATH)
 	cat $^ > $@
 else
 $(soc_objroot)/sysfw.bin: $(SYSFW_PATH)
-	@if [ -n "$(KEY)" ]; then \
-		echo "Signing the SYSFW release image with $(KEY) key..."; \
-		./gen_x509_cert.sh -c m3 -b $< -o $@ -l $(LOADADDR) -k $(KEY) -r $(SW_REV);\
-	else \
-		echo "Signing the SYSFW release image with random key..."; \
-		./gen_x509_cert.sh -c m3 -b $< -o $@ -l $(LOADADDR) -r $(SW_REV); \
-	fi
+	@echo "Signing the SYSFW release image with $(KEY) key...";
+	./gen_x509_cert.sh -c m3 -b $< -o $@ -l $(LOADADDR) -k $(KEY) -r $(SW_REV);
 endif
 
 $(ITS): $(SOC_BINS)
