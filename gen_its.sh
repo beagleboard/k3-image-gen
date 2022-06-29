@@ -65,8 +65,8 @@ __HEADER_EOF
 for bin_name in $*
 do
 	cat << __CFG_IMAGE_EOF
-		$(basename $bin_name) {
-			description = "$(basename $bin_name .bin)";
+		$(basename $bin_name ".${bin_name##*.}").bin {
+			description = "$(basename $bin_name ".${bin_name##*.}")";
 			data = /incbin/("$(basename $bin_name)");
 			type = "firmware";
 			arch = "arm";
