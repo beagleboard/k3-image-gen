@@ -81,9 +81,12 @@ endif
 # If using the default SYSFW make sure to manually copy/populate the unsigned
 # image into the root folder of this repository.
 SYSFW_DIR ?= .
+ifndef HS
 SYSFW_PATH               ?= $(SYSFW_DIR)/ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE).bin
-SYSFW_HS_PATH            ?= $(SYSFW_DIR)/ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-enc.bin
+else
+SYSFW_PATH               ?= $(SYSFW_DIR)/ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-enc.bin
 SYSFW_HS_INNER_CERT_PATH ?= $(SYSFW_DIR)/ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-cert.bin
+endif
 
 SYSFW_HS_CERTS_PATH ?= ti-$(SCIFS)-firmware-$(SOC)-$(SOC_TYPE)-certs.bin
 
@@ -92,7 +95,6 @@ SYSFW_GIT_HASH ?= 2d9a1002663a20673d942826c558ba4b472ffe9a
 
 # URL to download SYSFW release binary from if not provided otherwise
 SYSFW_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-firmware/blobs/raw/$(SYSFW_GIT_HASH)/ti-sysfw/$(SYSFW_PATH)
-SYSFW_HS_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-firmware/blobs/raw/$(SYSFW_GIT_HASH)/ti-sysfw/$(SYSFW_HS_PATH)
 SYSFW_HS_INNER_CERT_DL_URL ?= https://git.ti.com/processor-firmware/ti-linux-firmware/blobs/raw/$(SYSFW_GIT_HASH)/ti-sysfw/$(SYSFW_HS_INNER_CERT_PATH)
 
 # Set HS SYSFW image signing key
@@ -170,11 +172,6 @@ $(SYSFW_PATH):
 	wget $(SYSFW_DL_URL)
 	@echo "Download SUCCESS!"
 
-$(SYSFW_HS_PATH):
-	@echo "Downloading HS SYSFW release image..."
-	wget $(SYSFW_HS_DL_URL)
-	@echo "Download SUCCESS!"
-
 $(SYSFW_HS_INNER_CERT_PATH):
 	@echo "Downloading HS SYSFW release certificate..."
 	wget $(SYSFW_HS_INNER_CERT_DL_URL)
@@ -211,22 +208,12 @@ $(COMBINED_TIFS_BRDCFG): $(soc_objroot)/board-cfg.bin $(soc_objroot)/sec-cfg.bin
 $(COMBINED_DM_BRDCFG): $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
 
-ifdef HS
 ifneq (,$(COMBINED_SYSFW_BRDCFG_LOADADDR))
-$(TIBOOT3): $(SBL) $(SYSFW_HS_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_SYSFW_BRDCFG)
-	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_HS_PATH) -m $(LOADADDR) -c $(SYSFW_HS_INNER_CERT_PATH) -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
+$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_SYSFW_BRDCFG)
+	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m $(LOADADDR) -c "$(SYSFW_HS_INNER_CERT_PATH)" -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 else
-$(TIBOOT3): $(SBL) $(SYSFW_HS_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
-	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_HS_PATH) -m 0x40000 -c $(SYSFW_HS_INNER_CERT_PATH) -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
-endif
-else
-ifneq (,$(COMBINED_SYSFW_BRDCFG_LOADADDR))
-$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(COMBINED_SYSFW_BRDCFG)
-	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m $(LOADADDR) -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
-else
-$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
-	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m 0x40000 -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
-endif
+$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
+	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m $(LOADADDR) -c "$(SYSFW_HS_INNER_CERT_PATH)" -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 endif
 
 tiboot3.bin: $(TIBOOT3)
