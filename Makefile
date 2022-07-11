@@ -57,8 +57,6 @@ BUILD_SRC ?= .
 O ?= out
 BIN_DIR ?= .
 
-SW_REV ?= 1
-
 srcroot = $(BUILD_SRC)
 soc_srcroot = $(srcroot)/soc/${BASE_SOC}/${CONFIG}
 objroot = $(O)
@@ -102,6 +100,13 @@ ifneq ($(SOC_TYPE),gp)
 KEY ?= $(TI_SECURE_DEV_PKG)/keys/custMpk.pem
 else
 KEY ?= ti-degenerate-key.pem
+endif
+
+# Set HS Software Revision
+ifneq ($(SOC_TYPE),gp)
+SW_REV ?= $(shell cat $(TI_SECURE_DEV_PKG)/keys/swrv.txt)
+else
+SW_REV ?= 1
 endif
 
 CROSS_COMPILE ?= arm-none-linux-gnueabihf-
