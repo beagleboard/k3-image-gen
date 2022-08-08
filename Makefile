@@ -226,7 +226,7 @@ tiboot3.bin: $(TIBOOT3)
 
 $(soc_objroot)/%.o: %.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@-pre-validated $<
-	python3 ./scripts/sysfw_boardcfg_validator.py -b $@-pre-validated -i -o $@ -s $(SOC) -l $@.log
+	python3 ./scripts/sysfw_boardcfg_validator.py -b $@-pre-validated -i -o $@ -s $(BASE_SOC) -l $@.log
 
 %.bin-signed: %.bin
 	$(TI_SECURE_DEV_PKG)/scripts/secure-binary-image.sh $< $@
