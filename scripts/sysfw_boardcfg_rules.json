@@ -301,7 +301,7 @@
     "validation_rules": {
         "boardcfg_rm_resasg_entry": {
             "comment": "values array contain each resources valid range AFTER accounting for DMSC reserved resources",
-            "am6": {
+            "am65x": {
                 "values": [
                     {
                         "name": "RESASG_UTYPE(AM6_DEV_CMPEVENT_INTRTR0, RESASG_SUBTYPE_IR_OUTPUT)",

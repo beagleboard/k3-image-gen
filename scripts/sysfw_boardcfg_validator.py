@@ -602,9 +602,6 @@ class sysfw_trace_cli:
             self.output_class = sysfw_validation_output_file(
                 self.cmd_args.log_output_file)
 
-        if self.cmd_args.soc == 'am65x':
-            self.cmd_args.soc = 'am6'
-
         if self.cmd_args.soc == 'j721e_sr1_1':
             self.cmd_args.soc = 'j721e'
 
