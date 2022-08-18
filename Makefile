@@ -187,7 +187,7 @@ $(SYSFW_HS_CERTS_PATH): $(SYSFW_HS_INNER_CERT_PATH)
 	@echo "Signing the SYSFW inner certificate with $(KEY) key...";
 	./gen_x509_cert.sh -d -c m3 -b $< -o $@ -l $(LOADADDR) -k $(KEY) -r $(SW_REV);
 
-$(soc_objroot)/sysfw.bin-$(SOC_TYPE): $(SYSFW_HS_CERTS_PATH) $(SYSFW_HS_PATH)
+$(soc_objroot)/sysfw.bin-$(SOC_TYPE): $(SYSFW_HS_CERTS_PATH) $(SYSFW_PATH)
 	cat $^ > $@
 else
 $(soc_objroot)/sysfw.bin-$(SOC_TYPE): $(SYSFW_PATH)
