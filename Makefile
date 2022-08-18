@@ -195,10 +195,10 @@ $(soc_objroot)/sysfw.bin-$(SOC_TYPE): $(SYSFW_PATH)
 	./gen_x509_cert.sh -c m3 -b $< -o $@ -l $(LOADADDR) -k $(KEY) -r $(SW_REV);
 endif
 
-$(ITS): $(SOC_BINS)
+$(ITS):
 	./gen_its.sh $(SOC) $(SOC_TYPE) $(CONFIG) $(SOC_BINS) > $@
 
-$(ITB): $(ITS)
+$(ITB): $(ITS) $(SOC_BINS)
 	$(MKIMAGE) -f $< -r $@
 
 sysfw.itb: $(ITB)
