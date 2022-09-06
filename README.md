@@ -116,15 +116,19 @@ The following flags further modify the build steps:
 
 Building SYSFW Image for High-Security(HS) devices
 --------------------------------------------------
-The process for building and image suitable for use with HS devices is similar
+The process for building an image suitable for use with HS devices is similar
 to the above process with the following differences:
 
-The make commands should be appended with `SOC_TYPE=hs`,
+The make commands should be appended with `SOC_TYPE=<hs,hs-fs>`,
 
     $ make SOC_TYPE=hs
 
 The environment variable **TI_SECURE_DEV_PKG** should be defined to point to
-the TI Secure Development Tools package.
+the TI Secure Development Tools package. This will be used for setting the
+**KEY** and **SW_REV** values. These can also be set explicitly if other
+values are needed,
+
+    $ make SW_REV=2
 
 There are two images downloaded and consumed by the build process.
 
@@ -133,8 +137,8 @@ There are two images downloaded and consumed by the build process.
 
 The inner-certificate is signed by the key provided by the **TI_SECURE_DEV_PKG**
 path producing an outer-certificate. These images are then appended to produce
-the final **sysfw-{soc}-{configuration}.bin** which is bundled with the
-configuration data exactly as the non-HS version above.
+the final **sysfw-{soc}-{configuration}.bin** which is then bundled with the
+configuration data exactly as in the non-HS version above.
 
 
 Important Notes
@@ -155,3 +159,4 @@ References
 ----------
 * [Latest SYSFW Release Documentation](http://software-dl.ti.com/tisci/esd/latest/)
 * [Official SYSFW Release Download Location](https://git.ti.com/processor-firmware/ti-linux-firmware/trees/ti-linux-firmware/ti-sysfw)
+* [TI Secure Development Tools package](https://git.ti.com/cgit/security-development-tools/core-secdev-k3/)
