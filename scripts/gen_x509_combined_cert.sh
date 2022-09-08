@@ -365,3 +365,8 @@ cat $CERT $SBL $SYSFW $SYSFW_DATA $SYSFW_INNER_CERT $DM_DATA > $OUTPUT
 
 echo "SUCCESS: Image $OUTPUT generated."
 
+# Remove all intermediate files
+rm $TEMP_X509 $CERT
+if [ "$KEY" == "$RAND_KEY" ]; then
+	rm $RAND_KEY
+fi
