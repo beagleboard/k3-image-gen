@@ -545,6 +545,7 @@ class sysfw_trace_cli:
                      'j721e',
                      'j7200',
                      'j721s2',
+                     'j784s4',
             },
             required=True)
 
