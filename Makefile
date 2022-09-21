@@ -122,11 +122,20 @@ ifdef ENABLE_TRACE
 CFLAGS += -DENABLE_TRACE
 endif
 
+ifneq ("$(wildcard $(soc_srcroot)/tifs-rm-cfg.c)","")
+SOURCES ?= \
+	board-cfg.c \
+	pm-cfg.c \
+	rm-cfg.c \
+	tifs-rm-cfg.c \
+	sec-cfg.c
+else
 SOURCES ?= \
 	board-cfg.c \
 	pm-cfg.c \
 	rm-cfg.c \
 	sec-cfg.c
+endif
 
 SOC_BINS=$(soc_objroot)/sysfw.bin-$(SOC_TYPE)
 ifdef SIGN_BRDCFG
@@ -155,7 +164,7 @@ endif
 
 .PHONY: all
 ifeq (,$(SBL))
-ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("am62x")))
+ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("am62x" "j784s4")))
 all: ; $(error "Cannot build non-combined boot image for $(BASE_SOC), define SBL image")
 else
 all: _objtree_build sysfw.itb
@@ -207,8 +216,13 @@ sysfw.itb: $(ITB)
 $(COMBINED_SYSFW_BRDCFG): $(soc_objroot)/board-cfg.bin $(soc_objroot)/sec-cfg.bin $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
 
+ifneq ("$(wildcard $(soc_srcroot)/tifs-rm-cfg.c)","")
+$(COMBINED_TIFS_BRDCFG): $(soc_objroot)/board-cfg.bin $(soc_objroot)/sec-cfg.bin $(soc_objroot)/pm-cfg.bin $(soc_objroot)/tifs-rm-cfg.bin
+	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/tifs-rm-cfg.bin -o $@
+else
 $(COMBINED_TIFS_BRDCFG): $(soc_objroot)/board-cfg.bin $(soc_objroot)/sec-cfg.bin $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -b $(soc_objroot)/board-cfg.bin -s $(soc_objroot)/sec-cfg.bin -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
+endif
 
 $(COMBINED_DM_BRDCFG): $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@

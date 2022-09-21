@@ -191,6 +191,15 @@ struct boardcfg_rm_local {
 				resasg_entries[BOARDCFG_RM_RESASG_ENTRIES];
 } __attribute__((__packed__));
 
+#ifndef BOARDCFG_TIFS_RM_RESASG_ENTRIES
+#define BOARDCFG_TIFS_RM_RESASG_ENTRIES		BOARDCFG_RM_RESASG_ENTRIES
+#endif
+
+struct boardcfg_tifs_rm_local {
+	struct boardcfg_rm			rm_boardcfg;
+	struct boardcfg_rm_resasg_entry
+				resasg_entries[BOARDCFG_TIFS_RM_RESASG_ENTRIES];
+} __attribute__((__packed__));
 /**
  * Definitions, types, etc. as used for the security configuration
  */
