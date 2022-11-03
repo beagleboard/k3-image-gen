@@ -1021,7 +1021,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 					RESASG_SUBTYPE_RA_UDMAP_TX),
 			.host_id = HOST_ID_ALL,
 		},
-		/* Main NAVSS Rings for extended Tx channels for DRU */
+		/* Main NAVSS Rings for extended Tx channels */
 		{
 			.start_resource = 140,
 			.num_resource = 16,
@@ -1057,7 +1057,6 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 					RESASG_SUBTYPE_RA_UDMAP_TX_EXT),
 			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
-		/* Main NAVSS Rings for extended Tx channels for HWA */
 		{
 			.start_resource = 172,
 			.num_resource = 96,
@@ -1702,7 +1701,7 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 					RESASG_SUBTYPE_UDMAP_TX_CHAN),
 			.host_id = HOST_ID_ALL,
 		},
-		/* Main NAVSS UDMA extended Tx channels for DRU */
+		/* Main NAVSS UDMA Extended Tx channels */
 		{
 			.start_resource = 140,
 			.num_resource = 16,
@@ -1738,7 +1737,6 @@ const struct boardcfg_rm_local j721e_boardcfg_rm_data = {
 					RESASG_SUBTYPE_UDMAP_TX_ECHAN),
 			.host_id = HOST_ID_MAIN_0_R5_2,
 		},
-		/* Main NAVSS UDMA extended Tx channels for HWA */
 		{
 			.start_resource = 172,
 			.num_resource = 96,
