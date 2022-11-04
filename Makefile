@@ -133,6 +133,8 @@ SOURCES ?= \
 	sec-cfg.c
 endif
 
+SOC_LOGS=$(SOURCES:%.c=$(soc_objroot)/%.o.log)
+SOC_PVAL=$(SOURCES:%.c=$(soc_objroot)/%.o-pre-validated)
 SOC_BINS=$(soc_objroot)/sysfw.bin-$(SOC_TYPE)
 ifdef SIGN_BRDCFG
 SOC_BINS += $(SOURCES:%.c=$(soc_objroot)/%.bin-signed)
@@ -254,12 +256,16 @@ sysfw_version: $(SYSFW_PATH)
 
 .PHONY: clean
 clean:
-	-rm -f $(SOC_BINS)
+	-rm -f $(SOC_BINS) $(SOC_PVAL) $(SOC_LOGS)
 	-rm -f $(ITB) sysfw.itb
 	-rm -f $(ITS)
 	-rm -f $(TIBOOT3) tiboot3.bin
 	-rm -f $(SYSFW_HS_CERTS_PATH)
-	-rm -rf $(O)
+	-rm -df $(BIN_DIR)
+	-rm -df $(O)/soc/$(BASE_SOC)/$(CONFIG) && \
+	 rm -df $(O)/soc/$(BASE_SOC) && \
+	 rm -df $(O)/soc && \
+	 rm -df $(O)
 
 .PHONY: mrproper
 mrproper: clean
