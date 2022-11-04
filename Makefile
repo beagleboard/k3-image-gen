@@ -57,12 +57,8 @@ BUILD_SRC ?= .
 O ?= out
 BIN_DIR ?= .
 
-srcroot = $(BUILD_SRC)
-soc_srcroot = $(srcroot)/soc/$(BASE_SOC)/$(CONFIG)
-objroot = $(O)
-soc_objroot = $(objroot)/soc/$(BASE_SOC)/$(CONFIG)
-
-binroot = $(BIN_DIR)
+soc_srcroot = $(BUILD_SRC)/soc/$(BASE_SOC)/$(CONFIG)
+soc_objroot = $(O)/soc/$(BASE_SOC)/$(CONFIG)
 
 # The HS SYSFW will only work on HS hardware when signed with valid
 # keys, warn HS users if the SECDEV environment variable is not set
@@ -144,12 +140,12 @@ else
 SOC_BINS += $(SOURCES:%.c=$(soc_objroot)/%.bin)
 endif
 
-ITB ?= $(binroot)/sysfw-$(SOC)-$(CONFIG).itb
+ITB ?= $(BIN_DIR)/sysfw-$(SOC)-$(CONFIG).itb
 ITS ?= $(soc_objroot)/$(basename $(notdir $(ITB))).its
 COMBINED_SYSFW_BRDCFG ?= $(soc_objroot)/combined-sysfw-cfg.bin
 COMBINED_TIFS_BRDCFG ?= $(soc_objroot)/combined-tifs-cfg.bin
 COMBINED_DM_BRDCFG ?= $(soc_objroot)/combined-dm-cfg.bin
-TIBOOT3 ?= $(binroot)/tiboot3-$(SOC)-$(SOC_TYPE)-$(CONFIG).bin
+TIBOOT3 ?= $(BIN_DIR)/tiboot3-$(SOC)-$(SOC_TYPE)-$(CONFIG).bin
 
 vpath %.itb $(soc_objroot)
 vpath %.bin $(soc_objroot)
@@ -183,7 +179,7 @@ _objtree_build:
 
 .PHONY: _bindir_build
 _bindir_build:
-	@mkdir -p $(binroot)
+	@mkdir -p $(BIN_DIR)
 
 $(SYSFW_PATH):
 	@echo "Downloading SYSFW release image..."
@@ -263,7 +259,7 @@ clean:
 	-rm -f $(ITS)
 	-rm -f $(TIBOOT3) tiboot3.bin
 	-rm -f $(SYSFW_HS_CERTS_PATH)
-	-rm -rf $(objroot)
+	-rm -rf $(O)
 
 .PHONY: mrproper
 mrproper: clean
