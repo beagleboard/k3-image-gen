@@ -43,7 +43,7 @@ SOC_TYPE ?= gp
 endif
 CONFIG ?= evm
 
-BASE_SOC = $(firstword $(subst _, ,${SOC}))
+BASE_SOC = $(firstword $(subst _, ,$(SOC)))
 
 include soc/$(BASE_SOC)/Makefile
 
@@ -58,9 +58,9 @@ O ?= out
 BIN_DIR ?= .
 
 srcroot = $(BUILD_SRC)
-soc_srcroot = $(srcroot)/soc/${BASE_SOC}/${CONFIG}
+soc_srcroot = $(srcroot)/soc/$(BASE_SOC)/$(CONFIG)
 objroot = $(O)
-soc_objroot = $(objroot)/soc/${BASE_SOC}/${CONFIG}
+soc_objroot = $(objroot)/soc/$(BASE_SOC)/$(CONFIG)
 
 binroot = $(BIN_DIR)
 
@@ -114,8 +114,8 @@ CROSS_COMPILE ?= arm-none-linux-gnueabihf-
 CFLAGS ?= \
 	-fno-builtin \
 	-Wall \
-	-Iinclude/soc/${BASE_SOC} \
-	-Isoc/${BASE_SOC}/${CONFIG} \
+	-Iinclude/soc/$(BASE_SOC) \
+	-Isoc/$(BASE_SOC)/$(CONFIG) \
 	-Iinclude
 
 ifdef ENABLE_TRACE
