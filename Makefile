@@ -167,19 +167,23 @@ ifeq (,$(SBL))
 ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("am62x" "j784s4")))
 all: ; $(error "Cannot build non-combined boot image for $(BASE_SOC), define SBL image")
 else
-all: _objtree_build sysfw.itb
+all: sysfw.itb
 endif
 else
 ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("j721e" "am65x")))
 all: ; $(error "Cannot build combined boot image for $(BASE_SOC), do not define SBL image")
 else
-all: _objtree_build tiboot3.bin
+all: tiboot3.bin
 endif
 endif
 
 .PHONY: _objtree_build
 _objtree_build:
-	@mkdir -p $(objroot) $(soc_objroot) $(binroot)
+	@mkdir -p $(soc_objroot)
+
+.PHONY: _bindir_build
+_bindir_build:
+	@mkdir -p $(binroot)
 
 $(SYSFW_PATH):
 	@echo "Downloading SYSFW release image..."
@@ -196,18 +200,18 @@ $(SYSFW_HS_CERTS_PATH): $(SYSFW_HS_INNER_CERT_PATH)
 	@echo "Signing the SYSFW inner certificate with $(KEY) key...";
 	./gen_x509_cert.sh -d -c m3 -b $< -o $@ -l $(LOADADDR) -k $(KEY) -r $(SW_REV);
 
-$(soc_objroot)/sysfw.bin-$(SOC_TYPE): $(SYSFW_HS_CERTS_PATH) $(SYSFW_PATH)
+$(soc_objroot)/sysfw.bin-$(SOC_TYPE): $(SYSFW_HS_CERTS_PATH) $(SYSFW_PATH) | _objtree_build
 	cat $^ > $@
 else
-$(soc_objroot)/sysfw.bin-$(SOC_TYPE): $(SYSFW_PATH)
+$(soc_objroot)/sysfw.bin-$(SOC_TYPE): $(SYSFW_PATH) | _objtree_build
 	@echo "Signing the SYSFW release image with $(KEY) key...";
 	./gen_x509_cert.sh -c m3 -b $< -o $@ -l $(LOADADDR) -k $(KEY) -r $(SW_REV);
 endif
 
-$(ITS):
+$(ITS): | _objtree_build
 	./gen_its.sh $(SOC) $(SOC_TYPE) $(CONFIG) $(SOC_BINS) > $@
 
-$(ITB): $(ITS) $(SOC_BINS)
+$(ITB): $(ITS) $(SOC_BINS) | _bindir_build
 	$(MKIMAGE) -f $< -r $@
 
 sysfw.itb: $(ITB)
@@ -228,17 +232,17 @@ $(COMBINED_DM_BRDCFG): $(soc_objroot)/pm-cfg.bin $(soc_objroot)/rm-cfg.bin
 	python3 ./scripts/sysfw_boardcfg_blob_creator.py -p $(soc_objroot)/pm-cfg.bin -r $(soc_objroot)/rm-cfg.bin -o $@
 
 ifneq (,$(COMBINED_SYSFW_BRDCFG_LOADADDR))
-$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_SYSFW_BRDCFG)
+$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_SYSFW_BRDCFG) | _bindir_build
 	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m $(LOADADDR) -c "$(SYSFW_HS_INNER_CERT_PATH)" -d $(COMBINED_SYSFW_BRDCFG) -n $(COMBINED_SYSFW_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 else
-$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
+$(TIBOOT3): $(SBL) $(SYSFW_PATH) $(SYSFW_HS_INNER_CERT_PATH) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG) | _bindir_build
 	./scripts/gen_x509_combined_cert.sh -b $(SBL) -l $(SBL_LOADADDDR) -s $(SYSFW_PATH) -m $(LOADADDR) -c "$(SYSFW_HS_INNER_CERT_PATH)" -d $(COMBINED_TIFS_BRDCFG) -n $(COMBINED_TIFS_BRDCFG_LOADADDR) -t $(COMBINED_DM_BRDCFG) -y $(COMBINED_DM_BRDCFG_LOADADDR) -k $(KEY) -r $(SW_REV) -o $@
 endif
 
 tiboot3.bin: $(TIBOOT3)
 	@ln -sf $< $@
 
-$(soc_objroot)/%.o: %.c
+$(soc_objroot)/%.o: %.c | _objtree_build
 	$(CROSS_COMPILE)gcc $(CFLAGS) -c -o $@-pre-validated $<
 	python3 ./scripts/sysfw_boardcfg_validator.py -b $@-pre-validated -i -o $@ -s $(BASE_SOC) -l $@.log
 
