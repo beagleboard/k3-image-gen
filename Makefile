@@ -257,6 +257,7 @@ sysfw_version: $(SYSFW_PATH)
 .PHONY: clean
 clean:
 	-rm -f $(SOC_BINS) $(SOC_PVAL) $(SOC_LOGS)
+	-rm -f $(COMBINED_SYSFW_BRDCFG) $(COMBINED_TIFS_BRDCFG) $(COMBINED_DM_BRDCFG)
 	-rm -f $(ITB) sysfw.itb
 	-rm -f $(ITS)
 	-rm -f $(TIBOOT3) tiboot3.bin
