@@ -162,7 +162,7 @@ endif
 
 .PHONY: all
 ifeq (,$(SBL))
-ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("am62x" "j784s4")))
+ifeq ($(BASE_SOC),$(findstring $(BASE_SOC),("am62x" "j784s4" "am62ax")))
 all: ; $(error "Cannot build non-combined boot image for $(BASE_SOC), define SBL image")
 else
 all: sysfw.itb
