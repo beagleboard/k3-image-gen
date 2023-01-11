@@ -1014,32 +1014,18 @@ const struct boardcfg_rm_local am62a_boardcfg_rm_data = {
 		/* Block Copy DMA Rings DMASS1 for Split TR Rx channel */
 		{
 			.start_resource = 0,
-			.num_resource = 4,
+			.num_resource = 6,
 			.type = RESASG_UTYPE (AM62A_DEV_DMASS1_BCDMA_0,
 					RESASG_SUBTYPE_BCDMA_RING_SPLIT_TR_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 4,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (AM62A_DEV_DMASS1_BCDMA_0,
-					RESASG_SUBTYPE_BCDMA_RING_SPLIT_TR_RX_CHAN),
-			.host_id = HOST_ID_ALL,
 		},
 		/* Block Copy DMA DMASS1 Split TR Rx channel */
 		{
 			.start_resource = 0,
-			.num_resource = 4,
+			.num_resource = 6,
 			.type = RESASG_UTYPE (AM62A_DEV_DMASS1_BCDMA_0,
 					RESASG_SUBTYPE_BCDMA_SPLIT_TR_RX_CHAN),
 			.host_id = HOST_ID_A53_2,
-		},
-		{
-			.start_resource = 4,
-			.num_resource = 2,
-			.type = RESASG_UTYPE (AM62A_DEV_DMASS1_BCDMA_0,
-					RESASG_SUBTYPE_BCDMA_SPLIT_TR_RX_CHAN),
-			.host_id = HOST_ID_ALL,
 		},
 		/* DMASS1 Interrupt aggregator Virtual interrupts */
 		{
