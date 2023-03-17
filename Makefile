@@ -142,7 +142,7 @@ else
 SOC_BINS += $(SOURCES:%.c=$(soc_objroot)/%.bin)
 endif
 
-ITB ?= $(BIN_DIR)/sysfw-$(SOC)-$(CONFIG).itb
+ITB ?= $(BIN_DIR)/sysfw-$(SOC)-$(SOC_TYPE)-$(CONFIG).itb
 ITS ?= $(soc_objroot)/$(basename $(notdir $(ITB))).its
 COMBINED_SYSFW_BRDCFG ?= $(soc_objroot)/combined-sysfw-cfg.bin
 COMBINED_TIFS_BRDCFG ?= $(soc_objroot)/combined-tifs-cfg.bin
