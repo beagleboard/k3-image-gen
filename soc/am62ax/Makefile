@@ -35,11 +35,3 @@ COMBINED_TIFS_BRDCFG_LOADADDR ?= 0x67000
 COMBINED_DM_BRDCFG_LOADADDR ?= 0x43c3c800
 LOADADDR  ?= 0x40000
 SCIFS = fs
-
-.PHONY: all
-ifeq (,$(SBL))
-all: _objtree_build $(ITB) sysfw.itb
-	@echo "**WARNING**: AM62a requires SBL to be provided (allowing temporarily)"
-else
-all: _objtree_build $(ITB) sysfw.itb tiboot3.bin
-endif

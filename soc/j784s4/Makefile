@@ -35,10 +35,3 @@ COMBINED_TIFS_BRDCFG_LOADADDR ?= 0x66800
 COMBINED_DM_BRDCFG_LOADADDR ?= 0x41c80000
 LOADADDR ?= 0x40000
 SCIFS = fs
-
-.PHONY: all
-ifeq (,$(SBL))
-all: _objtree_build $(ITB) sysfw.itb
-else
-all: _objtree_build $(ITB) sysfw.itb tiboot3.bin
-endif
